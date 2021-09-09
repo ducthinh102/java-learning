@@ -1,0 +1,10 @@
+{
+	"clientwh_catalog_title": "Catalog",
+	"clientwh_catalog_code": "Code",
+	"clientwh_catalog_name": "Name",
+	"clientwh_catalog_parentsystem": "Belong to system",
+	"clientwh_catalog_parentid": "Parent",
+	"clientwh_catalog_catalog_code_exist": "Code catalog is exist",
+	"clientwh_catalog_system": "System",
+	"clientwh_catalog_search": "Search ..."
+}

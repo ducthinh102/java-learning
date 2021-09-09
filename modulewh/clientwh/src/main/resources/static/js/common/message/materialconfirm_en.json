@@ -1,0 +1,23 @@
+{
+	"clientwh_materialconfirm_title": "Material Code Confirm",
+	"clientwh_materialconfirm_all": "all",
+	"clientwh_materialconfirm_thumbnail": "thumbnail",
+	"clientwh_materialconfirm_no_thumbnail": "no image",
+	"clientwh_materialconfirm_name": "name",
+	"clientwh_materialconfirm_code": "code",
+	"clientwh_materialconfirm_quantity": "quantity",
+	"clientwh_materialconfirm_attachedfiles": "attached files",
+	"clientwh_materialconfirm_description": "description",
+	"clientwh_materialconfirm_edit": "edit",
+	"clientwh_materialconfirm_name_search": "search by name",
+	"clientwh_materialconfirm_name_search_not_found": "No matches found",
+	"clientwh_materialconfirm_accept_verify": "' will apply with code '",
+	"clientwh_materialconfirm_invalid_name": "An item has no name !",
+	"clientwh_materialconfirm_invalid_code": "has invalid code",
+	"clientwh_materialconfirm_confirm_selected_items": "Approve selected items",
+	"clientwh_materialconfirm_reference_verify": "' will REFERENCE with code of existed material '",
+	"clientwh_materialconfirm_new_verify": "' will create NEW material with code '",
+	"clientwh_materialconfirm_confirm_verify": "Do you want to approve all selected items?",
+	"clientwh_materialconfirm_confirming": "Updating...",
+	"clientwh_materialconfirm_confirmed": "Updated!"
+}

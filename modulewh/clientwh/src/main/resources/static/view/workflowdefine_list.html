@@ -1,0 +1,195 @@
+<section class="content-header">
+</section>
+
+<!-- Main content -->
+<section class="content">
+	
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientwh_workflowdefine_title' | translate}}</h3>
+		</div>
+		<div class="box-body">
+	
+			<div ng-init="initList()">
+				<!-- panel -->
+				<div class="panel panel-default">
+					<!-- panel-heading -->
+					<div class="panel-heading">
+					
+						<!-- top actions -->
+						<div class="row">
+							<div class="pull-left">
+								<dir-pagination-controls
+									   max-size="8"
+									   direction-links="true"
+									   boundary-links="true" 
+									   on-page-change="listWithCriteriasByPage(newPageNumber)" >
+								</dir-pagination-controls>
+							</div>
+						</div>
+						
+						<!-- filter	 -->
+						<div class="row">
+							<!-- filter by workflow name -->
+							<md-input-container class="col-md-2" md-no-float style="margin:0px">
+								<md-select aria-label="select" ng-model="search.workflowId" placeholder="{{'clientwh_workflowdefine_workflowname' | translate}}">
+									<md-option ng-repeat="workflow in workflows" value={{workflow.id}}>{{workflow.name}}</option>
+								</md-select>
+							</md-input-container>
+							<!-- filter by code -->
+							<md-input-container class="col-md-2" md-no-float style="margin:0px">
+								<input type="text" ng-model="search.code" placeholder="{{'clientwh_workflowdefine_code' | translate}}" maxlength="50">
+							</md-input-container>
+							<!-- filter by name -->
+							<md-input-container class="col-md-2" md-no-float style="margin:0px">
+								<input type="text" ng-model="search.name" placeholder="{{'clientwh_workflowdefine_name' | translate}}" maxlength="50">
+							</md-input-container>
+							<!-- filter by step -->
+							<md-input-container class="col-md-2" md-no-float style="margin:0px">
+								<input type="number" ng-model="search.step" placeholder="{{'clientwh_workflowdefine_step' | translate}}" maxlength="9" oninput="(value=parseInt(value.substring(0,maxLength)));">
+							</md-input-container>
+							<!-- filter button -->
+							<span class="col-md-2 input-group-btn">
+								<md-button aria-label="search" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'blue'}" ng-click="listWithCriteriasByPage(1)">
+									<md-tooltip >{{'clientwh_home_filter' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">search</md-icon>
+								</md-button>
+					
+								<md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearFilter()">
+									<md-tooltip>{{'clientwh_home_filter_clear' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">clear</md-icon>
+								</md-button>
+							</span>
+							<!-- create new button -->
+							<span class="col-md-2 input-group-btn"></span>
+								<md-button class="md-icon-button test-tooltip md-raised md-primary pull-right" md-colors="{background: 'blue'}" ng-if="isPermisCreate()" ng-click="showCreate()">
+									<md-tooltip>{{'clientwh_home_create' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">add</md-icon>
+								</md-button>
+							</span>
+						</div>
+	
+					</div>
+				
+					<!-- list of content -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<!-- edit item -->
+										<th>{{'clientwh_workflowdefine_edit' | translate}}</th>
+										<!-- delete item -->
+										<th>{{'clientwh_workflowdefine_delete' | translate}}</th>
+										<!-- workflow id -->
+										<th ng-click="sortBy('workflowName')">{{'clientwh_workflowdefine_workflowname' | translate}}
+											<span ng-show="sortKey === 'workflowName'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- code -->
+										<th ng-click="sortBy('code')">{{'clientwh_workflowdefine_code' | translate}}
+											<span ng-show="sortKey === 'code'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- name -->
+										<th ng-click="sortBy('name')">{{'clientwh_workflowdefine_name' | translate}}
+											<span ng-show="sortKey === 'name'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- step -->
+										<th ng-click="sortBy('step')">{{'clientwh_workflowdefine_step' | translate}}
+											<span ng-show="sortKey === 'step'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr dir-paginate="item in workflowdefines | orderBy:sortKey:reverse | itemsPerPage:page.pageSize" current-page="page.currentPage" total-items="page.totalElements">
+										<!-- edit item -->
+										<td>
+											<div ng-click="showForm(item.id)" ng-if="isPermisUpdate(item.idcreate, item.idowner)" data-toggle="tooltip" title="{{'clientwh_home_edit' | translate}}">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</div>
+										</td>
+										<!-- delete item -->
+										<td>
+											<div ng-click="delete(item.id, item.version)" ng-if="isPermisDelete(item.idcreate, item.idowner)" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+												<span class="glyphicon glyphicon-trash"></span>
+											</div>
+										</td>
+										<!-- workflow name -->
+										<td>{{getWorkflownameByWorkflowid(item.idworkflow)}}</td>
+										<!-- material code -->
+										<td>{{item.code}}</td>
+										<!-- material name -->
+										<td>{{item.name}}</td>
+										<!-- material quantity -->
+										<td>{{item.step}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- panel-footer -->
+					<div class="panel-footer">
+					
+						<!-- filter	 -->
+						<div class="row">
+							<!-- filter by workflow id -->
+							<md-input-container class="col-md-2" md-no-float style="margin:0px">
+								<md-select aria-label="select" ng-model="search.workflowId" placeholder="{{'clientwh_workflowdefine_workflowname' | translate}}">
+									<md-option ng-repeat="workflow in workflows" value={{workflow.id}}>{{workflow.name}}</option>
+								</md-select>
+							</md-input-container>
+							<!-- filter by code -->
+							<md-input-container class="col-md-2" md-no-float style="margin:0px">
+								<input type="text" ng-model="search.code" placeholder="{{'clientwh_workflowdefine_code' | translate}}" maxlength="50">
+							</md-input-container>
+							<!-- filter by name -->
+							<md-input-container class="col-md-2" md-no-float style="margin:0px">
+								<input type="text" ng-model="search.name" placeholder="{{'clientwh_workflowdefine_name' | translate}}" maxlength="50">
+							</md-input-container>
+							<!-- filter by step -->
+							<md-input-container class="col-md-2" md-no-float style="margin:0px">
+								<input type="number" ng-model="search.step" placeholder="{{'clientwh_workflowdefine_step' | translate}}" maxlength="9" oninput="(value=parseInt(value.substring(0,maxLength)));">
+							</md-input-container>
+							<!-- filter button -->
+							<span class="col-md-2 input-group-btn">
+								<md-button aria-label="search" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'blue'}" ng-click="listWithCriteriasByPage(1)">
+									<md-tooltip >{{'clientwh_home_filter' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">search</md-icon>
+								</md-button>
+					
+								<md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearFilter()">
+									<md-tooltip>{{'clientwh_home_filter_clear' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">clear</md-icon>
+								</md-button>
+							</span>
+							<!-- create new button -->
+							<span class="col-md-2 input-group-btn"></span>
+								<md-button class="md-icon-button test-tooltip md-raised md-primary pull-right" md-colors="{background: 'blue'}" ng-if="isPermisCreate()" ng-click="showCreate()">
+									<md-tooltip>{{'clientwh_home_create' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">add</md-icon>
+								</md-button>
+							</span>
+						</div>
+					
+						<!-- bottom actions -->
+						<div class="row">
+						
+							<div class="pull-left">
+								<dir-pagination-controls
+									   max-size="8"
+									   direction-links="true"
+									   boundary-links="true" >
+								</dir-pagination-controls>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div><!-- /.box-body -->
+	    <div class="box-footer">
+	      Footer
+	    </div><!-- /.box-footer-->
+	  </div><!-- /.box -->
+
+</section><!-- /.content -->

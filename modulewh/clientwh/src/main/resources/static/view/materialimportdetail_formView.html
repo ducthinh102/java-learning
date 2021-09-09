@@ -1,0 +1,94 @@
+<md-card>
+	<form name="frmMaterialimportdetail" novalidate class="css-form">
+		<!-- Title -->
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{'clientwh_materialimportdetail_title' | translate}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<!-- Title -->
+		<!-- Context -->
+		<div class="row">
+			<!-- First column -->
+			<div class="col-sm-3"></div>
+			<!--/ First column  -->
+			<!-- Second column -->
+			<div class="col-sm-6">
+				<div class="form-vertical">
+
+					<!-- Material -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label>{{'clientwh_materialimportdetail_materialname' | translate}}</label>
+							<input ng-model="materialimportDetailView.materialName" disabled>
+						</md-input-container>
+					</div>
+					<!-- Material -->
+					
+					<div class="form-group col-sm-12">
+						<div layout="row">
+							<!-- Price -->
+							<md-input-container flex="33">
+								<label class="control-label col-sm-6">{{'clientwh_materialimportdetail_price' | translate}}</label>
+								<input required numeric step="0.01" formatting="true" min="0.0" max="999999999" md-input md-no-asterisk ng-model="materialimportDetailView.price"
+								 disabled>
+							</md-input-container>
+							<!--/ Price  -->
+							<!-- Quantity -->
+							<md-input-container flex="33">
+								<label class="control-label col-sm-6">{{'clientwh_materialimportdetail_quantity' | translate}}</label>
+								<input required numeric decimals="0" formatting="true" min="1" max="999999999" md-input md-no-asterisk ng-model="materialimportDetailView.quantity"
+								 disabled>
+							</md-input-container>
+							<!--/ Quantity  -->
+							<!-- Unit -->
+							<md-input-container flex="33">
+								<label class="control-label col-sm-6">{{'clientwh_materialimportdetail_unit' | translate}}</label>
+								<input disabled type="text" md-input md-no-asterisk ng-model="materialimportDetailView.unitName" disabled>
+							</md-input-container>
+							<!--/ Unit -->
+						</div>
+					</div>
+
+					<!-- Amount -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label class="control-label col-sm-6">{{'clientwh_materialimportdetail_amount' | translate}}</label>
+							<input numeric step="0.01" formatting="true" min="0" max="999999999" md-input disabled name="amount" ng-model="materialimportDetailView.amount">
+						</md-input-container>
+					</div>
+					<!--/ Amount  -->
+					<!-- Note -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label>{{'clientwh_materialimportdetail_note' | translate}}</label>
+							<textarea ng-model="materialimportDetailView.note" md-maxlength="500" max="150" rows="5" md-select-on-focus maxlength="500"
+							 disabled></textarea>
+						</md-input-container>
+					</div>
+					<!--/ Note  -->
+				</div>
+			</div>
+			<!--/ Second column -->
+			<!-- Thrid column -->
+			<div class="col-sm-3"></div>
+			<!--/ Thrid column -->
+		</div>
+
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<div class="btn-group pull-right">
+					<!-- Close button -->
+					<md-button class="md-icon-button md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+					 ng-click="closeDialog()">
+					 	<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+					<!-- Close button -->
+				</div>
+			</div>
+		</div>
+		<!--/ Bottom actions -->
+	</form>
+</md-card>

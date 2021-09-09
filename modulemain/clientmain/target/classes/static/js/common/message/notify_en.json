@@ -1,0 +1,22 @@
+{
+	"clientmain_notify_title": "Notify",
+	"clientmain_notify_idsender": "idsender",
+	"clientmain_notify_idreceiver": "idreceiver",
+	"clientmain_notify_idref": "idref",
+	"clientmain_notify_reftype": "reftype",
+	"clientmain_notify_content": "content",
+	"clientmain_notify_method": "method",
+	"clientmain_notify_priority": "priority",
+	"clientmain_notify_isactive": "isactive",
+	"clientmain_notify_status": "status",
+	"clientmain_notify_idowner": "idowner",
+	"clientmain_notify_idcreate": "idcreate",
+	"clientmain_notify_idupdate": "idupdate",
+	"clientmain_notify_iddelete": "iddelete",
+	"clientmain_notify_idlock": "idlock",
+	"clientmain_notify_createdate": "createdate",
+	"clientmain_notify_updatedate": "updatedate",
+	"clientmain_notify_deletedate": "deletedate",
+	"clientmain_notify_lockdate": "lockdate",
+	"clientmain_notify_version": "version"
+}

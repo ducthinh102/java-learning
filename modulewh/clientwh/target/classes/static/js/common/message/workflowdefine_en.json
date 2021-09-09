@@ -1,0 +1,23 @@
+{
+	"clientwh_workflowdefine_title": "Workflow Management",
+	"clientwh_workflowdefine_transmit_title": "Transmit",
+	"clientwh_workflowdefine_workflowname": "workflow type",
+	"clientwh_workflowdefine_code": "code",
+	"clientwh_workflowdefine_name": "name",
+	"clientwh_workflowdefine_step": "step",
+	"clientwh_workflowdefine_transmit": "transmit",
+	"clientwh_workflowdefine_duration": "duration (day)",
+	"clientwh_workflowdefine_sender": "sender",
+	"clientwh_workflowdefine_receiver": "receiver",
+	"clientwh_workflowdefine_approver": "approver",
+	"clientwh_workflowdefine_search_user": "Find user by name",
+	"clientwh_workflowdefine_edit": "edit",
+	"clientwh_workflowdefine_delete": "delete",
+	"clientwh_workflowdefine_add": "Add",
+	"clientwh_workflowdefine_delete_confirm": "Are you sure to delete this item ?",
+	"clientwh_workflowdefine_deleted": "Selected workflow is deleted.",
+	"clientwh_workflowdefine_step_existed": "this step is defined",
+	"clientwh_workflowdefine_item_existed_in_sender": "is existed in sender list. Can not select!",
+	"clientwh_workflowdefine_item_existed_in_receiver": "is existed in receiver list. Can not select!",
+	"clientwh_workflowdefine_item_existed_in_approver": "is existed in approver list. Can not select!"
+}

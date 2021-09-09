@@ -1,0 +1,179 @@
+
+* Note: idcreate, idowner, idupdate, iddelete, idlock, createdate, updatedate, deletedate, lockdate.
+status: 1=new, 2=update, 3=delete, 4=notuse.
+workflow status: 9=waitforreceive, 10=waitforapprove, 11=send (to multi receivers), 12=receive, 13=getback, 14=sendback, 15=cancel, 16=approve, 17=receivesendback. (nhiều người nhận thì nhiều dòng workflowexecute, nhiều người duyệt thì nhiều dòng assignment).
+notify status: 51=send, 52=view, 53=cannotsend, 55=cancel.
+
+store:
+id, idparent, idmanager, code, name, note, status
+
+supplier:
+id, code, name, address, mobile, telephone, fax, note, status
+
+unitcoefficient:
+id, idfromunit, idtounit, coefficient, note, status
+
+catalog: scope as 'category' (material or device), 'system', 'type', 'brand', 'origin', 'unit'
+id, idparent, code, name, scope, scopeparent, note, status
+
+material: reftype as 'material' is parent or 'materialcode' is else; materialcode là mã của cty nhưng của phần mềm khác.
+id, idcategory, idsystem, idtype, idbrand, idorigin, idunit, idref, reftype, code, materialcode, name, description, quantity, thumbnail, note, status
+
+materialstore
+id, idstore, idmaterial, quantity
+
+quotation:
+id, idsupplier, idref, reftype, code, name, startdate, enddate, note
+
+quotationdetail:
+id, idquotation, idmaterial, idunit, materialcode, netprice, price, note
+
+materialbaseline:
+id, idstore, idref, reftype, code, name, scope, totalamount, baselinedate, note
+
+materialbaselinedetail:
+id, idmaterialbaseline, idsupplier, idmaterial, idunit, price, quantity, amount, startdate, enddate, note
+
+purchase:
+id, idreceiver, idcontact, idsupplier, idref, reftype, formnumber, code, projectname, contactphonenumber, contactfaxnumber, deliveryaddress, deliverydate, vat, totalamount
+
+purchasedetail:
+id, idpurchase, idmaterial, idunit, materialcode, price, quantity, amount, note
+
+request: idwriter là người có yêu cầu chứ k phải người tạo phiếu yêu cầu; idreceiver: người nhận vật tư chứ k phải người nhận phiếu.
+id, idstore, idwriter, idreceiver, idresponsible, idref, reftype, scope, code, receiverphonenumber, writerphonenumber, address, formnumber, times, requestdate, receivedate, note
+
+requestdetail:
+id, idrequest, idmaterial, softquantity, quantity, workitem, deliverydate, drawingname, teamname, note
+
+materialimport:
+id, idstore, idref, reftype, code, name, date
+
+materialimportdetail:
+id, idimport, idmaterial, idunit, price, quantity, amount, note
+
+materialexport:
+id, idstore, idref, reftype, code, name, date
+
+materialexportdetail:
+id, idexport, idmaterial, idunit, price, quantity, amount, note
+
+
+materialform:
+id, idref, reftype, code, name, scope, totalamount, formdate, note
+
+materialformdetail: idref, reftype (copy or difference material).
+id, idmaterialform, idmaterial, idunit, idref, reftype, price, quantity, amount, startdate, enddate, note
+
+
+materialquantity:
+id, idref, reftype, scope, quantity, note
+
+materialamount: reftype as materialimportdetail; scope as materialprice = baseprice + accessoryprice + ncprice, unitprice = materialprice * adminfeepercent + materialprice. giá hợp đồng với chủ đầu tư, giá mua từ supplier, giá bán ra công trường.
+id, idref, reftype, scope, amount, note
+
+attachment:
+id, idref, reftype, filename, filesize, mimetype, description, filepath, filetype
+
+comment:
+id, idwriter, idref, reftype, content
+
+notify: status as 51=send, 52=receive, 53=cannotsend, 55=cancel; method as push message (hàng chục), email (hàng trăm). Ex for method: 10 gởi message, 100 gởi email, 110 gởi message và  email, 20 nhận message, 200 nhận email, 220 nhận message và email.
+id, idsend, idreceiver, idref, reftype, content, method, priority, isactive
+
+history:
+id, idref, reftype, content
+
+assignment:
+id, idworkflow, idref, idassignee, reftype, sortorder, startdate, enddate, note
+
+sign:
+id, idsigner, idassignment, date, signature
+
+
+workflow: scope as quotation, purchase, request, materialimport, materialexport. Multi workflow with the same scope.
+id, code, name, scope
+1, 'request', 'request', 'request'
+
+workflowdefine: can have comment and attachment:
+- Nhóm người ở phòng A gởi cho nhóm người ở phòng B và phải thông qua người trong phòng A để duyệt. Nếu gởi không cần duyệt thì người gởi và người duyệt giống nhau.
+- Step cho biết thứ tự.
+Ví dụ:
+- Step 1: Bộ phận quản lý kho ngoài công trường gởi phiếu yêu cầu vật tư phát sinh cho bộ phận quản lý kho trong công ty.
+- Step 1: Bộ phận quản lý kho trong công ty gởi trả lại bộ phận quản ly khó ngoài công trường.
+- Step 2: Bộ phận quản lý kho trong công ty gởi cho ban giám đốc (BGĐ) xem xét.
+- Step 2: BGĐ gởi lại cho bộ phận quản lý kho trong công ty cùng với comment nhận xét.
+- Step 3: BGĐ gởi cho bộ phận kỹ thuật xem xét.
+- Step 3: Bộ phận kỹ thuật gởi lại cho BGĐ cùng với comment về nhận xét.
+
+id, idworkflow, code, name, step, transmit, duration
+1, 1, 'request1', 'request1', 1, "[{sender:[1],receiver:[2],approver[2]},{sender:[3],receiver:[4],approver[4]}]"
+1, 1, 'request2', 'request2', 2, "[{sender:[2],receiver:[5],approver[5]},{sender:[4],receiver:[6],approver[6]}]"
+
+workflowexecute: can have comment and attachment. status as 10=waitforapprove, 11=send (to multi receivers), 12=receive, 13=getback, 14=sendback, 15=cancel, 16=approve, 17=receivesendback.
+id, idworkflow, idref, idsender, idreceiver, reftype, step, deadline, iscurrent, status
+1, 1, 1, 1, 2, 'request', 1, false, 12
+1, 1, 1, 2, 5, 'request', 2, false, 12
+1, 1, 1, 5, 2, 'request', 1, true, 14 . if 2 receive then update status=12.
+
+
+calendardefine:
+id, code,name, content, sortorder 
+
+calendar:
+id, idcalendardefine, code, name, isoffday, calendardate, day, week, month, year
+
+appconfig:
+id, scope, content
+1, 'mailserver', '{ host:'smtp.gmail.com', port: 465, protocol: 'smtp', username: 'redsunatvn@gmail.com', password: 'yLc/+k4xje6HDSm4XrDPcvbG1lQO4x0z' }'
+
+
+* Example:
+
+attachment:
+id, idref, reftype, filename, filesize, mimetype, description, filepath, filetype
+
+comment:
+id, idwriter, idref, reftype, content
+
+material: reftype as 'confirm', 'parent'.
+id, idcategory, idsystem, idtype, idbrand, idorigin, idunit, idref, reftype, code, materialcode, name, description, quantity, thumbnail, note, status
+1, idcategory1, idsystem1, idtype1, idbrand1, idorigin1, idunit1
+2, idcategory2, idsystem2, idtype2, idbrand2, idorigin2, idunit2
+3, idcategory3, idsystem3, idtype3, idbrand3, idorigin3, idunit3
+
+request:
+id, idwriter, idreceiver, idresponsible, code, projectname, receiverphonenumber, writerphonenumber, address, formnumber, times, requestdate, reveivedate, note
+1, user1, user2, user3, request1, request1, project1
+
+requestdetail:
+id, idrequest, idmaterial, softquantity, quantity, workitem, deliverydate, drawingname, teamname, note
+1, idrequest1, idmaterial1, 10, 10
+
+assignment:
+id, idref, idassignee, reftype, sortorder, startdate, enddate, note
+
+sign:
+id, idsigner, idassignment, date, signature
+
+workflow: scope as quotation, purchase, request, materialimport, materialexport. Multi workflow with the same scope.
+id, code, name, scope
+1, request, request, request
+
+workflowdefine: can have comment and attachment.
+id, idworkflow, code, name, step, transmit, duration
+1, 1, request1, request1, 1, "[{sender:[user1,user3],receiver:[user2,user4],approver:[user5]},{sender:[user3,user8],receiver:[user4,user9,user10],approver:[user7,user11]}]"
+2, 1, request2, request2, 2, "[{sender:[user2,user9],receiver:[user5],approver:[user6,user10]},{sender:[user4],receiver:[user6],approver:[user8]}]"
+
+workflowexecute: can have comment and attachment. status as 9=waitforreceive, 10=waitforapprove, 11=send (to multi receivers), 12=receive, 13=getback, 14=sendback, 15=cancel, 16=approve.
+id, idworkflow, idref, reftype(scope-table name), step, idsender, idreceiver, deadline, iscurrent, status
+1, idworkflow1, request1, request, 1, user1, user2, false, status12
+2, idworkflow1, request1, request, 2, user2, user5, false, status14
+3, idworkflow1, request1, request, 1, user5, user2, true, status14 . if 2 receive then update status=12.
+
+
+* Yêu cầu vật tư ngoài công trường từ người làm task tới kho công trường:
+- Mỗi ngày mỗi thằng chịu trách nhiệm task phải đăng nhập vào xem mình làm task gì.
+- Tạo ra 1 phiếu yêu cầu vật tư cho tất cả các task. Sau đó có thể thêm bớt số lượng hoặc vật tư cho phiếu đó. Phiếu yêu này có thể làm nhiều lần trong ngày.
+- Phiếu này gởi lên kế toán kho. Kế toán kho xem xét gởi cho CHT xem, rồi gởi cho thủ kho để xuất kho. Trong trường hợp thiếu vật tư thì tạo phiếu mua hàng gởi chỉ huy trưởng xem, sau đó gởi yêu cầu mua vật tư về công ty.
+--> Để lấy được vật tư thì phải qua kế toán, CHT, rồi mới tới thủ kho để xuất kho.

@@ -1,0 +1,117 @@
+<div>
+    <md-card>
+        <form name="frmStore" novalidate class="css-form">
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{'clientwh_store_title' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <!-- Context -->
+            <md-card-content>
+                <div class="row">
+                    <!-- First column -->
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-vertical">
+                            <!-- manager -->
+                            <div class="form-group col-sm-12">
+                                <div class="input-group col-sm-12" md-is-error="(frmDirty || frmStore.idmanager.$touched) && (frmStore.idmanager.$invalid)">
+                                    <md-autocomplete md-input-name="idmanager" required ng-disabled="ctlentityfieldManager.isDisabled" md-no-cache="ctlentityfieldManager.noCache"
+                                        md-selected-item="ctlentityfieldManager.selectedItem" md-search-text-change="ctlentityfieldManager.searchTextChange(ctlentityfieldManager.searchText)"
+                                        md-search-text="ctlentityfieldManager.searchText" md-selected-item-change="ctlentityfieldManager.selectedItemChange(item)"
+                                        md-items="item in ctlentityfieldManager.querySearch(ctlentityfieldManager.searchText)"
+                                        md-item-text="item.display" md-min-length="0" md-clear-button="true" md-require-match
+                                        md-floating-label="{{'clientwh_store_idmanager' | translate}}" placeholder="Who is manager?">
+                                        <md-item-template>
+                                            <span md-highlight-text="ctlentityfieldManager.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                                        </md-item-template>
+                                        <md-not-found>
+                                            {{'clientwh_home_no_item_matching' | translate}} "{{ctlentityfieldManager.searchText}}".
+                                            <a ng-click="ctlentityfieldManager.newState(ctlentityfieldManager.searchText)">{{'clientwh_home_create_new_one' | translate}}</a>
+                                        </md-not-found>
+                                        <div ng-messages="(frmDirty || frmStore.idmanager.$touched) && (frmStore.idmanager.$error)">
+                                            <div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+                                            <div ng-message="md-require-match">{{'clientwh_store_existmanager' | translate}}</div>
+                                        </div>
+                                    </md-autocomplete>
+                                </div>
+                            </div>
+
+                            <!-- code -->
+                            <div class="form-group col-sm-12">
+                                <md-input-container class="md-block" md-is-error="(frmDirty || frmStore.code.$touched) && (frmStore.code.$invalid)||frmStore.code.$error.duplicate">
+                                    <label class="control-label col-sm-6">{{'clientwh_store_code' | translate}}</label>
+                                    <input md-maxlength="10" md-input required md-no-asterisk name="code" ng-model="store.code" ng-change="resetValidateDuplicate(1)"
+                                        id="code" maxlength="10">
+                                    <div ng-messages="(frmDirty || frmStore.code.$touched) && (frmStore.code.$error)">
+                                        <div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+                                        <div ng-message="duplicate">{{'clientwh_home_code_is_exits' | translate}}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                            <!-- name -->
+                            <div class="form-group col-sm-12">
+                                <md-input-container class="md-block" md-is-error="(frmDirty || frmStore.name.$touched) && (frmStore.name.$invalid)||frmStore.name.$error.duplicate">
+                                    <label class="control-label col-sm-6">{{'clientwh_store_name' | translate}}</label>
+                                    <input md-maxlength="100" md-input required md-no-asterisk name="name" ng-model="store.name" ng-change="resetValidateDuplicate(2)"
+                                        id="name" maxlength="100">
+                                    <div ng-messages="(frmDirty || frmStore.name.$touched) && (frmStore.name.$error)">
+                                        <div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+                                        <div ng-message="duplicate">{{'clientwh_home_name_is_exits' | translate}}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                            <!-- note -->
+                            <div class="form-group col-sm-12">
+                                <md-input-container class="md-block" md-is-error="(frmDirty || frmStore.note.$touched) && (frmStore.note.$invalid)">
+                                    <label class="control-label col-sm-6">{{'clientwh_store_note' | translate}}</label>
+                                    <textarea md-maxlength="500" md-input md-no-asterisk name="note" ng-model="store.note" id="name" rows="5" md-select-on-focus
+                                        maxlength="500"></textarea>
+                                    <div ng-messages="(frmDirty || frmStore.note.$touched) && (frmStore.note.$error)"> </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"> </div>
+
+                </div>
+                <!-- /.row -->
+            </md-card-content>
+            <!-- /.content -->
+
+            <!-- Bottom actions -->
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="btn-group pull-right">
+                        <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-green'}" ng-click="save()">
+                            <md-tooltip>{{'clientwh_home_save' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">save</md-icon>
+                        </md-button>
+
+                        <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-blue'}" ng-click="createOnForm()">
+                            <md-tooltip>{{'clientwh_home_create' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">add</md-icon>
+                        </md-button>
+
+                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="store.id > -1" ng-click="cofirmDeleteToastForm()"
+                            md-colors="{background: 'default-red'}">
+                            <md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">delete</md-icon>
+                        </md-button>
+
+                        <md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()">
+                            <md-tooltip>{{'clientwh_home_close' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </md-card>
+</div>

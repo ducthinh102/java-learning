@@ -1,0 +1,149 @@
+
+<div>
+<md-card>
+	<form name="frmQuotationdetail" novalidate class="css-form">
+		  <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{'clientwh_quotationdetail_title' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+			<!-- Alert Message -->
+			<div id="quotationdetailArlertMessage" class="alert" style="display: none">
+				<strong>{{quotationdetailArlertMessage}}</strong>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6">
+						<div class="form-vertical">
+						
+<!-- 							idquotation -->
+<!-- 							<div class="form-group col-sm-12"> -->
+<!-- 								<md-input-container class="md-block" md-is-error="(frmDirty || frmQuotationdetail.idquotation.$touched) && (frmQuotationdetail.idquotation.$invalid)"> -->
+<!-- 						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_idquotation' | translate}}</label> -->
+<!-- 						        	<input disabled type="number" md-input md-no-asterisk name="idquotation" ng-model="quotationdetail.idquotation"> -->
+<!-- 						      	</md-input-container> -->
+<!-- 							</div> -->
+<!-- 							/idquotation -->
+							
+							<!-- idmaterial -->
+							<div class="form-group col-sm-12">
+								<div class="input-group col-sm-12"
+									ng-class="{ 'has-error': (frmQuotationdetail.idmaterial.$touched || frmQuotationdetail.idmaterial.$dirty || frmDirty) && frmQuotationdetail.idmaterial.$invalid }">
+									<md-autocomplete 
+										md-input-name="idmaterial" required=""
+										ng-disabled="ctlentityfieldMaterial.isDisabled"
+										md-no-cache="ctlentityfieldMaterial.noCache"
+										md-selected-item="ctlentityfieldMaterial.selectedItem"
+										md-search-text-change="ctlentityfieldMaterial.searchTextChange(ctlentityfieldMaterial.searchText)"
+										md-search-text="ctlentityfieldMaterial.searchText"
+										md-selected-item-change="ctlentityfieldMaterial.selectedItemChange(item)"
+										md-items="item in ctlentityfieldMaterial.querySearch(ctlentityfieldMaterial.searchText)"
+										md-item-text="item.display" md-min-length="0"
+										placeholder="What is your material item?"
+										md-clear-button="true" md-require-match=""
+										md-floating-label="{{'clientwh_quotationdetail_idmaterial' | translate}}">
+									<md-item-template> <span
+										md-highlight-text="ctlentityfieldMaterial.searchText"
+										md-highlight-flags="^i">{{item.display}}</span> </md-item-template> <md-not-found>
+									No items matching "{{ctlentityfieldMaterial.searchText}}" were
+									found. <a
+										ng-click="ctlentityfieldMaterial.newState(ctlentityfieldMaterial.searchText)">Create
+										a new one!</a> </md-not-found>
+									<div ng-messages="frmQuotationdetail.idmaterial.$error"
+										ng-if="frmQuotationdetail.idmaterial.$touched">
+										<div ng-message="required">{{'clientwh_home_required_field'
+											| translate}}</div>
+									</div>
+									</md-autocomplete>
+								</div>
+							</div>
+							<!-- /idmaterial -->
+							
+							<!-- idunit -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" >
+						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_idunit' | translate}}</label>
+						        	<input disabled type="text" md-input md-no-asterisk  ng-model="unitName">
+						      	</md-input-container>
+							</div>
+							<!-- /idunit -->
+							
+							<!-- materialcode -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" >
+						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_materialcode' | translate}}</label>
+						        	<input disabled type="text" md-input md-no-asterisk name="materialcode" ng-model="quotationdetail.materialcode">
+						      	</md-input-container>
+							</div>
+							<!-- /materialcode -->
+							
+							<!-- price -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmQuotationdetail.price.$touched) && (frmQuotationdetail.price.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_price' | translate}}</label>
+						        	<input type="number" md-input md-no-asterisk name="price" ng-model="quotationdetail.price">
+						        	<div ng-messages="(frmDirty || frmQuotationdetail.price.$touched) && (frmQuotationdetail.price.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The description must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /price -->
+							
+							<!-- note -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" >
+						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_note' | translate}}</label>
+						        	<textarea ng-model="quotationdetail.note" name="note"
+								md-maxlength="500" rows="5" md-select-on-focus maxlength="500"></textarea>
+						      	</md-input-container>
+							</div>
+							<!-- /note -->
+							
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-3">
+						<div class="form-vertical">
+						
+						</div>
+					</div>
+					<!-- /Second column -->
+				</div>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					 <div class="btn-group pull-right">
+                            <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-green'}" data-toggle="tooltip"
+                                title="{{'clientwh_home_save' | translate}}" ng-click="save()">
+                                <md-icon md-font-library="material-icons">save</md-icon>
+                            </md-button>
+
+                            <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-blue'}" data-toggle="tooltip"
+                                title="{{'clientwh_home_create' | translate}}" ng-click="createOnForm()">
+                                <md-icon md-font-library="material-icons">add</md-icon>
+                            </md-button>
+                            
+                            <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="quotationdetail.id > -1" ng-click="cofirmDeleteToastForm()" md-colors="{background: 'default-red'}"
+		                            data-toggle="tooltip">
+		                            <md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+		                            <md-icon md-font-library="material-icons">delete</md-icon>
+		                        </md-button>
+
+                            <md-button class="md-icon-button test-tooltip md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                                ng-click="closeDialog()">
+                                <md-icon md-font-library="material-icons">close</md-icon>
+                            </md-button>
+                        </div>
+				</div>
+			</div>
+	</form>
+	</md-card>
+</div>

@@ -1,0 +1,216 @@
+<div>
+    <div class="panel panel-default">
+        <!-- Top actions -->
+        <md-tabs md-dynamic-height>
+            <md-tab label="{{'clientwh_request_title' | translate}}">                
+                <!-- Context -->
+                <div class="panel-body">
+                    <form name="frmRequest" novalidate class="css-form">
+                        <div class="row">
+                            <!-- First column -->
+                            <div class="col-sm-6">
+                                <div class="form-vertical">
+                                    <!-- idstore -->
+                                    <div class="form-group col-sm-12">
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>{{'clientwh_request_idstore' | translate}}</label>
+                                            <input ng-model="requestView.idstore" type="text" disabled>
+                                        </md-input-container>
+                                    </div>
+                                    <!-- /idstore -->
+                                    <!-- code -->
+                                    <div class="form-group col-sm-12">
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>{{'clientwh_request_code' | translate}}</label>
+                                            <input ng-model="requestView.code" type="text" disabled>
+                                        </md-input-container>
+                                    </div>
+                                    <!-- /code -->
+                                    
+                                    <!-- name -->
+                                        <div class="form-group col-sm-12">
+                                                <md-input-container class="md-block" flex-gt-xs>
+                                                    <label>{{'clientwh_request_name' | translate}}</label>
+                                                    <input ng-model="requestView.name" type="text" disabled>
+                                                </md-input-container>                                            
+                                        </div>
+                                        <!-- /name -->
+
+                                    <!-- requestdate -->
+                                    <div class="form-group col-sm-12">
+                                        <div layout-gt-xs="row">
+                                            <md-input-container class="md-block" flex-gt-xs>
+                                                <label>{{'clientwh_request_requestdate' | translate}}</label>
+                                                <input ng-model="requestView.requestdate" type="text" disabled>
+                                            </md-input-container>
+                                            <div layout-gt-xs="row">
+                                                <md-input-container class="md-block" flex-gt-xs>
+                                                    <label>{{'clientwh_request_receivedate' | translate}}</label>
+                                                    <input ng-model="requestView.receivedate" type="text" disabled>
+                                                </md-input-container>
+                                            </div>
+                                        </div>                                                                               
+                                    </div>
+                                    <!-- /receivedate --> 
+                                    <!-- idwriter -->
+                                    <div class="form-group col-sm-12">
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>{{'clientwh_request_idwriter' | translate}}</label>
+                                            <input ng-model="requestView.idwriter" type="text" disabled>
+                                        </md-input-container>
+                                    </div>
+                                    <!-- /idwriter -->
+                                    <!-- idreceiver -->
+                                    <div class="form-group col-sm-12">
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>{{'clientwh_request_idreceiver' | translate}}</label>
+                                            <input ng-model="requestView.idreceiver" type="text" disabled>
+                                        </md-input-container>
+                                    </div>
+                                    <!-- /idreceiver -->
+                                    <!-- idresponsible -->
+                                    <div class="form-group col-sm-12">
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>{{'clientwh_request_idresponsible' | translate}}</label>
+                                            <input ng-model="requestView.idresponsible" type="text" disabled>
+                                        </md-input-container>
+                                    </div>
+                                    <!-- /idresponsible -->
+
+                                    
+                                </div>
+                            </div>
+                            <!-- /.First column -->
+
+                            <div class="col-sm-6">
+
+                                <!-- ---------------Second column--------------- -->
+                                <!-- receiverphonenumber -->
+                                <div class="form-group col-sm-12">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>{{'clientwh_request_receiverphonenumber' | translate}}</label>
+                                        <input ng-model="requestView.receiverphonenumber" type="text" disabled>
+                                    </md-input-container>
+                                </div>
+                                <!-- /receiverphonenumber -->
+
+                                <!-- writerphonenumber -->
+                                <div class="form-group col-sm-12">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>{{'clientwh_request_receiverphonenumber' | translate}}</label>
+                                        <input ng-model="requestView.receiverphonenumber" type="text" disabled>
+                                    </md-input-container>
+                                </div>
+                                <!-- /writerphonenumber -->
+
+                                <!-- address -->
+                                <div class="form-group col-sm-12">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>{{'clientwh_request_address' | translate}}</label>
+                                        <input ng-model="requestView.address" type="text" disabled>
+                                    </md-input-container>
+                                </div>
+                                <!-- /address -->
+
+                                <!-- times -->
+                                <div class="form-group col-sm-12">
+
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>{{'clientwh_request_times' | translate}}</label>
+                                        <input ng-model="requestView.times" type="text" disabled>
+                                    </md-input-container>
+                                </div>
+                                <!-- /times -->
+
+                                <!-- note -->
+                                <div class="form-group col-sm-12">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>{{'clientwh_request_note' | translate}}</label>
+                                        <input ng-model="requestView.note" type="text" disabled>
+                                    </md-input-container>
+                                </div>
+                                <!-- /note -->
+                            </div>
+                        </div>
+                        <!-- /Second column -->
+                    </form>
+                </div>
+
+                <!-- Bottom actions -->
+                <div class="panel-footer">
+                    <div class="row">
+                        <!-- workflowexecute module -->
+                        <div ng-include="constants.workflowexecuteView"></div>
+
+                        <div class="btn-group pull-right ">
+
+                            <!-- Close button -->
+                            <md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+                                <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                                <md-icon md-font-library="material-icons">close</md-icon>
+                            </md-button>
+                            <!--/ Close button -->
+                        </div>
+                    </div>
+                </div>
+
+            </md-tab>
+            <!-- attachment -->
+            <md-tab label="{{'clientwh_request_attachment_title' | translate}}" ng-if="request.id > -1">
+                <div class=r ow ng-show="request.id > -1">
+                    <div ng-include="attachmentScope.viewdetail" ng-controller="clientwhattachmentController">
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="btn-group pull-right">
+                            <!-- Close button -->
+                            <md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+                                <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                                <md-icon md-font-library="material-icons">close</md-icon>
+                            </md-button>
+                            <!--/ Close button -->
+                        </div>
+
+                    </div>
+                </div>
+            </md-tab>
+            <!-- /attachment -->
+            <!-- requestdetailView -->
+            <md-tab label="{{'clientwh_requestdetail_title' | translate}}" ng-if="request.id > -1">
+                    <div ng-include="requestdetailScope.viewdetail" ng-controller="clientwhrequestdetailController"></div>
+                <div class="panel-footer">
+
+                    <div class="row">
+                        <div class="btn-group pull-right">
+                            <!-- Close button -->
+                            <md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+                                <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                                <md-icon md-font-library="material-icons">close</md-icon>
+                            </md-button>
+                            <!--/ Close button -->
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+            <!-- /requestdetailView -->
+            <!-- comment -->
+            <md-tab label="{{'clientwh_home_comment' | translate}}" ng-if="request.id > -1">
+                <div ng-include="commentScope.viewdetail" ng-controller="clientwhcommentController"></div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="btn-group pull-right">
+                            <md-button class="md-icon-button test-tooltip md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                                ng-click="closeDialog()">
+                                <md-icon md-font-library="material-icons">close</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+            <!-- /comment -->
+        </md-tabs>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<section class="content-header">
+</section>
+
+<!-- Main content -->
+<section class="content">
+	
+	<!-- Default box -->
+	<div class="box">
+	
+		<div class="box-body">
+			<div ng-init="initList()">
+					<!-- panel-heading -->
+					<div class="panel-heading">
+						<!-- top actions -->
+						<div class="row">
+						<div class="col-sm-7">
+							<div class="col-sm-7">
+								<form ng-submit="listWithCriteriasByIdmaterialbaselineAndPage(idmaterialbaseline,1)">
+								    <div class="input-group">
+								        <md-input-container class="md-block" style="top: 16px">
+								            <label>{{'clientwh_materialbaseline_search' | translate}}</label>
+								            <input md-input ng-model="search.content">
+								        </md-input-container>
+								
+								        <span class="input-group-btn">
+								            <md-button aria-label="search" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}"
+								                type="submit" ng-click ="listWithCriteriasByIdmaterialbaselineAndPage(idmaterialbaseline,1)">
+								                <md-tooltip >{{'clientwh_home_search' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">search</md-icon>
+								            </md-button>
+								
+								            <md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearFilter()">
+								            	<md-tooltip>{{'clientwh_home_cancel' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">clear</md-icon>
+								            </md-button>
+								        </span>
+								    </div>
+								</form>
+							</div>
+                        </div>
+
+						</div>			
+					</div>
+					<!-- list of content -->
+					 <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4" pagination-id="paginationmaterialbaselinedetail" dir-paginate="item in materialbaselinedetails | itemsPerPage:page.pageSize"
+                                current-page="page.currentPage" total-items="page.totalElements">
+                                <div class="caption">
+                                    <md-content>
+                                        <md-card>                                            
+                                            <md-card-title>                                            
+                                        	<md-card-title-media>
+									            <div class="md-media-md card-media"><img ng-click="showDetail(item.id)" ng-src="{{item.materialthumbnail}}" class="md-card-image" style=" height: auto; width: auto;  max-width: 100%; max-height: 150px;"></div>
+									          </md-card-title-media>
+                                                <md-card-title-text>
+                                                    <span class="md-sm-headline"><strong>{{item.materialname | limitTo:25}}<i ng-if="item.materialname.length > 25">...</i></strong></span>
+                                                    <table>
+                                                   		<tr class="md-subhead">
+			                                                <td><strong>{{'clientwh_materialbaselinedetail_idsupplier' | translate}}</strong></td>
+			                                                <td>:&nbsp;</td>
+			                                                <td>{{item.supplier | limitTo:25}}<i ng-if="item.code.length > 25">...</i></td>
+			                                            </tr>
+			                                            <tr class="md-subhead">
+			                                                <td><strong>{{'clientwh_materialbaselinedetail_idunit' | translate}}</strong></td>
+			                                                <td>:&nbsp;</td>
+			                                                <td>{{item.unitname | limitTo:12}} <i ng-if="item.unitname.toString().length > 13">...</i></td>
+			                                            </tr>
+			                                            <tr class="md-subhead">
+			                                                <td><strong>{{'clientwh_materialbaselinedetail_quantity' | translate}}</strong></td>
+			                                                <td>:&nbsp;</td>
+			                                                <td>{{item.quantity | number:0 | limitTo:13}} <i ng-if="item.quantity.toString().length > 13">...</i></td>
+			                                            </tr>
+			                                            <tr class="md-subhead">
+			                                                <td><strong>{{'clientwh_materialbaselinedetail_price' | translate}}</strong></td>
+			                                                <td>:&nbsp;</td>
+			                                                <td>{{item.price | number:0 | limitTo:13}} <i ng-if="item.price.toString().length > 13">...</i></td>
+			                                            </tr>
+			                                            <tr class="md-subhead">
+			                                                <td><strong>{{'clientwh_materialbaselinedetail_amount' | translate}}</strong></td>
+			                                                <td>:&nbsp;</td>
+			                                                <td>{{item.amount | number:0 | limitTo:13}} <i ng-if="item.amount.toString().length > 13">...</i></td>
+			                                            </tr>
+			                                            <tr class="md-subhead">
+			                                                <td><strong>{{'clientwh_materialbaselinedetail_startdate' | translate}}</strong></td>
+			                                                <td>:&nbsp;</td>
+			                                                <td>{{formatDate(item.startdate)}}</td>
+			                                            </tr>
+			                                            <tr class="md-subhead">
+			                                                <td><strong>{{'clientwh_materialbaselinedetail_enddate' | translate}}</strong></td>
+			                                                <td>:&nbsp;</td>
+			                                                <td>{{formatDate(item.enddate)}}</td>
+			                                            </tr>
+			                                        </table>
+                                                </md-card-title-text>
+                                            </md-card-title>
+                                            <md-card-actions>
+                                                <md-fab-toolbar md-open="false" count="0" md-direction="left">
+                                                    <md-fab-trigger class="align-with-text">
+                                                        <md-button aria-label="menu" class="md-icon-button test-tooltip md-raised">
+                                                            <md-icon md-font-library="material-icons">more_vert</md-icon>
+                                                        </md-button>
+                                                    </md-fab-trigger>
+
+                                                    <md-toolbar>
+                                                        <md-fab-actions class="md-toolbar-tools">                                                           
+                                                            <md-button class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}" ng-click="showDetail(item.id)"
+                                                                data-toggle="tooltip" title="{{'clientwh_home_detail' | translate}}"
+                                                                aria-label="{{'clientwh_home_detail' | translate}}">
+                                                                <md-icon md-font-library="material-icons">visibility</md-icon>
+                                                            </md-button>
+                                                        </md-fab-actions>
+                                                    </md-toolbar>
+                                                </md-fab-toolbar>
+                                            </md-card-actions>
+                                        </md-card>
+                                    </md-content>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+						<!-- bottom actions -->
+						<div class="row">
+							<!-- paging -->
+							<div class="col-sm-12">
+								<div class="pull-right">
+									<dir-pagination-controls pagination-id="paginationmaterialbaselinedetail"
+										   max-size="8"
+										   direction-links="true"
+										   boundary-links="true" 
+										   on-page-change="listWithCriteriasByIdmaterialbaselineAndPage(idmaterialbaseline, newPageNumber)" >
+									</dir-pagination-controls>
+								</div>
+							</div>
+						</div>
+			</div>
+		</div>
+		<!-- /.box-body -->
+		
+	    <div class="box-footer">
+	    </div>
+	    <!-- /.box-footer-->
+	  </div>
+	  <!-- /.box -->
+
+</section><!-- /.content -->

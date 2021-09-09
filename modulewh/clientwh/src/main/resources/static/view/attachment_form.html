@@ -1,0 +1,173 @@
+<div>
+	
+	<div class="panel panel-default">
+		<!-- Top actions -->
+		
+		<!-- Alert Message -->
+		<div id="attachmentAlertMessage" class="alert" style="display: none">
+			<strong>{{attachmentAlertMessage}}</strong>
+		</div>
+		<!-- Context -->
+		<div class="panel-body">
+			<!-- attachments -->
+			<div class="row">
+				<label class="control-label col-sm-2" for="attachments">Attachments</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<input type="file" class="filestyle" button-text="{{'clientwh_home_browse_file_title' | translate}}" ng-click="fileClear($event)"
+						 id="attachments" name="attachments" ng-files="addAttachments($files)" />
+					</div>
+				</div>
+			</div>
+			<!-- /attachments -->
+			<div class="row">
+				<form name="frmAttachment" novalidate class="css-form">
+				<!-- First column -->
+				<div class="col-sm-6">
+					<div class="form-vertical">
+
+						<!-- filename -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block" md-is-error="(frmDirty || frmAttachment.filename.$touched) && (frmAttachment.filename.$invalid)">
+								<label class="control-label col-sm-6">{{'clientwh_attachment_filename' | translate}}</label>
+								<input md-maxlength="300" md-input md-no-asterisk name="filename" ng-model="attachment.filename">
+								<div ng-messages="(frmDirty || frmAttachment.filename.$touched) && (frmAttachment.filename.$error)">
+									<div ng-message="required">This is required.</div>
+									<div ng-message="md-maxlength">The description must be less than 300 characters long.</div>
+								</div>
+							</md-input-container>
+						</div>
+						<!-- /filename -->
+						<!-- filesize 
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmAttachment.filesize.$touched) && (frmAttachment.filesize.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_attachment_filesize' | translate}}</label>
+						        	<input md-input md-no-asterisk name="filesize" ng-model="attachment.filesize">
+						        	<div ng-messages="(frmDirty || frmAttachment.filesize.$touched) && (frmAttachment.filesize.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The description must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /filesize -->
+						<!-- mimetype 
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmAttachment.mimetype.$touched) && (frmAttachment.mimetype.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_attachment_mimetype' | translate}}</label>
+						        	<input md-maxlength="150" md-input md-no-asterisk name="mimetype" ng-model="attachment.mimetype">
+						        	<div ng-messages="(frmDirty || frmAttachment.mimetype.$touched) && (frmAttachment.mimetype.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The description must be less than 150 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /mimetype -->
+						<!-- description -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block" md-is-error="(frmDirty || frmAttachment.description.$touched) && (frmAttachment.description.$invalid)">
+								<label class="control-label col-sm-6">{{'clientwh_attachment_description' | translate}}</label>
+								<input md-maxlength="5000" md-input md-no-asterisk name="description" ng-model="attachment.description">
+								<div ng-messages="(frmDirty || frmAttachment.description.$touched) && (frmAttachment.description.$error)">
+									<div ng-message="required">This is required.</div>
+									<div ng-message="md-maxlength">The description must be less than 5000 characters long.</div>
+								</div>
+							</md-input-container>
+						</div>
+						<!-- /description -->
+						<!-- filepath 
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmAttachment.filepath.$touched) && (frmAttachment.filepath.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_attachment_filepath' | translate}}</label>
+						        	<input md-maxlength="300" md-input md-no-asterisk name="filepath" ng-model="attachment.filepath">
+						        	<div ng-messages="(frmDirty || frmAttachment.filepath.$touched) && (frmAttachment.filepath.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The description must be less than 300 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /filepath -->
+						<!-- filetype 
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmAttachment.filetype.$touched) && (frmAttachment.filetype.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_attachment_filetype' | translate}}</label>
+						        	<input md-maxlength="150" md-input md-no-asterisk name="filetype" ng-model="attachment.filetype">
+						        	<div ng-messages="(frmDirty || frmAttachment.filetype.$touched) && (frmAttachment.filetype.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The description must be less than 150 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /filetype -->
+						<!-- note 
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmAttachment.note.$touched) && (frmAttachment.note.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_attachment_note' | translate}}</label>
+						        	<input md-maxlength="1000" md-input md-no-asterisk name="note" ng-model="attachment.note">
+						        	<div ng-messages="(frmDirty || frmAttachment.note.$touched) && (frmAttachment.note.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The description must be less than 1000 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							 /note -->
+					</div>
+				</div>
+				<!-- /First column -->
+
+				<!-- Second column -->
+				<div class="col-sm-6">
+					<div class="form-vertical">
+
+					</div>
+				</div>
+				<!-- /Second column -->
+				
+	</form>
+			</div>
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row ">
+				<div class="btn-group pull-right ">
+
+					<!-- Save button -->
+					<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="save()" md-colors="{background: 'default-green'}"
+					 data-toggle="tooltip">
+
+						<md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">save</md-icon>
+					</md-button>
+					<!--/ Save button -->
+
+					<!-- Create button -->
+					<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="createOnForm()" md-colors="{background: 'default-blue'}"
+					 data-toggle="tooltip">
+
+						<md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">add</md-icon>
+					</md-button>
+					<!--/ Create button -->
+					
+					<!-- Delete button -->
+		                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="attachment.id > -1" ng-click="cofirmDeleteToastForm()" md-colors="{background: 'default-red'}"
+		                            data-toggle="tooltip">
+		
+		                            <md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+		                            <md-icon md-font-library="material-icons">delete</md-icon>
+		                        </md-button>
+		                    <!--/ Delete button -->
+
+					<!-- Close button -->
+
+					<!-- Close button -->
+					<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+						<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+					<!--/ Close button -->
+				</div>
+			</div>
+		</div>
+		</div>
+</div>

@@ -1,0 +1,31 @@
+
+server:
+  compression:
+    enabled: true
+    min-response-size: 2048
+    mime-types: application/json,application/javascript,application/xml,text/xml,application/html,text/html,application/css,text/css,text/plain
+
+spring:
+  profiles:
+    active: dev
+  model-scan: com.redsun.server.main
+  http:
+    multipart:
+      max-file-size: 5120Mb
+      max-request-size: 5120Mb
+      
+jasypt:
+    encryptor:
+        bean: encryptorBean
+        password: ${JASYPT_ENCRYPTOR_PASSWORD:}
+        
+security:
+  oauth2:
+    resource:
+      jwt:
+        keyValue: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyhZldVNn9oJLIF3SkGzkgyDlmCdOM5SpbATR05PocG2UfjW98MwqC8RtkHAWV8YGYhebI+utmdF4JBUPIO1vCcIakVeNbQ99LtukT1K6DE0hoMMu+zgzdeOcYL0yVkV80KIAF7Melx92H7A1C6HAv9H7n41uXgGlwDpeGalRU7ufSbszfjs4EEzJ6NWbIGaioESvbGjb2SsS8EyjubgcDgTKBaofqLtLQrC2Msxmylqkdwt9JScqmmnBK1zuK+T8Hsvrm6bc7zKHZNs68zgviCA0qhhdJEs4xA2lecMkXa8+n3tBRNefRErUa5wzTgvOZxTzu40GOWl0OcyBLoe8lQIDAQAB
+          -----END PUBLIC KEY-----
+
+filelocation: D:\file\

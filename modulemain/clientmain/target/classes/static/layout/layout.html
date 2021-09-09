@@ -1,0 +1,71 @@
+
+<!-- Left -->
+<div flex="auto" layout="column" class="main-sidebar" >
+	<div flex="auto">
+        <a href="#" class="navbar-brand" ui-sref="home">REDSUN</a>
+    </div>
+    <div flex="grow" style="overflow:auto">
+      	<div id=sidebar class="main-sidebar" ui-view="left"></div>
+    </div>
+</div>
+<!-- /Left -->
+<!-- Content -->
+<div flex="grow" layout="column" class="main-content" >
+	<div flex="auto" class="layout-hearder">
+		<ul class="list-inline col-sm-4">
+			<li class="sidebar-toggle">
+				<!-- Menu -->
+				<md-button class="md-icon-button" ng-click="clientmainsidebarclick();">
+					<md-tooltip md-direction="bottom">{{'clientwh_home_menu' | translate }}</md-tooltip>
+					<span class="glyphicon glyphicon-align-left"></span>
+				</md-button>
+				<!--/ Menu -->
+				<!-- Module -->
+				<md-button class="md-icon-button" ng-click="openNav()" data-ng-if="loggedIn">
+					<md-tooltip md-direction="bottom">{{'clientwh_home_module' | translate }}</md-tooltip>
+					<span class="glyphicon glyphicon-th"></span>
+				</md-button>
+				<!--/ Module -->
+			</li>
+			<li>
+				<div>{{menuActiveTitle}}</div>
+			</li>
+		</ul>
+        <!-- header & nav-collapse-->
+		<div id="navbar" class="collapse navbar-collapse main-header" ui-view="header"></div>
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<i class="material-icons">reorder</i>
+		</button>
+	    <div id="moduleNav" class="overlay">
+			<a href="" class="closebtn" ng-click="closeNav()">&times;</a>
+			<div class="overlay-content">
+			<div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-3">
+					<div class="row">
+						<div class="col-sm-6" data-ng-if="loggedIn">
+							<a href="" ng-click="gotoModule('clientbuilding');"><img src="/clientmain/image/moduleBD.png" height="100" width="100"></a>
+							<span ng-click="gotoModule('clientbuilding');" class="label label-default">{{'clientmain_home_module_building'| translate}}</span>
+						</div>
+						<div class="col-sm-6" data-ng-if="loggedIn">
+							<a href="" ng-click="gotoModule('clientwh');"><img src="/clientmain/image/moduleWH.png" height="100" width="100"></a>
+							<span ng-click="gotoModule('clientwh');" class="label label-default">{{'clientmain_home_module_warehouse'| translate}}</span>
+						</div>
+						<div class="col-sm-6" data-ng-if="loggedIn">
+							<a href="" ng-click="gotoModule('clienthr');"><img src="/clientmain/image/moduleHR.png" height="100" width="100"/></a>
+							<span ng-click="gotoModule('clienthr');" class="label label-default">{{'clientmain_home_module_human_resources'| translate}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3"></div>	
+			</div>
+			</div>
+		</div>
+    </div>
+	<div flex="grow" style="overflow:auto">
+		<div ui-view="content"></div>
+	</div>
+
+</div>
+<!-- /Content -->

@@ -1,0 +1,206 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<section class="content-header">
+</section>
+
+<!-- Main content -->
+<section class="content">
+	
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientwh_materialformdetail_title' | translate}}</h3>
+		</div>
+		<div class="box-body">
+	
+			<div ng-init="initList()">
+					<!-- panel-heading -->
+					<div class="panel-heading">
+					
+						<!-- top actions -->
+						<div class="row">
+							<!-- filter	 -->
+							<div class="col-sm-7">
+								<div class="input-group pull-left">
+								<form ng-submit="listWithCriteriasByIdmaterialformAndPage(idmaterialform, 1)">
+										<div class="input-group">
+											<md-input-container class="md-block" style="top: 16px">
+												<label>{{'clientwh_home_search' | translate}}</label>
+												<input md-input ng-model="search.content">
+											</md-input-container>
+									
+											<span class="input-group-btn">
+												<md-button aria-label="search" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}"
+													type="submit"
+													ng-click="listWithCriteriasByIdmaterialformAndPage(idmaterialform,1)">
+													<md-tooltip >{{'clientwh_home_search' | translate}}</md-tooltip>
+													<md-icon md-font-library="material-icons">search</md-icon>
+												</md-button>
+									
+												<md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearFilterSearch()">
+													<md-tooltip>{{'clientwh_home_cancel' | translate}}</md-tooltip>
+													<md-icon md-font-library="material-icons">clear</md-icon>
+												</md-button>
+											</span>
+										</div>
+									</form>
+								</div>
+								
+								<div class="col-sm-5" style="top: 20px">
+								    <div class="input-group">
+								       <md-input-container style="width: 100%;">
+                                           <label>{{'clientwh_home_sort' | translate}}</label>
+                                           <md-select ng-model="sortByArr.name" ng-change="sortBy(sortByArr.name)" >
+                                           		<md-option ng-value=""><em>{{'clientwh_home_none' | translate}}</em></md-option>
+                                               	<md-option ng-repeat="s in sortByName" ng-value="s.value">{{s.display| translate}}</md-option>
+                                            </md-select>
+                                       </md-input-container>
+								        <span class="input-group-btn">
+								            <md-button ng-if="sortByArr.name!=null&&!reverse" ng-click="sortBy(sortByArr.name)" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}">
+								                <md-tooltip >{{'clientwh_home_sort_desc' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">arrow_downward</md-icon>
+								            </md-button>
+								
+								 			<md-button ng-if="sortByArr.name!=null&&reverse" ng-click="sortBy(sortByArr.name)" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}">
+								                <md-tooltip >{{'clientwh_home_sort_asc' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">arrow_upward</md-icon>
+								            </md-button>
+								
+								            <md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearSortBy()">
+								            	<md-tooltip>{{'clientwh_home_cancel' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">clear</md-icon>
+								            </md-button>
+								        </span>
+								    </div>
+							</div>
+								
+							</div>
+							<!-- action -->
+							<div class="col-sm-5">
+								<div class="pull-right">
+									<md-button style="top: 25px" aria-label="Compare list of materials" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-teal'}" ng-click="showDialogWithControllerForCompare()">
+										<md-tooltip>{{'clientwh_home_compare_list_of_material' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">compare</md-icon>
+									</md-button>
+									<md-button style="top: 25px" aria-label="Update Quantity" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-orange'}" ng-click="showInputQuantityFormDialog()">
+										<md-tooltip>{{'clientwh_home_update_quantity' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">library_add</md-icon>
+									</md-button>
+									<md-button style="top: 25px" aria-label="Update price" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-green'}" ng-click="showInputPriceFormDialog()">
+										<md-tooltip>{{'clientwh_home_update_price' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">attach_money</md-icon>
+									</md-button>
+									<md-button style="top: 25px" aria-label="Select for detail" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue-grey'}" ng-click="showDialogWithController()">
+										<md-tooltip>{{'clientwh_home_select_for_detail' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">art_track</md-icon>
+									</md-button>
+									<md-button class="md-icon-button test-tooltip md-raised md-primary" style="top: 25px" md-colors="{background: 'default-blue'}" title="{{'clientwh_home_create' | translate}}" ng-click="showCreate()" ng-if="isPermisCreate()">
+                                         <md-icon md-font-library="material-icons">add</md-icon>
+                                    </md-button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				
+					<!-- list of content -->
+					<div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4" pagination-id="paginationmaterialformdetail" dir-paginate="item in materialformdetails | itemsPerPage:page.pageSize"
+                                current-page="page.currentPage" total-items="page.totalElements">
+                                <div class="caption">
+                                    <md-content>
+                                        <md-card>                                            
+                                            <md-card-title>
+                                    <md-card-title-text>
+                                        <span class="md-sm-headline"><strong>{{item.materialname | limitTo:25}}<i ng-if="item.materialname.length > 25">...</i></strong></span>
+                                        <table>
+                                        <tr class="md-subhead">
+                                                <td><strong>{{'clientwh_materialformdetail_code' | translate}}</strong></td>
+                                                <td>:&nbsp;</td>
+                                                <td>{{item.code | limitTo:25}}<i ng-if="item.code.length > 25">...</i></td>
+                                         </tr>
+                                      	  <tr class="md-subhead">
+                                                <td><strong>{{'clientwh_materialformdetail_idunit' | translate}}</strong></td>
+                                                <td>:&nbsp;</td>
+                                                <td>{{item.unitname | limitTo:12}} <i ng-if="item.unitname.toString().length > 13">...</i></td>
+                                            </tr>
+                                            <tr class="md-subhead">
+                                                <td><strong>{{'clientwh_materialformdetail_quantity' | translate}}</strong></td>
+                                                <td>:&nbsp;</td>
+                                                <td>{{item.quantity | number:0 | limitTo:13}} <i ng-if="item.quantity.toString().length > 13">...</i></td>
+                                            </tr>
+                                            <tr class="md-subhead">
+                                                <td><strong>{{'clientwh_materialformdetail_amount' | translate}}</strong></td>
+                                                <td>:&nbsp;</td>
+                                                <td>{{item.amount | number:0 | limitTo:13}} <i ng-if="item.amount.toString().length > 13">...</i></td>
+                                            </tr>
+                                        </table>
+                                    </md-card-title-text>
+                                    <md-card-title-media>
+                                        <div class="md-media-sm card-media">
+                                            <img alt="" data-ng-src="{{item.materialthumbnail}}" />
+                                        </div>
+                                    </md-card-title-media>
+                                </md-card-title>
+                                            <md-card-actions>
+                                                <md-fab-toolbar md-open="false" count="0" md-direction="left">
+                                                    <md-fab-trigger class="align-with-text">
+                                                        <md-button aria-label="menu" class="md-icon-button test-tooltip md-raised">
+                                                            <md-icon md-font-library="material-icons">more_vert</md-icon>
+                                                        </md-button>
+                                                    </md-fab-trigger>
+
+                                                    <md-toolbar>
+                                                        <md-fab-actions class="md-toolbar-tools">                                                           
+                                                            <md-button class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}" ng-click="showView(item.id)"
+                                                                data-toggle="tooltip" title="{{'clientwh_home_detail' | translate}}"
+                                                                aria-label="{{'clientwh_home_detail' | translate}}"
+																ng-if="isPermisRead(item.idcreate, item.idowner)">
+                                                                <md-icon md-font-library="material-icons">visibility</md-icon>
+                                                            </md-button>                                                              
+                                                            <md-button class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-green'}" ng-click="showForm(item.id)"
+                                                                ng-if="isPermisCreate()" data-toggle="tooltip" title="{{'clientwh_home_edit' | translate}}"
+                                                                aria-label="{{'clientwh_home_edit' | translate}}">
+                                                                <md-icon md-font-library="material-icons">mode_edit</md-icon>
+                                                            </md-button>                                                 
+                                                            <md-button class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-red'}" ng-click="cofirmDeleteToastList(item.id, item.version)"
+                                                                ng-if="isPermisDelete(item.idcreate, item.idowner)" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}"
+                                                                aria-label="{{'clientwh_home_delete' | translate}}">
+                                                                <md-icon md-font-library="material-icons">delete</md-icon>
+                                                            </md-button>
+                                                        </md-fab-actions>
+                                                    </md-toolbar>
+                                                </md-fab-toolbar>
+                                            </md-card-actions>
+                                        </md-card>
+                                    </md-content>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+					<!-- panel-footer -->
+					
+						<!-- bottom actions -->
+						<div class="row">
+							<!-- paging -->
+							<div class="col-sm-8">
+								<div class="btn-group">
+									<dir-pagination-controls pagination-id="paginationmaterialformdetail"
+										   max-size="8"
+										   direction-links="true"
+										   boundary-links="true" 
+										   on-page-change="listWithCriteriasByIdmaterialformAndPage(idmaterialform, newPageNumber)" >
+									</dir-pagination-controls>
+								</div>
+							</div>
+						</div>
+					
+			</div>
+		</div><!-- /.box-body -->
+	    <div class="box-footer">
+	 
+	    </div><!-- /.box-footer-->
+	  </div><!-- /.box -->
+
+</section><!-- /.content -->

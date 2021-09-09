@@ -1,0 +1,9 @@
+{
+	"clientmain_login_title": "Log in",
+	"clientmain_login_username": "User name",
+	"clientmain_login_password": "Password",
+	"clientmain_login_login": "Login",
+	"clientmain_login_invalid": "User name or password is invalid.",
+	"clientmain_login_successfully": "Login successfully.",
+	"clientmain_logout_successfully": "Logout successfully."
+}

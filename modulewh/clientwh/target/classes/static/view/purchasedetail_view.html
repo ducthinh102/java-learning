@@ -1,0 +1,150 @@
+<div>
+	<md-card>
+	<form name="frmPurchasedetail" novalidate class="css-form">
+		<md-card-title> <md-card-title-text>
+		<span class="md-headline">{{'clientwh_purchasedetail_title' |
+			translate}}</span> </md-card-title-text> </md-card-title>
+		<!-- Context -->
+		<div class="panel-body">
+			<!-- <!-- idpurchase
+				<div class="form-group col-sm-12">
+					<md-input-container class="md-block" md-is-error="(frmDirty || frmPurchasedetail.idpurchase.$touched) && (frmPurchasedetail.idpurchase.$invalid)">
+			        	<label class="control-label col-sm-6" >{{'clientwh_purchasedetail_idpurchase' | translate}}</label>
+			        	<input type="number" md-input md-no-asterisk name="idpurchase" ng-model="purchasedetail.idpurchase" disabled>
+			        	<div ng-messages="(frmDirty || frmPurchasedetail.idpurchase.$touched) && (frmPurchasedetail.idpurchase.$error)">
+			        	</div>
+			      	</md-input-container>
+				</div>
+				/idpurchase -->
+			<!-- idmaterial -->
+			<div class="form-group col-sm-12">
+				<div class="col-sm-6">
+					<md-autocomplete
+						md-is-error="(frmDirty || frmPurchasedetail.idmaterial.$touched) && (frmPurchasedetail.idmaterial.$invalid || frmPurchasedetail.idmaterial.$error.exitsmaterial)"
+						md-input-name="idmaterial" required=""
+						ng-click="resetInvalidMaterial()"
+						ng-disabled="ctlidmaterial.isDisabled"
+						md-no-cache="ctlidmaterial.noCache"
+						md-selected-item="ctlidmaterial.selectedItem"
+						md-search-text-change="ctlidmaterial.searchTextChange(ctlidmaterial.searchText)"
+						md-search-text="ctlidmaterial.searchText"
+						md-selected-item-change="ctlidmaterial.selectedItemChange(item)"
+						md-items="item in ctlidmaterial.querySearch(ctlidmaterial.searchText)"
+						md-item-text="item.display" md-min-length="0"
+						md-floating-label="{{'clientwh_purchasedetail_idmaterial' | translate}}"
+						md-require-match="" md-clear-button="true"> <md-item-template>
+					<span md-highlight-text="ctlidmaterial.searchText"
+						md-highlight-flags="^i">{{item.display}}</span> </md-item-template> <md-not-found>
+					No items matching "{{ctlidmaterial.searchText}}" were found. <a
+						ng-click="ctlidmaterial.newState(ctlidmaterial.searchText)"></a> </md-not-found>
+					<div
+						ng-messages="(frmDirty || frmPurchasedetail.idmaterial.$touched) && (frmPurchasedetail.idmaterial.$error)">
+						<div ng-message="required">{{
+							'clientwh_home_required_field' | translate }}</div>
+						<div ng-message="md-require-match">{{'clientwh_purchasedetail_exist_material'
+							| translate}}</div>
+						<div ng-message="exitsmaterial">{{'clientwh_home_material_is_exits'
+							| translate}}</div>
+					</div>
+					</md-autocomplete>
+				</div>
+				<!-- idunit -->
+				<div class="col-sm-3">
+					<md-input-container class="md-block">
+					<label class="control-label col-sm-6">{{'clientwh_purchasedetail_idunit'
+						| translate}}</label> <input md-input md-no-asterisk name=idunit
+						ng-model="unitName" disabled> </md-input-container>
+				</div>
+				<!-- /idunit -->
+				<!-- materialcode -->
+				<div class="col-sm-3" ng-show="false">
+					<md-input-container class="md-block"
+						md-is-error="(frmDirty || frmPurchasedetail.materialcode.$touched) && (frmPurchasedetail.materialcode.$invalid)">
+					<label class="control-label col-sm-6">{{'clientwh_purchasedetail_materialcode'
+						| translate}}</label> <input md-maxlength="100" md-input md-no-asterisk
+						name="materialcode" ng-model="purchasedetail.materialcode">
+					</md-input-container>
+				</div>
+				<!-- /materialcode -->
+			</div>
+			<!-- /idmaterial -->
+			
+
+			<!-- price -->
+			<div class="form-group col-sm-12">
+				<div class="col-sm-4">
+					<md-input-container class="md-block"
+						md-is-error="(frmDirty || frmPurchasedetail.price.$touched) && (frmPurchasedetail.price.$invalid)">
+					<label class="control-label col-sm-6">{{'clientwh_purchasedetail_price'
+						| translate}}</label> <input numeric decimals="0" formatting="true"
+						min="0" max="999999999" md-input md-no-asterisk name="price"
+						required ng-model="purchasedetail.price"
+						ng-change="ResetTotalAmt();CalculateSum(purchasedetail)">
+					<div
+						ng-messages="(frmDirty || frmPurchasedetail.price.$touched) && (frmPurchasedetail.price.$error)">
+						<div ng-message="required">{{ 'clientwh_home_required_field'
+							| translate }}</div>
+					</div>
+					</md-input-container>
+				</div>
+				<!-- /price -->
+				<!-- quantity -->
+				<div class="col-sm-4">
+					<md-input-container class="md-block"
+						md-is-error="(frmDirty || frmPurchasedetail.quantity.$touched) && (frmPurchasedetail.quantity.$invalid)">
+					<label class="control-label col-sm-6">{{'clientwh_purchasedetail_quantity'
+						| translate}}</label> <input numeric decimals="0" formatting="true"
+						min="0" max="999999999" md-input md-no-asterisk name="quantity"
+						required ng-model="purchasedetail.quantity"
+						ng-change="ResetTotalAmt();CalculateSum(purchasedetail)">
+					<div
+						ng-messages="(frmDirty || frmPurchasedetail.quantity.$touched) && (frmPurchasedetail.quantity.$error)">
+						<div ng-message="required">{{ 'clientwh_home_required_field'
+							| translate }}</div>
+					</div>
+					</md-input-container>
+				</div>
+				<!-- /quantity -->
+				<!-- amount -->
+				<div class="col-sm-4"
+					ng-init="ResetTotalAmt();CalculateSum(purchasedetail)">
+					<md-input-container class="md-block"
+						md-is-error="(frmDirty || frmPurchasedetail.amount.$touched) && (frmPurchasedetail.amount.$invalid)">
+					<label class="control-label col-sm-6">{{'clientwh_purchasedetail_amount'
+						| translate}}</label> <input numeric decimals="0" formatting="true"
+						min="0" max="999999999999999" md-input md-no-asterisk
+						name="amount" ng-model="purchasedetail.amount" disabled>
+					<div
+						ng-messages="(frmDirty || frmPurchasedetail.amount.$touched) && (frmPurchasedetail.amount.$error)">
+						<div ng-message="max">{{'clientwh_purchasedetail_max' |
+							translate}}</div>
+					</div>
+					</md-input-container>
+				</div>
+				<!-- /amount -->
+			</div>
+			<!-- note -->
+			<div class="form-group col-sm-12">
+				<md-input-container class="md-block"
+					md-is-error="(frmDirty || frmPurchasedetail.note.$touched) && (frmPurchasedetail.note.$invalid)">
+				<label class="control-label col-sm-6">{{'clientwh_purchasedetail_note'
+					| translate}}</label> <textarea md-input md-no-asterisk name="note"
+					ng-model="purchasedetail.note"></textarea> </md-input-container>
+			</div>
+			<!-- /note -->
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<div class="btn-group pull-right">
+					<md-button class="md-icon-button test-tooltip md-raised"
+						ng-click="closeFormDialog()" data-toggle="tooltip"> <md-tooltip
+						md-direction="top">{{'clientwh_home_close' |
+					translate}}</md-tooltip> <md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</form>
+	</md-card>
+</div>

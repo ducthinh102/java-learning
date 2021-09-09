@@ -1,0 +1,40 @@
+
+server:
+  port: 4445
+  contextPath: /serverwh
+  #use-forward-headers: true
+    
+security:
+  require_ssl: true
+  
+serverauth:
+  url: https://localhost:1111
+
+servermail:
+  auth: true
+  starttlsenable: true
+  starttlsrequired: true
+  sslenable: true
+  testconnection: true
+  encoding: UTF-8
+
+spring:
+  profiles: prod
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+multitenancy:
+  serverwh:
+    dataSources:
+      -
+        conId: 0
+        url: jdbc:postgresql://localhost:5432/serverwh
+        username: postgres
+        password: ENC(e6TY2nTHNJhLB8dQ17qNQKmyId2qz8on)
+        driverClassName: org.postgresql.Driver
+  

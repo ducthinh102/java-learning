@@ -1,0 +1,17 @@
+{
+	"clientwh_workflowexecute_title": "Workflowexecute",
+	"clientwh_workflowexecute_receiver": "Người nhận *",
+	"clientwh_workflowexecute_approver": "Người duyệt *",
+	"clientwh_workflowexecute_send": "Gửi",
+	"clientwh_workflowexecute_assign": "Chuyển",
+	"clientwh_workflowexecute_sign": "Duyệt",
+	"clientwh_workflowexecute_sendback": "Gửi trả lại",
+	"clientwh_workflowexecute_getback": "Lấy về",
+	"clientwh_workflowexecute_cancel": "Hủy bỏ",
+	"clientwh_workflowexecute_note": "Ghi chú",
+	"clientwh_workflowexecute_attachfiles": "Chọn file",
+	"clientwh_workflowexecute_success": "Đã hoàn tất !",
+	"clientwh_workflowexecute_fail": "Xảy ra lỗi !",
+	"clientwh_workflowexecute_error": "Không gửi được !",
+	"clientwh_workflowexecute_receive_error": "Xảy ra lỗi! Trạng thái của đối tượng không được cập nhật."
+}

@@ -1,0 +1,341 @@
+<div>
+	<md-card> <md-tabs md-dynamic-height md-border-bottom>
+	<md-tab label="{{'clientwh_purchase_title' | translate}}">
+	<form name="frmPurchase" novalidate class="css-form">
+		<md-card-title> <md-card-title-text>
+		<span class="md-headline">{{'clientwh_purchase_title' |
+			translate}}</span> </md-card-title-text> </md-card-title>
+		
+		<div class="row">
+			<!-- First column -->
+			<div class="col-sm-6">
+				<div class="form-vertical">
+					<!-- idstore -->
+					<div class="form-group col-sm-12">
+						<div class="input-group col-sm-11"
+							md-is-error="(frmDirty || frmPurchase.idstore.$touched) && (frmPurchase.idstore.$invalid)">
+							<md-autocomplete md-input-name="idstore" required="" ng-disabled="true"
+								ng-disabled="ctlentityfieldStore.isDisabled"
+								md-no-cache="ctlentityfieldStore.noCache"
+								md-selected-item="ctlentityfieldStore.selectedItem"
+								md-search-text-change="ctlentityfieldStore.searchTextChange(ctlentityfieldStore.searchText)"
+								md-search-text="ctlentityfieldStore.searchText"
+								md-selected-item-change="ctlentityfieldStore.selectedItemChange(item)"
+								md-items="item in ctlentityfieldStore.querySearch(ctlentityfieldStore.searchText)"
+								md-item-text="item.display" md-min-length="0"
+								md-require-match=""
+								md-floating-label="{{'clientwh_purchase_idstore' | translate}}"
+								md-clear-button="true" placeholder="Please select store">
+							<md-item-template> <span
+								md-highlight-text="ctlentityfieldStore.searchText"
+								md-highlight-flags="^i">{{ item.display }}</span> </md-item-template> <md-not-found>
+							{{ 'clientwh_home_nofound' | translate }} {{
+							ctlentityfieldStore.searchText }} <a
+								ng-click="ctlentityfieldStore.newState(ctlentityfieldStore.searchText)"></a> </md-not-found>
+							<div
+								ng-messages="(frmDirty || frmPurchase.idstore.$touched) && (frmPurchase.idstore.$error)">
+								<div ng-message="required">{{
+									'clientwh_home_required_field' | translate }}</div>
+								<div ng-message="md-require-match">{{
+									'clientwh_purchase_store_exist' | translate }}</div>
+							</div>
+							</md-autocomplete>
+						</div>
+						<!-- <md-input-container flex="5" class="md-block">
+							<md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="showFormCreateStore()">
+								<md-tooltip>{{'clientwh_home_create' | translate}}</md-tooltip>
+								<md-icon md-font-library="material-icons">lightbulb outline</md-icon>
+							</md-button>
+						</md-input-container> -->
+					</div>
+					<!-- /idstore -->
+					<!-- name -->
+					<div class="form-group col-sm-12">
+						<!-- code -->
+						<div class="col-sm-4">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmPurchase.code.$touched) && (frmPurchase.code.$invalid || frmPurchase.code.$error.duplicate)">
+							<label class="control-label col-sm-6">{{'clientwh_purchase_code'
+								| translate}}</label> <input md-maxlength="50" md-input required ng-change="purchase.code = purchase.code.replace('  ', ' ')"
+								md-no-asterisk name="code" ng-model="purchase.code" disabled
+								ng-change="resetValidateDuplicate()" id="code" maxlength="50">
+							<div ng-messages="(frmDirty || frmPurchase.code.$touched) && (frmPurchase.code.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field'
+									| translate}}</div>
+								<div ng-message="duplicate">{{'clientwh_home_code_is_exits'
+									| translate}}</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- /code -->
+						<div class="col-sm-8">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmPurchase.name.$touched) && (frmPurchase.name.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_purchase_name'
+								| translate}}</label> <textarea md-maxlength="300" md-input disabled rows="1" 
+								md-no-asterisk name="name" ng-model="purchase.name" ng-change="purchase.name = purchase.name.split('  ').join(' ')"
+								id="name" maxlength="300"></textarea>
+							<div ng-messages="(frmDirty || frmPurchase.name.$touched) && (frmPurchase.name.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field'
+									| translate}}</div>
+							</div>
+							</md-input-container>
+						</div>
+					</div>
+					<!-- /name -->
+					<!-- totalamount -->
+					<div class="form-group col-sm-12" ng-init="Sumtotalamount()">
+						<div class="col-sm-8">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmPurchase.totalamount.$touched) && (frmPurchase.totalamount.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_purchase_totalamount'
+								| translate}}</label> <input numeric decimals="0" formatting="true"
+								min="0" max="999999999999999" md-input md-no-asterisk
+								name="totalamount" disabled ng-model="purchase.totalamount">
+							</md-input-container>
+						</div>
+						<!-- vat -->
+						<div class="form-group col-sm-4">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmPurchase.vat.$touched) && (frmPurchase.vat.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_purchase_vat'
+								| translate}}</label> <input type="number" min="1" md-input disabled
+								md-no-asterisk name="vat" ng-model="purchase.vat"  ng-change="ResetTotalAmt();CalculateSum(purchase)">
+							<div
+								ng-messages="(frmDirty || frmPurchase.vat.$touched) && (frmPurchase.vat.$error)">
+								<div ng-message="required">{{
+									'clientwh_home_required_field' | translate }}</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- /vat -->
+					</div>
+					<!-- /totalamount -->
+					<!-- note -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block"
+							md-is-error="(frmDirty || frmPurchase.note.$touched) && (frmPurchase.note.$invalid)">
+						<label class="control-label col-sm-6">{{'clientwh_purchase_note'
+							| translate}}</label> <textarea md-maxlength="1000" rows="3" md-input
+							md-no-asterisk name="note" ng-model="purchase.note" disabled
+							maxlength="1000"></textarea>
+						<div
+							ng-messages="(frmDirty || frmPurchase.note.$touched) && (frmPurchase.note.$error)">
+							<div ng-message="required">{{ 'clientwh_home_required_field'
+								| translate }}</div>
+						</div>
+						</md-input-container>
+					</div>
+					<!-- /note -->
+				</div>
+			</div>
+			<!-- /First column -->
+
+			<!-- Second column -->
+			<div class="col-sm-6">
+				<div class="form-vertical">
+					<!-- idreceiver -->
+					<div class="form-group col-sm-12">
+						<div class="input-group col-sm-12"
+							md-is-error="(frmDirty || frmPurchase.idreceiver.$touched) && (frmPurchase.idreceiver.$invalid)">
+							<md-autocomplete md-input-name="idreceiver" required="" ng-disabled="true"
+								ng-disabled="ctlentityfieldReceiver.isDisabled"
+								md-no-cache="ctlentityfieldReceiver.noCache"
+								md-selected-item="ctlentityfieldReceiver.selectedItem"
+								md-search-text-change="ctlentityfieldReceiver.searchTextChange(ctlentityfieldReceiver.searchText)"
+								md-search-text="ctlentityfieldReceiver.searchText"
+								md-selected-item-change="ctlentityfieldReceiver.selectedItemChange(item)"
+								md-items="item in ctlentityfieldReceiver.querySearch(ctlentityfieldReceiver.searchText)"
+								md-item-text="item.display" md-min-length="0"
+								md-require-match=""
+								md-floating-label="{{'clientwh_purchase_idreceiver' | translate}}"
+								md-clear-button="true"> <md-item-template>
+							<span md-highlight-text="ctlentityfieldReceiver.searchText"
+								md-highlight-flags="^i">{{ item.display }}</span> </md-item-template> <md-not-found>
+							{{ 'clientwh_home_nofound' | translate }} {{
+							ctlentityfieldReceiver.searchText }} <a
+								ng-click="ctlentityfieldReceiver.newState(ctlentityfieldReceiver.searchText)">Create
+								a new one!</a> </md-not-found>
+							<div
+								ng-messages="(frmDirty || frmPurchase.idreceiver.$touched) && (frmPurchase.idreceiver.$error)">
+								<div ng-message="required">{{
+									'clientwh_home_required_field' | translate }}</div>
+								<div ng-message="md-require-match">{{
+									'clientwh_purchase_receiver_exist' | translate }}</div>
+							</div>
+							</md-autocomplete>
+						</div>
+					</div>
+					<!-- /idreceiver -->
+					<!-- idsupplier -->
+					<div class="form-group col-sm-12">
+						<div class="input-group col-sm-12"
+							md-is-error="(frmDirty || frmPurchase.idsupplier.$touched) && (frmPurchase.idsupplier.$invalid)">
+							<md-autocomplete md-input-name="idsupplier" required="" ng-disabled="true"
+								ng-disabled="ctlentityfieldSupplier.isDisabled"
+								md-no-cache="ctlentityfieldSupplier.noCache"
+								md-selected-item="ctlentityfieldSupplier.selectedItem"
+								md-search-text-change="ctlentityfieldSupplier.searchTextChange(ctlentityfieldSupplier.searchText)"
+								md-search-text="ctlentityfieldSupplier.searchText"
+								md-selected-item-change="ctlentityfieldSupplier.selectedItemChange(item)"
+								md-items="item in ctlentityfieldSupplier.querySearch(ctlentityfieldSupplier.searchText)"
+								md-item-text="item.display" md-min-length="0"
+								md-require-match=""
+								md-floating-label="{{'clientwh_purchase_idsupplier' | translate}}"
+								md-clear-button="true"> <md-item-template>
+							<span md-highlight-text="ctlentityfieldSupplier.searchText"
+								md-highlight-flags="^i">{{ item.display }}</span> </md-item-template> <md-not-found>
+							{{ 'clientwh_home_nofound' | translate }} {{
+							ctlentityfieldSupplier.searchText }} <a
+								ng-click="ctlentityfieldSupplier.newState(ctlentityfieldSupplier.searchText)"></a> </md-not-found>
+							<div
+								ng-messages="(frmDirty || frmPurchase.idsupplier.$touched) && (frmPurchase.idsupplier.$error)">
+								<div ng-message="required">{{
+									'clientwh_home_required_field' | translate }}</div>
+								<div ng-message="md-require-match">{{
+									'clientwh_purchase_supplier_exist' | translate }}</div>
+							</div>
+							</md-autocomplete>
+						</div>
+					</div>
+					<!-- /idsupplier -->
+					<!-- idcontact -->
+					<div class="form-group col-sm-12">
+						<div class="input-group col-sm-12"
+							md-is-error="(frmDirty || frmPurchase.idcontact.$touched) && (frmPurchase.idcontact.$invalid)">
+							<md-autocomplete md-input-name="idcontact" required="" ng-disabled="true"
+								ng-disabled="ctlentityfieldContact.isDisabled"
+								md-no-cache="ctlentityfieldContact.noCache"
+								md-selected-item="ctlentityfieldContact.selectedItem"
+								md-search-text-change="ctlentityfieldContact.searchTextChange(ctlentityfieldContact.searchText)"
+								md-search-text="ctlentityfieldContact.searchText"
+								md-selected-item-change="ctlentityfieldContact.selectedItemChange(item)"
+								md-items="item in ctlentityfieldContact.querySearch(ctlentityfieldContact.searchText)"
+								md-item-text="item.display" md-min-length="0"
+								md-require-match=""
+								md-floating-label="{{'clientwh_purchase_idcontact' | translate}}"
+								md-clear-button="true"> <md-item-template>
+							<span md-highlight-text="ctlentityfieldContact.searchText"
+								md-highlight-flags="^i">{{ item.display }}</span> </md-item-template> <md-not-found>
+							{{ 'clientwh_home_nofound' | translate }} {{
+							ctlentityfieldContact.searchText }} <a
+								ng-click="ctlentityfieldContact.newState(ctlentityfieldContact.searchText)"></a> </md-not-found>
+							<div
+								ng-messages="(frmDirty || frmPurchase.idcontact.$touched) && (frmPurchase.idcontact.$error)">
+								<div ng-message="required">{{
+									'clientwh_home_required_field' | translate }}</div>
+								<div ng-message="md-require-match">{{
+									'clientwh_purchase_contact_exist' | translate }}</div>
+							</div>
+							</md-autocomplete>
+						</div>
+					</div>
+					<!-- /idcontact -->
+					<!-- contactphonenumber -->
+					<div class="form-group col-sm-12">
+						<div class="col-sm-6">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmPurchase.contactphonenumber.$touched) && (frmPurchase.contactphonenumber.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_purchase_contactphonenumber'
+								| translate}}</label> <input md-maxlength="50" md-input md-no-asterisk ng-change="purchase.contactphonenumber = purchase.contactphonenumber.split('  ').join(' ')"
+								name="contactphonenumber" ng-model="purchase.contactphonenumber" disabled
+								maxlength="50">
+							<div
+								ng-messages="(frmDirty || frmPurchase.contactphonenumber.$touched) && (frmPurchase.contactphonenumber.$error)">
+								<div ng-message="required">{{
+									'clientwh_home_required_field' | translate }}</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- /contactphonenumber -->
+						<!-- contactfaxnumber -->
+						<div class="col-sm-6">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmPurchase.contactfaxnumber.$touched) && (frmPurchase.contactfaxnumber.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_purchase_contactfaxnumber'
+								| translate}}</label> <input md-maxlength="50" md-input md-no-asterisk ng-change="purchase.contactfaxnumber = purchase.contactfaxnumber.split(' ').join('')
+								name="contactfaxnumber" ng-model="purchase.contactfaxnumber" disabled
+								maxlength="50"> </md-input-container>
+						</div>
+					</div>
+					<!-- /contactfaxnumber -->
+					<!-- deliveryaddress -->
+					<div class="form-group col-sm-12">
+						<div class="col-sm-8">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmPurchase.deliveryaddress.$touched) && (frmPurchase.deliveryaddress.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_purchase_deliveryaddress'
+								| translate}}</label> <textarea md-input md-no-asterisk md-maxlength="500" rows="1" disabled
+								name="deliveryaddress" ng-model="purchase.deliveryaddress"
+								maxlength="500"></textarea>
+							<div
+								ng-messages="(frmDirty || frmPurchase.deliveryaddress.$touched) && (frmPurchase.deliveryaddress.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field'
+									| translate}}</div>
+							</div>
+							</md-input-container>
+						</div>
+						<div class="col-sm-4" ng-init="newdate()">
+							<md-input-container class="md-block"> <label>{{'clientwh_purchase_deliverydate'
+								| translate}}</label> <md-datepicker name="deliverydate" disabled 
+								ng-model="purchase.deliverydate" name="datepicker" md-date-filter="noSunday"
+								md-open-on-focus></md-datepicker>
+							<div
+								ng-messages="(frmDirty || frmPurchase.deliverydate.$touched) && (frmPurchase.deliverydate.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field'
+									| translate}}</div>
+							</div>
+
+							</md-input-container>
+						</div>
+					</div>
+					<!-- /deliveryaddress -->
+				</div>
+			</div>
+			<!-- /Second column -->
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<!-- workflowexecute module -->
+				<div ng-include="constants.workflowexecuteView"></div>
+				<div class="btn-group pull-right">
+					<md-button class="md-icon-button test-tooltip md-raised"
+						ng-click="closeFormDialog()" data-toggle="tooltip"> <md-tooltip
+						md-direction="top">{{'clientwh_home_close' |
+					translate}}</md-tooltip> <md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</form>
+	</md-tab> <md-tab label="{{'clientwh_purchase_detail' | translate}}"
+		ng-if="purchase.id > -1">
+	<div ng-include="purchasedetailOnlyview"
+		ng-controller="clientwhpurchasedetailController"></div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="btn-group pull-right">
+				<md-button class="md-icon-button test-tooltip md-raised"
+					data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+					ng-click="closeDialog()"> <md-icon
+					md-font-library="material-icons">close</md-icon> </md-button>
+			</div>
+		</div>
+	</div>
+	</md-tab> <md-tab label="{{'clientwh_home_comment' | translate}}"
+		ng-if="purchase.id > -1">
+	<div ng-include="commentScope.onlyview"
+		ng-controller="clientwhcommentController"></div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="btn-group pull-right">
+				<md-button class="md-icon-button test-tooltip md-raised"
+					data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+					ng-click="closeDialog()"> <md-icon
+					md-font-library="material-icons">close</md-icon> </md-button>
+			</div>
+		</div>
+	</div>
+	</md-tab> </md-tabs> </md-card>
+</div>

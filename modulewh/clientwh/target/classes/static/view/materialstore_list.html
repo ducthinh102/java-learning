@@ -1,0 +1,96 @@
+<div>
+    <md-card>
+        <form name="frmDetail" novalidate class="css-form">
+
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{'clientwh_store_title' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <!-- Context -->
+            <md-card-content>
+                <div ng-init="initDetail()">
+                    <div class="panel-body">
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="col-sm-7">
+                                    <form ng-submit="listWithCriteriasByIdStoreAndPage(idstore,1)">
+                                        <div class="input-group">
+                                            <md-input-container class="md-block" style="top: 20px">
+                                                <label class="control-label">{{'clientwh_home_search' | translate}}</label>
+                                                <input md-input ng-model="searchMaterialStore.content">
+                                            </md-input-container>
+
+                                            <span class="input-group-btn">
+                                                <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-blue'}" title="{{'clientwh_home_search' | translate}}"
+                                                    type="submit" ng-click="listWithCriteriasByIdStoreAndPage(idstore,1)">
+                                                    <md-icon md-font-library="material-icons">search</md-icon>
+                                                </md-button>
+
+                                                <md-button class="md-icon-button test-tooltip md-raised" title="{{'clientwh_home_filter_clear' | translate}}" ng-click="clearSearchMaterial()">
+                                                    <md-icon md-font-library="material-icons">clear</md-icon>
+                                                </md-button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-sm-5"></div>
+                            </div>
+                            <div class="col-sm-6"></div>
+                            <br>
+                            <br>
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 col-md-4" pagination-id=paginationmaterialstore dir-paginate="item in materialstores | itemsPerPage:pageStore.pageSize"
+                                    current-page="page.currentPage" total-items="pageStore.totalElements">
+                                    <div class="caption">
+                                        <md-content>
+                                            <md-card>
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <span class="md-headline">{{item.materialname | limitTo:20}}</span>
+                                                    </md-card-title-text>
+                                                </md-card-title>
+                                                <md-card-content>
+                                                    <p>{{'clientwh_store_quantity' | translate}}: {{item.quantity}}</p>
+                                                </md-card-content>
+                                            </md-card>
+                                        </md-content>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="pull-right">
+                                            <div class="btn-group">
+                                                <dir-pagination-controls pagination-id="paginationmaterialstore" max-size="8" direction-links="true" boundary-links="true"
+                                                    on-page-change="listWithCriteriasByIdStoreAndPage(idstore,newPageNumber)">
+                                                </dir-pagination-controls>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.table-responsive-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-card-content>
+
+            <!-- Bottom actions -->
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="btn-group pull-right">
+                        <md-button class="md-icon-button test-tooltip md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                            ng-click="closeDialog()">
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </md-card>
+</div>

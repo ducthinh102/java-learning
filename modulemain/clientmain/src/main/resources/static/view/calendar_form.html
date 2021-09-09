@@ -1,0 +1,127 @@
+
+<div>
+
+	<form name="frmCalendar" novalidate class="css-form">
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+				
+					<div class="btn btn-link pull-left" ng-click="list()">{{'clientmain_calendar_title' | translate}}</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="calendar.id > -1" data-toggle="tooltip" title="{{'clientmain_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div id="calendarAlertMessage" class="alert" style="display: none">
+				<strong>{{calendarAlertMessage}}</strong>
+			</div>
+			<!-- Content -->
+			<md-content class="panel-body">
+				<md-tabs md-dynamic-height>
+					<md-tab label="{{'clientmain_calendar_tab_general' | translate}}">
+			
+						<div class="row">
+							
+							<!-- First column -->
+							<div class="col-sm-6">
+								<div class="form-vertical">
+									<!-- code -->
+									<div class="form-group col-sm-12">
+										<md-input-container class="md-block" md-is-error="(frmDirty || frmCalendar.code.$touched) && (frmCalendar.code.$invalid)">
+								        	<label class="control-label col-sm-6" >{{'clientmain_calendar_code' | translate}}</label>
+								        	<input md-maxlength="3" md-input md-no-asterisk name="code" ng-model="calendar.code">
+								        	<div ng-messages="(frmDirty || frmCalendar.code.$touched) && (frmCalendar.code.$error)">
+								          		<div ng-message="required">This is required.</div>
+								          		<div ng-message="md-maxlength">The code must be less than 3 characters long.</div>
+								        	</div>
+								      	</md-input-container>
+									</div>
+									<!-- /code -->
+								</div>
+							</div>
+							<!-- /First column -->
+							
+							<!-- Second column -->
+							<div class="col-sm-6">
+								<div class="form-vertical">
+									<!-- name -->
+									<div class="form-group col-sm-12">
+										<md-input-container class="md-block" md-is-error="(frmDirty || frmCalendar.name.$touched) && (frmCalendar.name.$invalid)">
+								        	<label class="control-label col-sm-6" >{{'clientmain_calendar_name' | translate}}</label>
+								        	<input md-maxlength="3" md-input md-no-asterisk name="name" ng-model="calendar.name">
+								        	<div ng-messages="(frmDirty || frmCalendar.name.$touched) && (frmCalendar.name.$error)">
+								          		<div ng-message="required">This is required.</div>
+								          		<div ng-message="md-maxlength">The name must be less than 3 characters long.</div>
+								        	</div>
+								      	</md-input-container>
+									</div>
+									<!-- /name -->
+								
+								</div>
+							</div>
+							<!-- /Second column -->
+						</div>
+						
+						<!-- day of week -->
+						<div class="row">
+							<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+								<div class="control-label">{{'clientmain_calendar_dayofweek_title' | translate}}</div>
+							</section>
+						</div>
+						<div class="row">
+							<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+								<md-button ng-class="{'md-raised md-primary': content.dayofweek[2].iswork, 'md-raised': !content.dayofweek[2].iswork}" ng-click="content.dayofweek[2].iswork = !content.dayofweek[2].iswork">{{'clientmain_calendar_dayofweek_2' | translate}}</md-button>
+								<md-button ng-class="{'md-raised md-primary': content.dayofweek[3].iswork, 'md-raised': !content.dayofweek[3].iswork}" ng-click="content.dayofweek[3].iswork = !content.dayofweek[3].iswork">{{'clientmain_calendar_dayofweek_3' | translate}}</md-button>
+								<md-button ng-class="{'md-raised md-primary': content.dayofweek[4].iswork, 'md-raised': !content.dayofweek[4].iswork}" ng-click="content.dayofweek[4].iswork = !content.dayofweek[4].iswork">{{'clientmain_calendar_dayofweek_4' | translate}}</md-button>
+								<md-button ng-class="{'md-raised md-primary': content.dayofweek[5].iswork, 'md-raised': !content.dayofweek[5].iswork}" ng-click="content.dayofweek[5].iswork = !content.dayofweek[5].iswork">{{'clientmain_calendar_dayofweek_5' | translate}}</md-button>
+								<md-button ng-class="{'md-raised md-primary': content.dayofweek[6].iswork, 'md-raised': !content.dayofweek[6].iswork}" ng-click="content.dayofweek[6].iswork = !content.dayofweek[6].iswork">{{'clientmain_calendar_dayofweek_6' | translate}}</md-button>
+								<md-button ng-class="{'md-raised md-primary': content.dayofweek[7].iswork, 'md-raised': !content.dayofweek[7].iswork}" ng-click="content.dayofweek[7].iswork = !content.dayofweek[7].iswork">{{'clientmain_calendar_dayofweek_7' | translate}}</md-button>
+								<md-button ng-class="{'md-raised md-primary': content.dayofweek[1].iswork, 'md-raised': !content.dayofweek[1].iswork}" ng-click="content.dayofweek[1].iswork = !content.dayofweek[1].iswork">{{'clientmain_calendar_dayofweek_1' | translate}}</md-button>
+							</section>
+						</div>
+						<!-- /day of week -->
+					</md-tab>
+					<md-tab label="{{'clientmain_calendar_tab_extend' | translate}}">
+						<!-- detail -->
+						<div class="row" ng-show="calendar.id > -1">
+							<div ng-include="calendarextendView" ng-controller="clientmaincalendarextendController"></div>
+						</div>
+						<!-- /detail -->
+					</md-tab>
+				</md-tabs>
+			</md-content>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="calendar.id > -1" data-toggle="tooltip" title="{{'clientmain_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

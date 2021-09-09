@@ -1,0 +1,15 @@
+{
+	"clientwh_comparemateriallist_title": "Select for detail",
+	"clientwh_comparemateriallist_code": "Code",
+	"clientwh_comparemateriallist_detail": "Detail list",
+	"clientwh_comparemateriallist_detail_selected": "Detail list selected",
+	"clientwh_comparemateriallist_search": "Search...",
+	"clientwh_comparemateriallist_choose_source_detaul": "Choose",
+	"clientwh_comparemateriallist_choose_target_detaul": "Choose",
+	"clientwh_comparemateriallist_helpMessage": "Click to select",
+	"clientwh_comparemateriallist_labelAll": "All items",
+	"clientwh_comparemateriallist_labelSelected": "Selected items",
+	"clientwh_comparemateriallist_labelSelectAll": "Select all",
+	"clientwh_comparemateriallist_labelDeselectAll": "Deselect all"
+	
+}

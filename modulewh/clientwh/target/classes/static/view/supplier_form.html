@@ -1,0 +1,204 @@
+<div>
+	<md-card>
+	<form name="frmSupplier" novalidate class="css-form">
+
+		<md-card-title> <md-card-title-text>
+		<span class="md-headline">{{'clientwh_supplier_title' |
+			translate}}</span> </md-card-title-text></md-card-title>
+
+		<!-- Alert Message -->
+		<div id="supplierAlertMessage" class="alert" style="display: none">
+			<strong>{{supplierAlertMessage}}</strong>
+		</div>
+
+		<!-- Context -->
+		<div class="panel-body">
+			<div class="row">
+
+				<!-- First column -->
+
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<div class="form-vertical">
+
+
+						<!-- code -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmSupplier.code.$touched) && (frmSupplier.code.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_code'
+								| translate}}</label> <input md-maxlength="20" md-input required
+								md-no-asterisk name="code" ng-model="supplier.code" id="code" maxlength="20" ng-pattern="/\S/">
+							<div
+								ng-messages="(frmDirty || frmSupplier.code.$touched) && (frmSupplier.code.$error)">
+								<div ng-message="required">This is required.</div>
+								<div ng-message="md-maxlength">The description must be less than 20 characters long.</div>
+								<div ng-message="pattern">{{'clientwh_home_white_space' | translate}}</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- /code -->
+
+						<!-- name -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmSupplier.name.$touched) && (frmSupplier.name.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_name'
+								| translate}}</label> <input md-maxlength="100" md-input required
+								md-no-asterisk name="name" ng-model="supplier.name" id="name" maxlength="100" ng-pattern="/\S/">
+							<div
+								ng-messages="(frmDirty || frmSupplier.name.$touched) && (frmSupplier.name.$error)">
+								<div ng-message="required">This is required.</div>
+								<div ng-message="md-maxlength">The description must be less than 100 characters long.</div>
+								<div ng-message="pattern">{{'clientwh_home_white_space' | translate}}</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- /name -->
+
+						<!-- address -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmSupplier.address.$touched) && (frmSupplier.address.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_address'
+								| translate}}</label> <input md-maxlength="100" md-no-asterisk
+								name="address" ng-model="supplier.address">
+							<div
+								ng-messages="(frmDirty || frmSupplier.address.$touched) && (frmSupplier.address.$error)">
+								<div ng-message="md-maxlength">The description must be
+									less than 100 characters long.</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- /address -->
+
+						<!-- email -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmSupplier.email.$touched) && (frmSupplier.email.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_email'
+								| translate}}</label> <input md-maxlength="100" md-no-asterisk
+								name="email" type="email" ng-model="supplier.email" id="email" maxlength="100" ng-pattern="/\S/">
+							<div
+								ng-messages="(frmDirty || frmSupplier.email.$touched) && (frmSupplier.email.$error)">
+								<div ng-message="md-maxlength">The description must be less than 100 characters long.</div>
+								<div ng-message="email">{{'clientwh_home_email_invalid' | translate}}</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- /email -->
+
+
+						<!-- mobile -->
+
+						<div class="form-group col-sm-6">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmSupplier.mobile.$touched) && (frmSupplier.mobile.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_mobile'
+								| translate}}</label> <input md-maxlength="20" md-no-asterisk
+								name="mobile" ng-model="supplier.mobile">
+							<div
+								ng-messages="(frmDirty || frmSupplier.mobile.$touched) && (frmSupplier.mobile.$error)">
+
+								<div ng-message="md-maxlength">The description must be
+									less than 20 characters long.</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- telephone -->
+						<div class="form-group col-sm-6">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmSupplier.telephone.$touched) && (frmSupplier.telephone.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_telephone'
+								| translate}}</label> <input md-maxlength="20" md-no-asterisk
+								name="telephone" ng-model="supplier.telephone">
+							<div
+								ng-messages="(frmDirty || frmSupplier.telephone.$touched) && (frmSupplier.telephone.$error)">
+
+								<div ng-message="md-maxlength">The description must be
+									less than 20 characters long.</div>
+							</div>
+							</md-input-container>
+						</div>
+
+
+						<!-- /mobile -->
+						<!-- /telephone -->
+
+
+
+
+						<!-- FAX -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmSupplier.fax.$touched) && (frmSupplier.fax.$invalid)">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_fax'
+								| translate}}</label> <input md-maxlength="20" md-no-asterisk name="fax"
+								ng-model="supplier.fax">
+							<div
+								ng-messages="(frmDirty || frmSupplier.fax.$touched) && (frmSupplier.fax.$error)">
+
+								<div ng-message="md-maxlength">The description must be
+									less than 20 characters long.</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- /FAX -->
+
+						<!-- NOTE -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"> <label>{{'clientwh_supplier_note'
+								| translate}}</label> <textarea ng-model="supplier.note" name="note"
+								md-maxlength="500" rows="5" md-select-on-focus maxlength="500" id="note" maxlength="500" ng-pattern="/\S/"></textarea>
+							</md-input-container>
+						</div>
+						<!-- /FAX -->
+
+
+
+
+					</div>
+				</div>
+				<!-- /First column -->
+
+				<!-- Second column -->
+				<div class="col-sm-3">
+					<div class="form-vertical"></div>
+				</div>
+				<!-- /Second column -->
+			</div>
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<div class="btn-group pull-right">
+					<md-button class="md-icon-button test-tooltip md-raised md-primary"
+						md-colors="{background: 'default-green'}" data-toggle="tooltip"
+						title="{{'clientwh_home_save' | translate}}" ng-click="save()">
+					<md-icon md-font-library="material-icons">save</md-icon> </md-button>
+
+					<md-button class="md-icon-button test-tooltip md-raised md-primary"
+						md-colors="{background: 'default-blue'}" data-toggle="tooltip"
+						title="{{'clientwh_home_create' | translate}}"
+						ng-click="createOnForm()"> <md-icon
+						md-font-library="material-icons">add</md-icon> </md-button>
+
+					<md-button class="md-icon-button test-tooltip md-primary md-raised"
+						ng-show="supplier.id > -1"
+						ng-click="cofirmDeleteToastForm()"
+						md-colors="{background: 'default-red'}" data-toggle="tooltip">
+					<md-tooltip md-direction="top">{{'clientwh_home_delete'
+					| translate}}</md-tooltip> <md-icon md-font-library="material-icons">delete</md-icon>
+					</md-button>
+
+					<md-button class="md-icon-button test-tooltip md-raised"
+						data-toggle="tooltip"
+						title="{{'clientwh_home_close' | translate}}"
+						ng-click="closeDialog()"> <md-icon
+						md-font-library="material-icons">close</md-icon> </md-button>
+				</div>
+			</div>
+		</div>
+	</form>
+	</md-card>
+</div>

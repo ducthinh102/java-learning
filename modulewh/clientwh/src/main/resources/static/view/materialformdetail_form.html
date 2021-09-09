@@ -1,0 +1,185 @@
+
+<div>
+	<md-card>
+	<form name="frmMaterialformdetail" novalidate class="css-form">
+		<md-card-title> <md-card-title-text>
+		<span class="md-headline">{{'clientwh_materialformdetail_title'
+			| translate}}</span> </md-card-title-text> </md-card-title>
+		<!-- Context -->
+		<div class="row">
+			<!-- First column -->
+			<div class="col-sm-6">
+				<div class="form-vertical">
+					<!-- idmaterialform -->
+					<div class="form-group col-sm-12" ng-show="false">
+						<md-input-container class="md-block"
+							md-is-error="(frmDirty || frmMaterialformdetail.idmaterialform.$touched) && (frmMaterialformdetail.idmaterialform.$invalid)">
+						<label class="control-label col-sm-6">{{'clientwh_materialformdetail_idmaterialform'
+							| translate}}</label> <input md-maxlength="3" md-input required
+							md-no-asterisk name="idmaterialform"
+							ng-model="materialformdetail.idmaterialform"> </md-input-container>
+					</div>
+					<!-- /idmaterialform -->
+					<!-- idmaterial -->
+					<div class="form-group col-sm-12">
+						<div class="col-sm-12"
+							md-is-error="(frmDirty || frmMaterialformdetail.idmaterial.$touched) && (frmMaterialformdetail.idmaterial.$invalid || frmMaterialformdetail.idmaterial.$error.exitsmaterial)">
+							<md-autocomplete md-input-name="idmaterial"
+								 required=""
+								ng-disabled="ctlidmaterial.isDisabled"
+								md-no-cache="ctlidmaterial.noCache"
+								md-selected-item="ctlidmaterial.selectedItem"
+								md-search-text-change="ctlidmaterial.searchTextChange(ctlidmaterial.searchText)"
+								md-search-text="ctlidmaterial.searchText"
+								md-selected-item-change="ctlidmaterial.selectedItemChange(item)"
+								md-items="item in ctlidmaterial.querySearch(ctlidmaterial.searchText)"
+								md-item-text="item.display" md-min-length="0"
+								placeholder="What is your Material item?" md-require-match=""
+								md-clear-button="true"
+								md-floating-label="{{'clientwh_materialformdetail_idmaterial' | translate}}">
+							<md-item-template> <span
+								md-highlight-text="ctlidmaterial.searchText"
+								md-highlight-flags="^i">{{item.display}}</span> </md-item-template> <md-not-found> {{ 'clientwh_home_nofound' | translate }} {{
+							No items matching "{{ctlidmaterial.searchText}}" were found. <a
+								ng-click="ctlidmaterial.newState(ctlidmaterial.searchText)">Create
+								a new one!</a> </md-not-found>
+							<div
+								ng-messages="(frmDirty || frmMaterialformdetail.idmaterial.$touched) && (frmMaterialformdetail.idmaterial.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field'
+									| translate}}</div>
+								<div ng-message="md-require-match">{{'clientwh_materialformdetail_existmaterial'
+									| translate }}</div>
+								<div ng-message="exitsmaterial">{{'clientwh_home_material_is_exits'
+									| translate}}</div>
+							</div>
+							</md-autocomplete>
+						</div>
+					</div>
+				</div>
+			</div>
+				<!-- /First column -->
+
+				<!-- Second column -->
+				<div class="col-sm-6">
+					<div class="form-vertical">
+
+						<!-- startdate&enddate -->
+						<div class="form-group col-sm-12">
+
+							<div class="col-sm-6" ng-init="newdate()">
+								<md-input-container class="md-block"> <label>{{'clientwh_materialformdetail_startdate'
+									| translate}}</label> <md-datepicker 
+									name="startdate" 
+									ng-model="materialformdetail.startdate" md-open-on-focus
+									name="datepicker"></md-datepicker>
+								
+								</md-input-container>
+							</div>
+
+							<div class="col-sm-6" ng-init="newdate()">
+								<md-input-container class="md-block"> <label>{{'clientwh_materialformdetail_enddate'
+									| translate}}</label> <md-datepicker 
+									name="enddate"  ng-model="materialformdetail.enddate"
+									md-open-on-focus name="datepicker"></md-datepicker>
+								</md-input-container>
+							</div>
+						</div>
+						<!-- /startdate&enddate -->
+					</div>
+				</div>
+				<!-- /Second column -->
+				<!-- price&quantity&amount -->
+				<div class="form-group col-sm-12">
+
+					<div class="col-sm-4" ng-init="defaultprice()">
+						<md-input-container class="md-block"
+							md-is-error="(frmDirty || frmMaterialformdetail.price.$touched) && (frmMaterialformdetail.price.$invalid)">
+						<label class="control-label col-sm-6">{{'clientwh_materialformdetail_price'
+							| translate}}</label> <input numeric decimals="0" formatting="true"
+							min="0" max="999999999" md-input  md-no-asterisk
+							name="price" ng-model="materialformdetail.price"
+							ng-change="ResetTotalAmt();CalculateSum(materialformdetail)">
+						<div
+							ng-messages="(frmDirty || frmMaterialformdetail.price.$touched) && (frmMaterialformdetail.price.$error)">
+							<div ng-message="required">{{'clientwh_home_required_field'
+								| translate}}</div>
+						</div>
+						</md-input-container>
+					</div>
+
+					<div class="col-sm-4">
+						<md-input-container class="md-block"
+							md-is-error="(frmDirty || frmMaterialformdetail.quantity.$touched) && (frmMaterialformdetail.quantity.$invalid)">
+						<label class="control-label col-sm-6">{{'clientwh_materialformdetail_quantity'
+							| translate}}</label> <input numeric decimals="0" formatting="true"
+							min="0" max="999999999" md-input required md-no-asterisk
+							name="quantity" ng-model="materialformdetail.quantity"
+							ng-change="ResetTotalAmt();CalculateSum(materialformdetail)">
+						<div
+							ng-messages="(frmDirty || frmMaterialformdetail.quantity.$touched) && (frmMaterialformdetail.quantity.$error)">
+							<div ng-message="required">{{'clientwh_home_required_field'
+								| translate}}</div>
+						</div>
+						</md-input-container>
+					</div>
+
+					<div class="col-sm-4"
+						ng-init="ResetTotalAmt();CalculateSum(materialform)">
+						<md-input-container class="md-block"
+							md-is-error="(frmDirty || frmMaterialformdetail.amount.$touched) && (frmMaterialformdetail.amount.$invalid)">
+						<label class="control-label col-sm-6">{{'clientwh_materialformdetail_amount'
+							| translate}}</label> <input disabled md-input name="amount" numeric decimals="0" formatting="true"
+							min="0" max="999999999999999"
+							ng-model="materialformdetail.amount">
+						<div
+							ng-messages="(frmDirty || frmMaterialformdetail.amount.$touched) && (frmMaterialformdetail.amount.$error)">
+							<div ng-message="required">This is required.</div>
+						</div>
+						</md-input-container>
+					</div>
+
+				</div>
+				<!-- /price&quantity&amount -->
+				<!-- note -->
+				<div class="form-group col-sm-12">
+					<md-input-container class="md-block"
+						md-is-error="(frmDirty || frmMaterialformdetail.note.$touched) && (frmMaterialformdetail.note.$invalid)">
+					<label class="control-label col-sm-6">{{'clientwh_materialformdetail_note'
+						| translate}}</label> <textarea md-input name="note" md-maxlength="500" rows="1" md-select-on-focus maxlength="500"
+						ng-model="materialformdetail.note"> </textarea></md-input-container>
+				</div>
+				<!-- /note -->
+			</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<div class="btn-group pull-right">
+					<md-button class="md-icon-button test-tooltip md-primary md-raised"
+						ng-click="save()" md-colors="{background: 'default-blue'}"
+						data-toggle="tooltip"> <md-tooltip md-direction="top">{{'clientwh_home_save'
+					| translate}}</md-tooltip> <md-icon md-font-library="material-icons">save</md-icon>
+					</md-button>
+					<md-button class="md-icon-button test-tooltip md-primary md-raised"
+						ng-click="createOnForm()" data-toggle="tooltip"
+						md-colors="{background: 'default-green'}"> <md-tooltip
+						md-direction="top">{{'clientwh_home_create' |
+					translate}}</md-tooltip> <md-icon md-font-library="material-icons">add</md-icon>
+					</md-button>
+					<md-button class="md-icon-button test-tooltip md-primary md-raised"
+						ng-click="cofirmDeleteToastForm()"
+						ng-show="materialformdetail.id > -1" data-toggle="tooltip"
+						md-colors="{background: 'default-red'}"> <md-tooltip
+						md-direction="top">{{'clientwh_home_delete' |
+					translate}}</md-tooltip> <md-icon md-font-library="material-icons">delete</md-icon>
+					</md-button>
+					<md-button class="md-icon-button test-tooltip md-raised"
+						ng-click="closeFormDialog()" data-toggle="tooltip"> <md-tooltip
+						md-direction="top">{{'clientwh_home_close' |
+					translate}}</md-tooltip> <md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</form>
+	</md-card>
+</div>

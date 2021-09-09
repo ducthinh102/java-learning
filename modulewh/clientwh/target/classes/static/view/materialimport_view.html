@@ -1,0 +1,123 @@
+<div>
+    <md-card>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="{{'clientwh_materialimport_title' | translate}}">
+                <form name="frmMaterialimport" novalidate class="css-form">
+                    <!-- Title -->
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{'clientwh_materialimport_title' | translate}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <!-- Title -->
+                    <div class="row">
+                        <!-- First column -->
+                        <div class="col-sm-3"></div>
+                        <!-- Second column -->
+                        <div class="col-sm-6">
+                            <div class="form-vertical">
+                                <!-- Store -->
+                                <div class="form-group col-sm-12">
+                                    <md-input-container class="md-block">
+                                        <label>{{'clientwh_materialimport_store' | translate}}</label>
+                                        <input ng-model="materialimportView.storeName" type="text" disabled>
+                                    </md-input-container>
+                                </div>
+                                <!--/ Store  -->
+
+                                <div class="form-group col-sm-12">
+                                    <div layout-gt-xs="row">
+                                        <!-- Code -->
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>{{'clientwh_materialimport_code' | translate}}</label>
+                                            <input ng-model="materialimportView.code" type="text" disabled>
+                                        </md-input-container>
+                                        <!--/ Code -->
+                                        <!-- Import date -->
+                                        <md-input-container>
+                                            <label>{{'clientwh_materialimport_importdate' | translate}}</label>
+                                            <md-datepicker ng-model="materialimportView.importdate" md-open-on-focus name="datepicker" disabled></md-datepicker>
+                                        </md-input-container>
+                                        <!--/ Import date  -->
+                                    </div>
+                                </div>
+
+                                <!-- Importer -->
+                                <div class="form-group col-sm-12">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>{{'clientwh_materialimport_idimporter' | translate}}</label>
+                                        <input ng-model="materialimportView.importer" type="text" disabled>
+                                    </md-input-container>
+                                </div>
+                                <!--/ Importer -->
+                                <!-- Note -->
+                                <div class="form-group col-sm-12">
+                                    <md-input-container class="md-block">
+                                        <label>{{'clientwh_materialimport_note' | translate}}</label>
+                                        <textarea ng-model="materialimportView.note" md-maxlength="500" rows="5" md-select-on-focus maxlength="500" disabled></textarea>
+                                    </md-input-container>
+                                </div>
+                                <!--/ Note  -->
+                            </div>
+                        </div>
+                        <!--/ Second column -->
+                        <!-- Third column -->
+                        <div class="col-sm-3"></div>
+                        <!--/ Third column  -->
+                    </div>
+                    <!-- Bottom actions -->
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="btn-group pull-right">
+                                <!-- Close button -->
+                                <md-button class="md-icon-button md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                                    ng-click="closeDialog()">
+                                    <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                                    <md-icon md-font-library="material-icons">close</md-icon>
+                                </md-button>
+                                <!--/ Close button  -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bottom actions -->
+                </form>
+            </md-tab>
+            <!-- Material import detail -->
+            <md-tab label="{{'clientwh_materialimport_materialimportdetail' | translate}}">
+                <div ng-include="materialimportdetailForView" ng-controller="clientwhmaterialimportdetailController"></div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="btn-group pull-right">
+                            <!-- Close button -->
+                            <md-button class="md-icon-button md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                                ng-click="closeDialog()">
+                                <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                                <md-icon md-font-library="material-icons">close</md-icon>
+                            </md-button>
+                            <!--/ Close button -->
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+            <!--/ Material import detail  -->
+            <!-- Comment -->
+            <md-tab label="{{'clientwh_home_comment' | translate}}" ng-if="materialimport.id > -1">
+                <div ng-include="commentScope.view" ng-controller="clientwhcommentController"></div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="btn-group pull-right">
+                            <!-- Close button -->
+                            <md-button class="md-icon-button md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                                ng-click="closeDialog()">
+                                <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                                <md-icon md-font-library="material-icons">close</md-icon>
+                            </md-button>
+                            <!--/ Close button  -->
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+            <!--/ Comment  -->
+        </md-tabs>
+    </md-card>
+</div>

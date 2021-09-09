@@ -1,0 +1,83 @@
+<section class="content-header"></section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-body">
+            <div ng-init="initList()">
+                <!-- panel-heading -->
+                <div class="panel-heading">
+                    <!-- top actions -->
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <div class="col-sm-5">
+                                <form ng-submit="listWithCriteriasByIdmaterialimportAndPage(idmaterialimport,1)">
+                                    <div class="input-group">
+                                        <md-input-container class="md-block" style="top: 20px">
+                                            <label class="control-label">{{'clientwh_home_search' | translate}}</label>
+                                            <input md-input ng-model="search.content">
+                                        </md-input-container>
+
+                                        <span class="input-group-btn">
+                                            <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-blue'}" title="{{'clientwh_home_search' | translate}}"
+                                                type="submit" ng-click="listWithCriteriasByIdmaterialexportAndPage(idmaterialexport,1)">
+                                                <md-icon md-font-library="material-icons">search</md-icon>
+                                            </md-button>
+
+                                            <md-button class="md-icon-button test-tooltip md-raised" title="{{'clientwh_home_filter_clear' | translate}}" ng-click="clearFilterSearch()">
+                                                <md-icon md-font-library="material-icons">clear</md-icon>
+                                            </md-button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.panel-heading -->
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-3" dir-paginate="item in quotationdetails | itemsPerPage:page.pageSize" current-page="page.currentPage"
+                            total-items="page.totalElements">
+                            <md-card md-theme-watch>
+                                <md-card-title ng-click="showDetail(item.id)">
+                                   <md-card-title-text>
+                                        <span class="md-headline">{{item.materialname | limitTo:20}}</span> 
+                                   </md-card-title-text>
+                                </md-card-title>
+                                
+                                
+                                 <md-card-content>
+									<p><label>{{'clientwh_quotationdetail_idunit' | translate}}:</label> {{item.unitname}}</p>
+									<p><label>{{'clientwh_quotationdetail_materialcode' | translate}}:</label> {{item.materialcode}}</p>
+								</md-card-content>
+                                
+                            </md-card>
+                        </div>
+                    </div>
+                    <!-- /.table-resposive-->
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="pull-right">
+                                <dir-pagination-controls max-size="8" direction-links="true" boundary-links="true" on-page-change="listWithCriteriasByIdmaterialimportAndPage(idmaterialimport, newPageNumber)">
+                                </dir-pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+        <!-- /.box-body -->
+
+        <div class="box-footer "></div>
+        <!-- /.box-footer-->
+    </div>
+    <!-- /.box -->
+</section>

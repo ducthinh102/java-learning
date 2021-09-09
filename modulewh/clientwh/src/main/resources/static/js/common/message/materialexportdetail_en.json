@@ -1,0 +1,11 @@
+{
+	"clientwh_materialexportdetail": "Material export detail",
+	"clientwh_materialexportdetail_title": "Material export detail",
+	"clientwh_materialexportdetail_materialname": "Material",
+	"clientwh_materialexportdetail_unit": "Unit",
+	"clientwh_materialexportdetail_quantity": "Quantity",
+	"clientwh_materialexportdetail_note": "Note",
+	"clientwh_materialexportdetail_outofstock": "Material is out of stock",
+	"clientwh_materialexportdetail_existedmaterial": "Select existed material",
+	"clientwh_materialexportdetail_selectdetail": "Select for detail"
+}

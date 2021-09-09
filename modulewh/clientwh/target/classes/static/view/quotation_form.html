@@ -1,0 +1,202 @@
+
+<div>
+	<md-card> <md-tabs md-dynamic-height md-border-bottom>
+	<md-tab label="{{'clientwh_quotation_title' | translate}}">
+	<form name="frmQuotation" novalidate class="css-form">
+		<md-card-title> <md-card-title-text>
+		<span class="md-headline">{{'clientwh_quotation_title' |
+			translate}}</span> </md-card-title-text> </md-card-title>
+
+		<!-- Alert Message -->
+		<div id="alertMessage" class="alert" style="display: none">
+			<strong>{{alertMessage}}</strong>
+		</div>
+		<!-- Context -->
+		<div class="panel-body">
+			<div class="row">
+
+				<!-- First column -->
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<div class="form-vertical">
+
+						<!-- idsupplier -->
+						<div class="form-group col-sm-12">
+							<div class="input-group col-sm-12"
+								ng-class="{ 'has-error': (frmQuotation.idsupplier.$touched || frmQuotation.idsupplier.$dirty || frmDirty) && frmQuotation.idsupplier.$invalid }">
+								<md-autocomplete md-input-name="idsupplier" required
+									ng-disabled="ctlentityfieldSupplier.isDisabled"
+									md-no-cache="ctlentityfieldSupplier.noCache"
+									md-selected-item="ctlentityfieldSupplier.selectedItem"
+									md-search-text-change="ctlentityfieldSupplier.searchTextChange(ctlentityfieldSupplier.searchText)"
+									md-search-text="ctlentityfieldSupplier.searchText"
+									md-selected-item-change="ctlentityfieldSupplier.selectedItemChange(item)"
+									md-items="item in ctlentityfieldSupplier.querySearch(ctlentityfieldSupplier.searchText)"
+									md-item-text="item.display" md-min-length="0"
+									placeholder="What is your supplier item?"
+									md-clear-button="true" md-require-match=""
+									md-floating-label="{{'clientwh_quotation_idsupplier' | translate}}">
+								<md-item-template> <span
+									md-highlight-text="ctlentityfieldSupplier.searchText"
+									md-highlight-flags="^i">{{item.display}}</span> </md-item-template> <md-not-found>
+								No items matching "{{ctlentityfieldSupplier.searchText}}" were
+								found. <a
+									ng-click="ctlentityfieldSupplier.newState(ctlentityfieldSupplier.searchText)">Create
+									a new one!</a> </md-not-found>
+								<div ng-messages="frmQuotation.idsupplier.$error"
+									ng-if="frmQuotation.idsupplier.$touched">
+									<div ng-message="required">{{'clientwh_home_required_field'
+										| translate}}</div>
+								</div>
+								</md-autocomplete>
+
+							</div>
+
+						</div>
+						<!-- /idsupplier -->
+
+						<!-- code -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmQuotation.code.$touched) && (frmQuotation.code.$invalid)||frmQuotation.code.$error.duplicate"
+								flex-gt-xs> <label>{{'clientwh_quotation_code'
+								| translate}}</label> <input md-maxlength="20" md-input required
+								md-no-asterisk name="code" ng-model="quotation.code"
+								ng-change="resetValidateDuplicate()" id="code" maxlength="20">
+							<div
+								ng-messages="(frmDirty || frmQuotation.code.$touched) && (frmQuotation.code.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field'
+									| translate}}</div>
+								<div ng-message="duplicate">{{'clientwh_home_code_is_exits'
+									| translate}}</div>
+							</div>
+							</md-input-container>
+						</div>
+						<!-- /code -->
+
+						<!-- date -->
+						<div class="form-group col-sm-12">
+
+							<!--start date -->
+							<md-input-container> <label>{{'clientwh_quotation_startdate'
+								| translate}}</label> <md-datepicker ng-click="resetInvalidStartdate()"
+								name="startdate" required ng-model="quotation.startdate"
+								md-placeholder="{{'clientwh_quotation_startdate' | translate}}"
+								md-open-on-focus name="datepicker"></md-datepicker>
+							<div
+								ng-messages="(frmDirty || frmQuotation.startdate.$touched) && (frmQuotation.startdate.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field'
+									| translate}}</div>
+							</div>
+							</md-input-container>
+							<!--start date -->
+
+							<!--end date -->
+							<md-input-container> <label>{{'clientwh_quotation_enddate'
+								| translate}}</label> <md-datepicker ng-click="resetInvalidEnddate()"
+								name="enddate" required ng-model="quotation.enddate"
+								md-placeholder="{{'clientwh_quotation_enddate' | translate}}"
+								md-open-on-focus name="datepicker"></md-datepicker>
+							<div
+								ng-messages="(frmDirty || frmQuotation.enddate.$touched) && (frmQuotation.enddate.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field'
+									| translate}}</div>
+							</div>
+							</md-input-container>
+							<!--end date -->
+						</div>
+						<!-- /date -->
+
+
+						<!-- note -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"> <label>{{'clientwh_quotation_note'
+								| translate}}</label> <textarea ng-model="quotation.note" name="note"
+								md-maxlength="500" rows="5" md-select-on-focus maxlength="500"></textarea>
+							</md-input-container>
+						</div>
+						<!-- /note -->
+					</div>
+				</div>
+				<!-- /First column -->
+
+				<!-- Second column -->
+				<div class="col-sm-3">
+					<div class="form-vertical">
+						<br>
+						<div>
+							<button class="btn btn-info" ng-click="showForm2()"
+								data-toggle="tooltip"
+								title="{{'clientwh_home_create' | translate}}">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- /Second column -->
+			</div>
+			<!-- 				detail -->
+			<!-- 				<div class="row" ng-show="quotation.id > -1"> -->
+			<!-- 					<div ng-include="quotationdetailView" -->
+			<!-- 						ng-controller="clientwhquotationdetailController"></div> -->
+			<!-- 				</div> -->
+			<!-- 				/detail -->
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<!-- workflowexecute module -->
+				<div ng-include="constants.workflowexecuteView"></div>
+
+				<div class="btn-group pull-right">
+					<md-button class="md-icon-button test-tooltip md-raised md-primary"
+						md-colors="{background: 'default-green'}" data-toggle="tooltip"
+						title="{{'clientwh_home_email_send' | translate}}"
+						ng-if="quotation.id > -1"
+						ng-click="sendMail(quotation.id)">
+					<md-icon md-font-library="material-icons">send</md-icon> </md-button>
+					
+					<md-button class="md-icon-button test-tooltip md-raised md-primary"
+						md-colors="{background: 'default-green'}" data-toggle="tooltip"
+						title="{{'clientwh_home_save' | translate}}" ng-click="save()">
+					<md-icon md-font-library="material-icons">save</md-icon> </md-button>
+
+					<md-button class="md-icon-button test-tooltip md-raised md-primary"
+						md-colors="{background: 'default-blue'}" data-toggle="tooltip"
+						title="{{'clientwh_home_create' | translate}}"
+						ng-click="createOnForm()"> <md-icon
+						md-font-library="material-icons">add</md-icon> </md-button>
+
+					<md-button class="md-icon-button test-tooltip md-primary md-raised"
+						ng-show="quotation.id > -1"
+						ng-click="cofirmDeleteToastForm()"
+						md-colors="{background: 'default-red'}" data-toggle="tooltip">
+					<md-tooltip md-direction="top">{{'clientwh_home_delete'
+					| translate}}</md-tooltip> <md-icon md-font-library="material-icons">delete</md-icon>
+					</md-button>
+
+					<md-button class="md-icon-button test-tooltip md-raised"
+						data-toggle="tooltip"
+						title="{{'clientwh_home_close' | translate}}"
+						ng-click="closeDialog()"> <md-icon
+						md-font-library="material-icons">close</md-icon> </md-button>
+				</div>
+			</div>
+		</div>
+	</form>
+	</md-tab> <md-tab label="{{'clientwh_quotation_quotationdetail' | translate}}"
+		ng-if="quotation.id > -1">
+	<div ng-include="quotationdetailView"
+		ng-controller="clientwhquotationdetailController"></div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="btn-group pull-right">
+				<md-button class="md-icon-button test-tooltip md-raised"
+					data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+					ng-click="closeDialog()"> <md-icon
+					md-font-library="material-icons">close</md-icon> </md-button>
+			</div>
+		</div>
+	</div>
+	</md-tab> </md-tabs> </md-card>
+</div>

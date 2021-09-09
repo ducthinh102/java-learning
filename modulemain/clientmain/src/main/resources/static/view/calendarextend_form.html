@@ -1,0 +1,124 @@
+
+<div>
+
+	<form name="frmCalendarextend" novalidate class="css-form">
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+				
+					<div class="btn btn-link pull-left" ng-click="list()">{{'clientmain_calendarextend_title' | translate}}</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="calendarextend.id > -1" data-toggle="tooltip" title="{{'clientmain_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div id="calendarextendAlertMessage" class="alert" style="display: none">
+				<strong>{{calendarextendAlertMessage}}</strong>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+							<!-- idcalendar -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block">
+						        	<label class="control-label col-sm-6" >{{'clientmain_calendarextend_idcalendar' | translate}}</label>
+						        	<input md-input md-no-asterisk name="idcalendar" ng-model="calendarextend.idcalendar">
+						      	</md-input-container>
+							</div>
+							<!-- /idcalendar -->
+							<!-- code -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmCalendarextend.code.$touched) && (frmCalendarextend.code.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientmain_calendarextend_code' | translate}}</label>
+						        	<input md-maxlength="3" md-input md-no-asterisk name="code" ng-model="calendarextend.code">
+						        	<div ng-messages="(frmDirty || frmCalendarextend.code.$touched) && (frmCalendarextend.code.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The code must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /code -->
+							<!-- name -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmCalendarextend.name.$touched) && (frmCalendarextend.name.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientmain_calendarextend_name' | translate}}</label>
+						        	<input md-maxlength="3" md-input md-no-asterisk name="name" ng-model="calendarextend.name">
+						        	<div ng-messages="(frmDirty || frmCalendarextend.name.$touched) && (frmCalendarextend.name.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The name must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /name -->
+							<!-- iswork -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmCalendarextend.iswork.$touched) && (frmCalendarextend.iswork.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientmain_calendarextend_iswork' | translate}}</label>
+						        	<input class="form-control" type="checkbox" id="iswork" name=""iswork"" ng-model="calendarextend.iswork" ng-init="calendarextend.iswork=false"></input>
+						      	</md-input-container>
+							</div>
+							<!-- /iswork -->
+							<!-- calendardate -->
+							<div class="form-group col-sm-12">
+						      	<md-input-container class="md-block" md-is-error="(frmDirty || frmCalendarextend.calendardate.$touched) && (frmCalendarextend.calendardate.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientmain_calendarextend_calendardate' | translate}}</label>
+						        	<md-datepicker name="calendardate" required ng-model="calendarextend.calendardate" md-placeholder="{{'clientmain_calendarextend_calendardate' | translate}}"
+                                        md-open-on-focus name="datepicker"></md-datepicker>
+                                    <div ng-messages="(frmDirty || frmCalendarextend.calendardate.$touched) && (frmCalendarextend.calendardate.$error)">
+                                        <div ng-message="required">{{'clientmain_home_required_field' | translate}}</div>
+                                    </div>
+                                </md-input-container>
+							</div>
+							<!-- /calendardate -->
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+						
+						</div>
+					</div>
+					<!-- /Second column -->
+				</div>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="calendarextend.id > -1" data-toggle="tooltip" title="{{'clientmain_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

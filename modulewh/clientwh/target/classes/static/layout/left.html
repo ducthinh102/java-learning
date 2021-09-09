@@ -1,0 +1,226 @@
+<section>
+
+    <ul class="sidebar-menu">
+        <hr>
+        <li>
+            <!-- menu search -->
+            <form ng-submit="menuSearch(menuSearhText)">
+                <div flex="grow" layout="row" layout-align="left" style="padding-left:15px">
+                    <!-- <label class="control-label">{{'clientwh_home_search' | translate}}</label> -->
+                    <md-input-container flex="grow">
+                        <input ng-model="menuSearhText" ng-change="menuSearch(menuSearhText)" placeholder="{{'clientwh_home_search' | translate}}"
+                            md-select-on-focus>
+                    </md-input-container>
+                    <md-input-container flex="auto">
+                        <div class="btn-group">
+                            <div class="btn md-icon-button">
+                                <md-tooltip>{{'clientwh_home_filter_clear' | translate}}</md-tooltip>
+                                <md-icon md-font-library="material-icons" ng-click="menuSearhText='';menuSearch(menuSearhText)">clear</md-icon>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </form>
+            <!-- /menu search -->
+        </li>
+
+        <!-- home -->
+        <li ng-click="goto('home');" ng-hide="menu.home.hide" ng-init="menu.home.hide=false">
+            <a>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <!-- user management -->
+        <li ng-hide="menu.user.hide && menu.permission.hide" ng-init="menu.usermanager.hide=false">
+            <a href="">
+                <span>{{menu.usermanager.label}}</span>
+                <img src="/clientmain/image/arrow.png" width="24" height="24" align="right">
+            </a>
+            <ul class="sidebar-submenu">
+                <li ng-click="goto('user');" ng-if="permissions.user" ng-hide="menu.user.hide" ng-init="menu.user.hide=false">
+                    <a>
+                        <span>{{menu.user.label}}</span>
+                    </a>
+                </li>
+                <li ng-hide="menu.permissionAllow.hide && menu.permissionDeny.hide" ng-init="menu.permission.hide=false">
+                    <a>
+                        <span>{{menu.permission.label}}</span>
+                        <img src="/clientmain/image/arrow.png" width="24" height="24" align="right">
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li ng-click="goto('permissionAllow');" ng-hide="menu.permissionAllow.hide" ng-init="menu.permissionAllow.hide=false">
+                            <a>
+                                <span>{{menu.permissionAllow.label}}</span>
+                            </a>
+                        </li>
+                        <li ng-click="goto('permissionDeny');" ng-hide="menu.permissionDeny.hide" ng-init="menu.permissionDeny.hide=false">
+                            <a>
+                                <span>{{menu.permissionDeny.label}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="">
+                <span>{{'clientwh_left_catalog_management' | translate }}</span>
+                <img src="/clientmain/image/arrow.png" width="24" height="24" align="right">
+            </a>
+            <ul class="sidebar-submenu">
+                <li ng-click="goto('category');" ng-if="permissions.category">
+                    <a>
+                        <span>{{'clientwh_left_catalog_category' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('system');" ng-if="permissions.system">
+                    <a>
+                        <span>{{'clientwh_left_catalog_system' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('type');" ng-if="permissions.type">
+                    <a>
+                        <span>{{'clientwh_left_catalog_type' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('spec');" ng-if="permissions.spec">
+                    <a>
+                        <span>{{'clientwh_left_catalog_spec' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('unit');" ng-if="permissions.unit">
+                    <a>
+                        <span>{{'clientwh_left_catalog_unit' | translate }}</span>
+                    </a>
+                </li>
+               	<li ng-click="goto('brand');" ng-if="permissions.brand">
+                    <a>
+                        <span>{{'clientwh_left_catalog_brand' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('origin');" ng-if="permissions.origin">
+                    <a>
+                        <span>{{'clientwh_left_catalog_origin' | translate }}</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="">
+                <span>{{'clientwh_left_material_management' | translate }}</span>
+                <img src="/clientmain/image/arrow.png" width="24" height="24" align="right">
+            </a>
+            <ul class="sidebar-submenu">
+                <li ng-click="goto('material');" ng-if="permissions.material">
+                    <a>
+                        <span>{{'clientwh_left_material' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('materialconfirm');">
+                    <a>
+                        <span>{{'clientwh_left_material_code_confirm' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('materialform', {scope:'prematerial','reftype': null, 'formcopy': null, 'formdetailcopy': null});">
+                    <a>
+                        <span>{{'clientwh_left_material_materialform_prematerial' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('materialform', {scope:'techmaterial','reftype': null, 'formcopy': null, 'formdetailcopy': null});">
+                    <a>
+                        <span>{{'clientwh_left_material_materialform_techmaterial' | translate }}</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="">
+                <span>{{'clientwh_left_store_management' | translate }}</span>
+                <img src="/clientmain/image/arrow.png" width="24" height="24" align="right">
+            </a>
+            <ul class="sidebar-submenu">
+                <li ng-click="goto('store');" ng-if="permissions.store">
+                    <a>
+                        <span>{{'clientwh_left_store' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('materialimport');" ng-if="permissions.materialimport">
+                    <a>
+                        <span>{{'clientwh_left_material_import' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('materialexport');" ng-if="permissions.materialexport">
+                    <a>
+                        <span>{{'clientwh_left_material_export' | translate }}</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="">
+                <span>{{'clientwh_left_supply_chain_management' | translate }}</span>
+                <img src="/clientmain/image/arrow.png" width="24" height="24" align="right">
+            </a>
+            <ul class="sidebar-submenu">
+                <li ng-click="goto('supplier');" ng-if="permissions.supplier">
+                    <a>
+                        <span>{{'clientwh_left_supply_chain_supplier' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('quotation');" ng-if="permissions.quotation">
+                    <a>
+                        <span>{{'clientwh_left_supply_chain_quotation' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('materialbaseline');" ng-if="permissions.materialbaseline">
+                    <a>
+                        <span>{{'clientwh_left_supply_chain_material_baseline' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('request', {scope:'normal','reftype': null, 'formcopy': null, 'formdetailcopy': null});" ng-if="permissions.request">
+                    <a>
+                        <span>{{'clientwh_left_supply_chain_material_request' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('request', {scope:'extra','reftype': null, 'formcopy': null, 'formdetailcopy': null});" ng-if="permissions.request">
+                    <a>
+                        <span>{{'clientwh_left_supply_chain_material_request_extra' | translate }}</span>
+                    </a>
+                </li>
+                <li ng-click="goto('purchase');" ng-if="permissions.purchase">
+                    <a>
+                        <span>{{'clientwh_left_supply_chain_material_Purchase' | translate }}</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li ng-click="goto('workflowdefine');" ng-if="permissions.workflowdefine">
+            <a>
+                <span>{{'clientwh_left_workflow_management' | translate }}</span>
+            </a>
+        </li>
+        
+        <!--  
+        <li ng-click="goto('test');">
+            <a>
+                <span>Test</span>
+            </a>
+        </li>
+        <li ng-click="goto('appconfig');" ng-if="permissions.appconfig">
+            <a>
+                <span>Appconfig</span>
+            </a>
+        </li>
+        <li ng-click="goto('notify');">
+            <a>
+                <span>Notify</span>
+            </a>
+        </li>
+		-->
+    </ul>
+</section>

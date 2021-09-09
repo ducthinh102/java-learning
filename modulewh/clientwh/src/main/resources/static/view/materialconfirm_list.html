@@ -1,0 +1,154 @@
+<section class="content-header">
+</section>
+
+<!-- Main content -->
+<section class="content">
+	
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientwh_materialconfirm_title' | translate}}</h3>
+		</div>
+		<div class="box-body">
+	
+			<div ng-init="initList()">
+				<!-- panel -->
+				<div class="panel panel-default">
+					<!-- panel-heading -->
+					<div class="panel-heading">
+					
+						<!-- top actions -->
+						<div class="row">
+							<div class="pull-left">
+								<dir-pagination-controls
+									   max-size="8"
+									   direction-links="true"
+									   boundary-links="true" 
+									   on-page-change="listWithCriteriasByPage(newPageNumber)" >
+								</dir-pagination-controls>
+							</div>
+						</div>
+	
+						<!-- filter	 -->
+						<div class="row">
+							<!-- filter by name -->
+							<div class="col-md-2">
+								<input type="text" ng-model="search.name" class="inpput-sm" placeholder="{{'clientwh_materialconfirm_name' | translate}}" />
+							</div>
+							<!-- filter by code -->
+							<div class="col-md-2">
+								<input type="text" ng-model="search.code" class="inpput-sm" placeholder="{{'clientwh_materialconfirm_code' | translate}}" />
+							</div>
+							<!-- filter button -->
+							<div class="col-md-2 btn-group">
+								<button type="button" class="btn btn-default" ng-click="listWithCriteriasByPage(1)" data-toggle="tooltip" title="{{'clientwh_home_filter' | translate}}"><span class="glyphicon glyphicon-filter"></span></button>
+								<button type="button" class="btn btn-default" ng-click="clearFilter()" data-toggle="tooltip" title="{{'clientwh_home_filter_clear' | translate}}"><span class="glyphicon glyphicon-remove"></span></button>
+							</div>
+							
+							<!-- confirm items button -->
+							<button type="button" class="btn btn-primary" ng-click="confirmSelectedItems()" data-toggle="tooltip" title="{{'clientwh_materialconfirm_confirm_selected_items' | translate}}">{{'clientwh_materialconfirm_confirm_selected_items' | translate}}</button>
+						</div>
+	
+					</div>
+				
+					<!-- list of content -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th class="col-md-1">
+											<input type="checkbox" ng-click="toggleAll()" ng-model="isAllSelected">
+											{{'clientwh_materialconfirm_all' | translate}}
+										</th>
+										<!-- edit item -->
+										<th>{{'clientwh_materialconfirm_edit' | translate}}</th>
+										<!-- thumbnail -->
+										<th>{{'clientwh_materialconfirm_thumbnail' | translate}}</th>
+										<!-- sort by name -->
+										<th ng-click="sortBy('name')">{{'clientwh_materialconfirm_name' | translate}}
+											<span ng-show="sortKey === 'name'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- sort by code -->
+										<th ng-click="sortBy('code')">{{'clientwh_materialconfirm_code' | translate}}
+											<span ng-show="sortKey === 'code'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- sort by quantity -->
+										<th ng-click="sortBy('quantity')">{{'clientwh_materialconfirm_quantity' | translate}}
+											<span ng-show="sortKey === 'quantity'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr dir-paginate="item in materialconfirms | orderBy:sortKey:reverse | itemsPerPage:page.pageSize" current-page="page.currentPage" total-items="page.totalElements">
+										<th>
+											<input type="checkbox" checklist-value="item.id" ng-model="item.isSelected" ng-click="itemCheckChange()">
+										</th>
+										<td>
+											<div ng-click="showForm(item.id)" data-toggle="tooltip" title="{{'clientwh_home_edit' | translate}}">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</div>
+										</td>
+										<!-- material thumbnail -->
+										<td>
+											<center>
+												<img ng-if="item.thumbnail" ng-src={{item.thumbnail}} class="thumbnail-list-item">
+											<center>
+										</td>
+										<!-- material name -->
+										<td>{{item.name}}</td>
+										<!-- material code -->
+										<td>{{item.code}}</td>
+										<!-- material quantity -->
+										<td>{{item.quantity}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- panel-footer -->
+					<div class="panel-footer">
+					
+						<!-- filter	 -->
+						<div class="row">
+							<!-- filter by name -->
+							<div class="col-md-2">
+								<input type="text" ng-model="search.name" class="inpput-sm" placeholder="{{'clientwh_materialconfirm_name' | translate}}" />
+							</div>
+							<!-- filter by code -->
+							<div class="col-md-2">
+								<input type="text" ng-model="search.code" class="inpput-sm" placeholder="{{'clientwh_materialconfirm_code' | translate}}" />
+							</div>
+							<!-- filter button -->
+							<div class="col-md-2 btn-group">
+								<button type="button" class="btn btn-default" ng-click="listWithCriteriasByPage(1)" data-toggle="tooltip" title="{{'clientwh_home_filter' | translate}}"><span class="glyphicon glyphicon-filter"></span></button>
+								<button type="button" class="btn btn-default" ng-click="clearFilter()" data-toggle="tooltip" title="{{'clientwh_home_filter_clear' | translate}}"><span class="glyphicon glyphicon-remove"></span></button>
+							</div>
+							
+							<!-- confirm items button -->
+							<button type="button" class="btn btn-primary" ng-click="confirmSelectedItems()" data-toggle="tooltip" title="{{'clientwh_materialconfirm_confirm_selected_items' | translate}}">{{'clientwh_materialconfirm_confirm_selected_items' | translate}}</button>
+						
+						</div>
+						
+						<!-- bottom actions -->
+						<div class="row">
+						
+							<div class="pull-left">
+								<dir-pagination-controls
+									   max-size="8"
+									   direction-links="true"
+									   boundary-links="true" >
+								</dir-pagination-controls>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div><!-- /.box-body -->
+	    <div class="box-footer">
+	      Footer
+	    </div><!-- /.box-footer-->
+	  </div><!-- /.box -->
+
+</section><!-- /.content -->

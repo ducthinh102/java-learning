@@ -1,0 +1,17 @@
+{
+	"clientmain_history_title": "History",
+	"clientmain_history_idref": "idref",
+	"clientmain_history_reftype": "reftype",
+	"clientmain_history_content": "content",
+	"clientmain_history_status": "status",
+	"clientmain_history_idowner": "idowner",
+	"clientmain_history_idcreate": "idcreate",
+	"clientmain_history_idupdate": "idupdate",
+	"clientmain_history_iddelete": "iddelete",
+	"clientmain_history_idlock": "idlock",
+	"clientmain_history_createdate": "createdate",
+	"clientmain_history_updatedate": "updatedate",
+	"clientmain_history_deletedate": "deletedate",
+	"clientmain_history_lockdate": "lockdate",
+	"clientmain_history_version": "version"
+}

@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.redsun.server.wh.config.MultiConProperties",
+      "name": "multitenancy.serverwh",
+      "type": "com.redsun.server.wh.config.MultiConProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.redsun.server.wh.config.MultiConProperties",
+      "name": "multitenancy.serverwh.data-sources",
+      "type": "java.util.List<com.redsun.server.wh.config.MultiConProperties.DataSourceProperties>"
+    }
+  ]
+}

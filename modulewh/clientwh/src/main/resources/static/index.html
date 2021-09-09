@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+	<title>WH</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="Content-Type" content="text/html; charset=UTF-8">
+	
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css"></link>
+	<link rel="stylesheet" href="lib/angular-material/angular-material.min.css"></link>
+    <link rel="stylesheet" href="lib/angular-ui-tree/angular-ui-tree.css" />
+    <link rel="stylesheet" href="lib/angular-gantt/assets/angular-gantt.css" />
+    <link rel="stylesheet" href="lib/angular-gantt/assets/angular-gantt-plugins.css" />
+    <link rel="stylesheet" href="lib/angularjs-color-picker/angularjs-color-picker.min.css" />
+    <link rel="stylesheet" href="lib/angularjs-color-picker/themes/angularjs-color-picker-bootstrap.min.css" />
+    
+    <link rel="stylesheet" href="lib/jcubic-jquery.splitter/css/jquery.splitter.css">
+	
+	<link rel="shortcut icon" href="">
+	
+	<style type="text/css">
+		[ng\:cloak], [ng-cloak], .ng-cloak {
+			display: none !important;
+		}
+	</style>
+</head>
+<body data-ng-cloak class="ng-cloak" layout="column">
+	<div class="loaderContain">
+		<div class="loader"></div>
+	</div>
+	<div id="widget" data-ui-view="layout" layout="row"></div>
+	
+	<script src="lib/require.js" data-main="js/main.js"></script>
+	<!-- <script src="lib/domReady.js"></script> -->
+</body>
+</html>

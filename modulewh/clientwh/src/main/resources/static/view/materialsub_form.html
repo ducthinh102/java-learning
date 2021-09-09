@@ -1,0 +1,341 @@
+<div>
+	<div class="panel panel-default">
+		<md-tabs md-dynamic-height>
+			<md-tab label="{{'clientwh_materialsub_general_title' | translate}}">
+				<div class="panel-heading">
+					<div class="row ">
+						<div class="btn-group pull-right ">
+
+							<!-- Save button -->
+							<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="save()" md-colors="{background: 'default-green'}"
+							 data-toggle="tooltip">
+
+								<md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+								<md-icon md-font-library="material-icons">save</md-icon>
+							</md-button>
+							<!--/ Save button -->
+
+							<!-- Create button -->
+							<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="create()" md-colors="{background: 'default-blue'}"
+							 data-toggle="tooltip">
+
+								<md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+								<md-icon md-font-library="material-icons">add</md-icon>
+							</md-button>
+							<!--/ Create button -->
+							
+							<!-- Delete button -->
+		                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="materialsub.id > -1" ng-click="cofirmDeleteToastForm()" md-colors="{background: 'default-red'}"
+		                            data-toggle="tooltip">
+		
+		                            <md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+		                            <md-icon md-font-library="material-icons">delete</md-icon>
+		                        </md-button>
+		                    <!--/ Delete button -->
+
+							<!-- Close button -->
+							<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+								<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+								<md-icon md-font-library="material-icons">close</md-icon>
+							</md-button>
+							<!--/ Close button -->
+
+						</div>
+					</div>
+				</div>
+				<!-- Context -->
+				<div class="row">
+				
+					<form name="frmMaterialsub" novalidate class="css-form">
+					<!-- First column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+							<!-- code-->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="frmMaterialsub.code.$error.duplicatesub">
+									<label class="control-label col-sm-6">{{'clientwh_materialsub_code' | translate}}</label>
+									<input placeholder="{{'clientwh_materialsub_type' | translate}}_{{'clientwh_materialsub_spec' | translate}}_{{'clientwh_materialsub_brand' | translate}}"
+									 md-maxlength="50" md-input required md-no-asterisk name="code" ng-model="materialsub.code" disabled ng-change="resetValidateDuplicateSub(1)"
+									 id="code" maxlength="50">
+									<div ng-messages="frmMaterialsub.code.$error">
+										<div ng-message="duplicatesub">{{'clientwh_home_code_is_exits' | translate}}</div>
+									</div>
+								</md-input-container>
+							</div>
+							<!-- materialcode 
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialsub.materialcode.$touched) && (frmMaterialsub.materialcode.$invalid)">
+									<label class="control-label col-sm-6">{{'clientwh_materialsub_materialcode' | translate}}</label>
+									<input md-maxlength="20" md-input required md-no-asterisk name="materialcode" ng-model="materialsub.materialcode" id="materialcode"
+									 maxlength="20">
+									<div ng-messages="(frmDirty || frmMaterialsub.materialcode.$touched) && (frmMaterialsub.materialcode.$error)">
+										<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+									</div>
+								</md-input-container>
+							</div>-->
+
+							<!-- name -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialsub.name.$touched) && (frmMaterialsub.name.$invalid)||frmMaterialsub.name.$error.duplicatesub">
+									<label class="control-label col-sm-6">{{'clientwh_materialsub_name' | translate}}</label>
+									<input md-maxlength="300" md-input required md-no-asterisk name="name" ng-model="materialsub.name" ng-change="resetValidateDuplicateSub(2)"
+									 id="name" maxlength="300" ng-pattern="/\S/">
+									<div ng-messages="(frmDirty || frmMaterialsub.name.$touched) && (frmMaterialsub.name.$error)">
+										<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+										<div ng-message="duplicatesub">{{'clientwh_home_name_is_exits' | translate}}</div>
+										<div ng-message="pattern">{{'clientwh_home_white_space' | translate}}</div>
+									</div>
+								</md-input-container>
+							</div>
+
+							<!-- quantity
+                            <div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialsub.quantity.$touched) && (frmMaterialsub.quantity.$invalid)||frmMaterialsub.quantity.$error.duplicate">
+							        	<label class="control-label col-sm-6" >{{'clientwh_materialsub_quantity' | translate}}</label>
+							        	<input min="1" oninput="validity.valid||(value='');" type="number"md-input required md-no-asterisk name="quantity" ng-model="materialsub.quantity" id="quantity" maxlength="100">
+							        	<div ng-messages="(frmDirty || frmMaterialsub.quantity.$touched) && (frmMaterialsub.quantity.$error)">
+							          		<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+							          		</div>
+							     </md-input-container>
+                            </div>-->
+
+							<!-- description -->
+								<div class="form-group col-sm-12">
+									<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialsub.description.$touched) && (frmMaterialsub.description.$invalid)">
+										<label class="control-label col-sm-6">{{'clientwh_materialsub_description' | translate}}</label>
+										<textarea md-maxlength="5000" rows="5" md-input md-no-asterisk name="description" ng-model="materialsub.description" id="description"
+										 maxlength="5000" ng-pattern="/\S/"></textarea>
+										 <div ng-messages="(frmDirty || frmMaterialsub.description.$touched) && (frmMaterialsub.description.$error)">									
+											<div ng-message="pattern">{{'clientwh_home_white_space' | translate}}</div>
+										</div>
+									</md-input-container>
+								</div>
+								<!-- /description -->
+
+							<!-- image-->
+							<div class="form-group col-sm-12">
+								<div class="form-group col-sm-12">
+									<input type="file" class="ng-hide" name="thumbnailImageSub" ng-click="thumbnailImageSubFileClear($event)" id="thumbnailImageSub"
+									 ng-files="addThumbnailImageSub($files)" />
+									<label for="thumbnailImageSub" class="md-button md-raised md-primary">{{'clientwh_materialsub_image' | translate}}</label>
+								</div>
+								<div class="form-group col-sm-12">
+									<div class="col-sm-6"></div>
+									<div class="col-sm-6">
+										<img class="control-label" alt="" data-ng-src="{{materialsub.thumbnail || '//:0'}}" width="150px" height="150px" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /First column -->
+
+					<!-- Second column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+
+							<!-- type 
+							<div class="form-group col-sm-12">
+								<div class="input-group col-sm-12" md-is-error="(frmDirty || frmMaterialsub.idtype.$touched) && (frmMaterialsub.idtype.$invalid)"
+								 >
+									<md-autocomplete md-input-name="idtype" required="" ng-disabled="ctlentityfieldType.isDisabled" md-no-cache="ctlentityfieldType.noCache"
+									 md-selected-item="ctlentityfieldType.selectedItem" md-search-text-change="ctlentityfieldType.searchTextChange(ctlentityfieldType.searchText)"
+									 md-search-text="ctlentityfieldType.searchText" md-selected-item-change="ctlentityfieldType.selectedItemChange(item)"
+									 md-items="item in ctlentityfieldType.querySearch(ctlentityfieldType.searchText)" md-item-text="item.display" md-min-length="0"
+									 placeholder="What is your type item?" md-clear-button="true" md-require-match="" md-floating-label="{{'clientwh_materialsub_type' | translate}}">
+										<md-item-template>
+											<span md-highlight-text="ctlentityfieldType.searchText" md-highlight-flags="^i">{{item.display}}</span>
+										</md-item-template>
+										<md-not-found>
+											No items matching "{{ctlentityfieldType.searchText}}" were found.
+											<a ng-click="ctlentityfieldType.newState(ctlentityfieldType.searchText)">Create a new one!</a>
+										</md-not-found>
+										<div ng-messages="(frmDirty || frmMaterialsub.idtype.$touched) && (frmMaterialsub.idtype.$error)">
+											<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+											<div ng-message="md-require-match">{{'clientwh_type_exist' | translate}}</div>
+										</div>
+									</md-autocomplete>
+								</div>
+							</div> -->
+
+							<!-- spec -->
+							<div class="form-group col-sm-12">
+							<div layout-gt-xs="row">
+								<div class="input-group col-sm-11" md-is-error="(frmDirty || frmMaterialsub.idspec.$touched) && (frmMaterialsub.idspec.$invalid)"
+								 >
+									<md-autocomplete flex="95"md-input-name="idspec" required="" ng-disabled="ctlentityfieldSpec.isDisabled" md-no-cache="ctlentityfieldSpec.noCache"
+									 md-selected-item="ctlentityfieldSpec.selectedItem" md-search-text-change="ctlentityfieldSpec.searchTextChange(ctlentityfieldSpec.searchText)"
+									 md-search-text="ctlentityfieldSpec.searchText" md-selected-item-change="ctlentityfieldSpec.selectedItemChange(item)"
+									 md-items="item in ctlentityfieldSpec.querySearch(ctlentityfieldSpec.searchText)" md-item-text="item.display" md-min-length="0"
+									 placeholder="What is your spec item?" md-clear-button="true" md-require-match="" md-floating-label="{{'clientwh_materialsub_spec' | translate}}">
+										<md-item-template>
+											<span md-highlight-text="ctlentityfieldSpec.searchText" md-highlight-flags="^i">{{item.display}}</span>
+										</md-item-template>
+										<md-not-found>
+											No items matching "{{ctlentityfieldSpec.searchText}}" were found.
+											<a ng-click="ctlentityfieldSpec.newState(ctlentityfieldSpec.searchText)">Create a new one!</a>
+										</md-not-found>
+										<div ng-messages="(frmDirty || frmMaterialsub.idspec.$touched) && (frmMaterialsub.idspec.$error)">
+											<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+											<div ng-message="md-require-match">{{'clientwh_spec_exist' | translate}}</div>
+										</div>
+									</md-autocomplete>
+								</div>
+								<md-input-container flex="5" class="md-block">
+										<md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="showFormCreateSpecSub()">
+											<md-tooltip>{{'clientwh_home_create' | translate}}</md-tooltip>
+											<md-icon md-font-library="material-icons">add</md-icon>
+										</md-button>
+									</md-input-container>
+							</div>
+							</div>
+
+
+							<!-- brand 
+							<div class="form-group col-sm-12">
+								<div class="input-group col-sm-12" md-is-error="(frmDirty || frmMaterialsub.idbrand.$touched) && (frmMaterialsub.idbrand.$invalid)"
+								 >
+									<md-autocomplete md-input-name="idbrand" required="" ng-disabled="ctlentityfieldBrand.isDisabled" md-no-cache="ctlentityfieldBrand.noCache"
+									 md-selected-item="ctlentityfieldBrand.selectedItem" md-search-text-change="ctlentityfieldBrand.searchTextChange(ctlentityfieldBrand.searchText)"
+									 md-search-text="ctlentityfieldBrand.searchText" md-selected-item-change="ctlentityfieldBrand.selectedItemChange(item)"
+									 md-items="item in ctlentityfieldBrand.querySearch(ctlentityfieldBrand.searchText)" md-item-text="item.display" md-min-length="0"
+									 placeholder="What is your brand item?" md-require-match="" md-clear-button="true" md-floating-label="{{'clientwh_materialsub_brand' | translate}}">
+										<md-item-template>
+											<span md-highlight-text="ctlentityfieldBrand.searchText" md-highlight-flags="^i">{{item.display}}</span>
+										</md-item-template>
+										<md-not-found>
+											No items matching "{{ctlentityfieldBrand.searchText}}" were found.
+											<a ng-click="ctlentityfieldBrand.newState(ctlentityfieldBrand.searchText)">Create a new one!</a>
+										</md-not-found>
+										<div ng-messages="(frmDirty || frmMaterialsub.idbrand.$touched) && (frmMaterialsub.idbrand.$error)">
+											<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+											<div ng-message="md-require-match">{{'clientwh_brand_exist' | translate}}</div>
+										</div>
+									</md-autocomplete>
+								</div>
+							</div>-->
+
+							<!-- unit -->
+							<div class="form-group col-sm-12">
+							<div layout-gt-xs="row">
+								<div class="input-group col-sm-11" md-is-error="(frmDirty || frmMaterialsub.idunit.$touched) && (frmMaterialsub.idunit.$invalid)"
+								 >
+									<md-autocomplete flex="95" md-input-name="idunit" required="" ng-disabled="ctlentityfieldUnit.isDisabled" md-no-cache="ctlentityfieldUnit.noCache"
+									 md-selected-item="ctlentityfieldUnit.selectedItem" md-search-text-change="ctlentityfieldUnit.searchTextChange(ctlentityfieldUnit.searchText)"
+									 md-search-text="ctlentityfieldUnit.searchText" md-selected-item-change="ctlentityfieldUnit.selectedItemChange(item)"
+									 md-items="item in ctlentityfieldUnit.querySearch(ctlentityfieldUnit.searchText)" md-item-text="item.display" md-min-length="0"
+									 placeholder="What is your unit item?" md-require-match="" md-clear-button="true" md-floating-label="{{'clientwh_materialsub_unit' | translate}}">
+										<md-item-template>
+											<span md-highlight-text="ctlentityfieldUnit.searchText" md-highlight-flags="^i">{{item.display}}</span>
+										</md-item-template>
+										<md-not-found>
+											No items matching "{{ctlentityfieldUnit.searchText}}" were found.
+											<a ng-click="ctlentityfieldUnit.newState(ctlentityfieldUnit.searchText)">Create a new one!</a>
+										</md-not-found>
+										<div ng-messages="(frmDirty || frmMaterialsub.idunit.$touched) && (frmMaterialsub.idunit.$error)">
+											<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+											<div ng-message="md-require-match">{{'clientwh_unit_exist' | translate}}</div>
+										</div>
+									</md-autocomplete>
+								</div>
+								<md-input-container flex="5" class="md-block">
+										<md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="showFormCreateUnitSub()">
+											<md-tooltip>{{'clientwh_home_create' | translate}}</md-tooltip>
+											<md-icon md-font-library="material-icons">add</md-icon>
+										</md-button>
+									</md-input-container>
+							</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /Second column -->
+					
+	</form>
+				</div>
+				<div class="panel-footer">
+					<div class="row ">
+						<div class="btn-group pull-right ">
+
+							<!-- Save button -->
+							<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="save()" md-colors="{background: 'default-green'}"
+							 data-toggle="tooltip">
+
+								<md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+								<md-icon md-font-library="material-icons">save</md-icon>
+							</md-button>
+							<!--/ Save button -->
+
+							<!-- Create button -->
+							<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="create()" md-colors="{background: 'default-blue'}"
+							 data-toggle="tooltip">
+
+								<md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+								<md-icon md-font-library="material-icons">add</md-icon>
+							</md-button>
+							<!--/ Create button -->
+							
+							<!-- Delete button -->
+		                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="materialsub.id > -1" ng-click="cofirmDeleteToastForm()" md-colors="{background: 'default-red'}"
+		                            data-toggle="tooltip">
+		
+		                            <md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+		                            <md-icon md-font-library="material-icons">delete</md-icon>
+		                        </md-button>
+		                    <!--/ Delete button -->
+
+							<!-- Close button -->
+							<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+								<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+								<md-icon md-font-library="material-icons">close</md-icon>
+							</md-button>
+							<!--/ Close button -->
+
+						</div>
+					</div>
+				</div>
+			</md-tab>
+			<!-- attachment -->
+				<md-tab label="{{'clientwh_material_attachment_title' | translate}}" ng-if="materialsub.id > -1">					
+						<div class = row ng-show="materialsub.id > -1">
+							<div ng-include="attachmentScope.view" ng-controller="clientwhattachmentController as materialsub">
+							</div>
+						</div>
+						<div class="panel-footer">
+						
+						<div class = "row">
+							<div class="btn-group pull-right">
+								<!-- Close button -->
+								<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+									<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">close</md-icon>
+								</md-button>
+								<!--/ Close button -->
+							</div>
+							
+						</div>
+						</div>				
+				</md-tab>
+				<!-- /attachment -->
+				<!-- /comment -->
+				<md-tab label="{{'clientwh_home_comment' | translate}}" ng-if="materialsub.id > -1">
+				<div ng-include="commentScope.view" ng-controller="clientwhcommentController"></div>
+				<div class="panel-footer">
+                <div class="row">
+                    <div class="btn-group pull-right">
+                        <md-button class="md-icon-button test-tooltip md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                            ng-click="closeDialog()">
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>		
+			</md-tab>
+			<!-- /comment -->
+			
+		</md-tabs>
+		<!-- Bottom actions -->
+		</div>
+</div>

@@ -1,0 +1,22 @@
+{
+	"clientwh_quotationdetail_title": "Quotationdetail",
+	"clientwh_quotationdetail_idquotation": "idquotation",
+	"clientwh_quotationdetail_idmaterial": "Material",
+	"clientwh_quotationdetail_idunit": "idunit",
+	"clientwh_quotationdetail_materialcode": "materialcode",
+	"clientwh_quotationdetail_price": "price",
+	"clientwh_quotationdetail_note": "note",
+	"clientwh_quotationdetail_exist":"Material is exist",
+	"clientwh_quotationdetail_status": "status",
+	"clientwh_quotationdetail_idowner": "idowner",
+	"clientwh_quotationdetail_idcreate": "idcreate",
+	"clientwh_quotationdetail_idupdate": "idupdate",
+	"clientwh_quotationdetail_iddelete": "iddelete",
+	"clientwh_quotationdetail_idlock": "idlock",
+	"clientwh_quotationdetail_createdate": "createdate",
+	"clientwh_quotationdetail_updatedate": "updatedate",
+	"clientwh_quotationdetail_deletedate": "deletedate",
+	"clientwh_quotationdetail_lockdate": "lockdate",
+	"clientwh_quotationdetail_version": "version",
+	"clientwh_quotationdetail_materialname": "materialname"
+}

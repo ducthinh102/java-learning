@@ -1,0 +1,49 @@
+<div class="col-sm-3"></div>
+<div class="col-sm-6" style="top: 20px;">
+    <md-card flex="flex" flex-gt-sm="100" flex-gt-md="33">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+
+            <div class="col-sm-6" style="text-align: center;top:20px;">
+                <i class="material-icons" style="font-size: 70px;color:#2196F3;">account_circle</i>
+                <h2><span>{{'clientmain_login_title' | translate}}</span></h2>
+            </div>
+            
+            <div class="col-sm-3"></div>
+            
+        </div>
+            
+        <md-card-content>
+          <form name="loginform"  ng-submit="login()" role="form">
+
+            <md-input-container class="md-block">
+              <label>{{'clientmain_login_username' | translate}}</label>
+              <input type="text" name="username" ng-model="user.username"  required/>
+              <div ng-messages="loginform.username.$error" role="alert">
+                <div ng-message="required" class="my-message">{{'clientmain_home_required_field' | translate}}</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>{{'clientmain_login_password' | translate}}</label>
+              <input type="password" name="password" ng-model="user.password"  required/>
+              <div ng-messages="loginform.password.$error" role="alert">
+                <div ng-message="required" class="my-message">{{'clientmain_home_required_field' | translate}}</div>
+              </div>
+            </md-input-container>
+
+            <div class="row">
+            	<div class="col-sm-3"></div>
+            	<div class="col-sm-6" style="text-align: center;">
+            		<md-button ng-disabled="!loginform.$valid" type="submit" class="md-raised md-primary" md-colors="{background: 'blue'}">&nbsp {{'clientmain_login_login' | translate}} &nbsp</md-button>
+            	</div>
+            	<div class="col-sm-3"></div>
+            </div>
+
+          </form>
+        </md-card-content>
+    </md-card>
+</div>
+
+<div class="col-sm-3"></div>

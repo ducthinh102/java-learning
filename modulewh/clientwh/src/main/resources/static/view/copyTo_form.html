@@ -1,0 +1,20 @@
+<md-bottom-sheet class="md-list md-has-header">
+  <md-subheader ng-cloak>
+    <md-icon md-font-library="material-icons">content_copy</md-icon>{{'clientwh_home_copy_to' | translate}}</md-subheader>
+  <md-list ng-cloak>
+    <md-list-item ng-repeat="item in targetCopy">
+      <md-button ng-click="listItemClick(item.value)" class="md-list-item-content">
+        <md-icon>
+          <i class="material-icons">
+            <i class="material-icons">keyboard_arrow_right</i>
+          </i>
+        </md-icon>
+        <span class="md-inline-list-icon-label">{{ item.name | translate }}</span>
+      </md-button>
+      <md-button class="md-icon-button" ng-if="item.value=='materialexport'">
+      	<md-tooltip md-direction="bottom">Vật tư không có trong kho sẽ không được copy &#10; và nếu số lượng của vật tư vược quá số lượng &#10; trong kho số lượng sẽ là 0</md-tooltip>
+      	<md-icon md-font-library="material-icons">info</md-icon>
+      </md-button>
+    </md-list-item>
+  </md-list>
+</md-bottom-sheet>

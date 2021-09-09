@@ -1,0 +1,13 @@
+{
+	"clientwh_appconfig_title": "Appconfig",
+	"clientwh_appconfig_scope": "scope",
+	"clientwh_appconfig_content": "content",
+	"clientwh_appconfig_status": "status",
+	"clientwh_appconfig_idowner": "idowner",
+	"clientwh_appconfig_idcreate": "idcreate",
+	"clientwh_appconfig_idupdate": "idupdate",
+	"clientwh_appconfig_iddelete": "iddelete",
+	"clientwh_appconfig_createdate": "createdate",
+	"clientwh_appconfig_updatedate": "updatedate",
+	"clientwh_appconfig_deletedate": "deletedate"
+}

@@ -1,0 +1,180 @@
+<div>
+	<div class="panel panel-default">
+		<md-tabs md-dynamic-height>
+		<md-tab label="{{'clientwh_workflowdefine_transmit_title' | translate}}">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<!-- Save button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="saveTransmit()" md-colors="{background: 'default-green'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">save</md-icon>
+						</md-button>
+						<!--/ Save button -->
+
+						<!-- Create button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="createTransmitOnForm()" md-colors="{background: 'default-blue'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">add</md-icon>
+						</md-button>
+						<!--/ Create button -->
+
+						<!-- Delete button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="transmit.id > -1" ng-click="deleteTransmitOnForm()" md-colors="{background: 'default-red'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">delete</md-icon>
+						</md-button>
+						<!--/ Delete button -->
+
+						<!-- Close button -->
+						<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()">
+							<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">close</md-icon>
+						</md-button>
+						<!--/ Close button -->
+					</div>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div name="alertMessageTransmit" class="alert" style="display: none">
+				<strong>{{alertMessage}}</strong>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<form name="frmWorkflowDefineTransmit" novalidate class="css-form">
+				<div class="row">
+					<br><br><br>
+					<div class="col-sm-12">
+						<div class="form-vertical">
+							<!-- sender -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-3" for="sender">{{'clientwh_workflowdefine_sender' | translate}}</label>
+								<div class="input-group col-sm-9">
+									<md-select ng-model="transmit.sender" name="sender" 
+												ng-blur="clearSearchTerm()" 
+												md-on-close="clearSearchTerm()"
+												data-md-container-class="selectUserHeader" 
+												aria-label="select" 
+												multiple="true" 
+												ng-change="checkItemExisted('sender')" 
+												class="md-select-grid" 
+												ng-class="{ 'ng-touched': (frmWorkflowDefineTransmit.sender.$touched || frmWorkflowDefineTransmit.sender.$dirty || frmTransmitDirty) && frmWorkflowDefineTransmit.sender.$invalid }" 
+												required>
+										<md-select-header class="select-user-header">
+											<input ng-model="searchTerm"
+												ng-keydown="searchKeydown($event)"
+												type="search"
+												placeholder="{{'clientwh_workflowdefine_search_user' | translate}}"
+												class="select-user-header-searchbox md-text">
+										</md-select-header>
+										<md-option ng-value="sender.id" ng-repeat="sender in users | filter:searchTerm">{{sender.display}}</md-option>
+							        </md-select>
+								</div>
+							</div>
+							<!-- /sender -->
+							<!-- receiver -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-3" for="receiver">{{'clientwh_workflowdefine_receiver' | translate}}</label>
+								<div class="input-group col-sm-9">
+									<md-select ng-model="transmit.receiver" name="receiver" 
+										ng-blur="clearSearchTerm()" 
+										md-on-close="clearSearchTerm()"
+										data-md-container-class="selectUserHeader" 
+										aria-label="select" 
+										multiple="true" 
+										ng-change="checkItemExisted('receiver')" 
+										class="md-select-grid" 
+										ng-class="{ 'ng-touched': (frmWorkflowDefineTransmit.receiver.$touched || frmWorkflowDefineTransmit.receiver.$dirty || frmTransmitDirty) && frmWorkflowDefineTransmit.receiver.$invalid }" 
+										required>
+										<md-select-header class="select-user-header">
+											<input ng-model="searchTerm"
+												ng-keydown="searchKeydown($event)"
+												type="search"
+												placeholder="{{'clientwh_workflowdefine_search_user' | translate}}"
+												class="select-user-header-searchbox md-text">
+										</md-select-header>
+										<md-option ng-value="receiver.id" ng-repeat="receiver in users | filter:searchTerm">{{receiver.display}}</md-option>
+							        </md-select>
+								</div>
+							</div>
+							<!-- /receiver -->
+							<!-- approver -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-3" for="approver">{{'clientwh_workflowdefine_approver' | translate}}</label>
+								<div class="input-group col-sm-9">
+									<md-select ng-model="transmit.approver" name="approver" 
+										ng-blur="clearSearchTerm()" 
+										md-on-close="clearSearchTerm()"
+										data-md-container-class="selectUserHeader" 
+										aria-label="select" 
+										multiple="true" 
+										ng-change="checkItemExisted('approver')" 
+										class="md-select-grid" 
+										ng-class="{ 'ng-touched': (frmWorkflowDefineTransmit.approver.$touched || frmWorkflowDefineTransmit.approver.$dirty || frmTransmitDirty) && frmWorkflowDefineTransmit.approver.$invalid }" 
+										required>
+										<md-select-header class="select-user-header">
+											<input ng-model="searchTerm"
+												ng-keydown="searchKeydown($event)"
+												type="search"
+												placeholder="{{'clientwh_workflowdefine_search_user' | translate}}"
+												class="select-user-header-searchbox md-text">
+										</md-select-header>
+										<md-option ng-value="approver.id" ng-repeat="approver in users | filter:searchTerm">{{approver.display}}</md-option>
+							        </md-select>
+								</div>
+							</div>
+							<!-- /approver -->
+						</div>
+					</div>
+				</div>
+				</form>
+			</div>
+			<!-- Alert Message -->
+			<div name="alertMessageTransmit" class="alert" style="display: none">
+				<strong>{{alertMessage}}</strong>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<!-- Save button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="saveTransmit()" md-colors="{background: 'default-green'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">save</md-icon>
+						</md-button>
+						<!--/ Save button -->
+
+						<!-- Create button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="createTransmitOnForm()" md-colors="{background: 'default-blue'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">add</md-icon>
+						</md-button>
+						<!--/ Create button -->
+
+						<!-- Delete button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="transmit.id > -1" ng-click="deleteTransmitOnForm()" md-colors="{background: 'default-red'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">delete</md-icon>
+						</md-button>
+						<!--/ Delete button -->
+
+						<!-- Close button -->
+						<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()">
+							<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">close</md-icon>
+						</md-button>
+						<!--/ Close button -->
+					</div>
+				</div>
+			</div>
+		</md-tab>
+		</md-tabs>
+	</div>
+</div>

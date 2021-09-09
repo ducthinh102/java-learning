@@ -1,0 +1,17 @@
+{
+	"clientmain_userroles_title": "userroles",
+	"clientmain_userroles_helpMessage": "Click to selct",
+	"clientmain_userroles_labelAll": "All items",
+	"clientmain_userroles_labelSelected": "Selected items",
+	"clientmain_userroles_labelSelectAll": "Select all",
+	"clientmain_userroles_labelDeselectAll": "Deselect all",
+	"clientmain_userroles_ADMIN": "ADMIN",
+	"clientmain_userroles_USER": "USER",
+	"clientmain_userroles_EXTERNAL": "EXTERNAL",
+	"clientmain_userroles_OWNER": "OWNER",
+	"clientmain_userroles_SUPPLIER": "SUPPLIER",
+	"clientmain_userroles_DIRECTOR": "DIRECTOR",
+	"clientmain_userroles_MATERIAL": "MATERIAL",
+	"clientmain_userroles_MATERIAL_CODE": "MATERIAL CODE",
+	"clientmain_userroles_STORE": "STORE"
+}

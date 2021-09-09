@@ -1,0 +1,139 @@
+<section class="content-header">
+</section>
+
+<!-- Main content -->
+<section class="content">
+	
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientwh_appconfig_title' | translate}}</h3>
+		</div>
+		<div class="box-body">
+	
+			<div ng-init="initList()">
+				<!-- panel -->
+				<div class="panel panel-default">
+					<!-- panel-heading -->
+					<div class="panel-heading">
+					
+						<!-- top actions -->
+						<div class="row">
+							<!-- filter	 -->
+							<div class="col-sm-4">
+								<div class="input-group pull-left">
+									<input type="text" ng-model="search.content" class="inpput-sm" placeholder="{{'clientwh_home_filter' | translate}}" />
+									<div class="btn-group">
+										<button type="button" class="btn btn-default" ng-click="listWithCriteriasByPage(1)" data-toggle="tooltip" title="{{'clientwh_home_filter' | translate}}"><span class="glyphicon glyphicon-filter"></span></button>
+										<button type="button" class="btn btn-default" ng-click="clearFilter()" data-toggle="tooltip" title="{{'clientwh_home_filter_clear' | translate}}"><span class="glyphicon glyphicon-remove"></span></button>
+									</div>
+								</div>
+							</div>
+							<!-- paging -->
+							<div class="col-sm-4">
+								<div class="btn-group">
+									<dir-pagination-controls
+										   max-size="8"
+										   direction-links="true"
+										   boundary-links="true" 
+										   on-page-change="listWithCriteriasByPage(newPageNumber)" >
+									</dir-pagination-controls>
+								</div>
+							</div>
+							<!-- action -->
+							<div class="col-sm-4">
+								<div class="btn-group pull-right">
+									<button class="btn btn-info" ng-click="showCreate()" ng-if="isPermisCreate()" data-toggle="tooltip" title="{{'clientwh_home_create' | translate}}">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				
+					<!-- list of content -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<!-- filter by scope -->
+										<th ng-click="sortBy('scope')">{{'clientwh_appconfig_scope' | translate}}
+											<span ng-show="sortKey === 'scope'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filter by content -->
+										<th ng-click="sortBy('content')">{{'clientwh_appconfig_content' | translate}}
+											<span ng-show="sortKey === 'content'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<th/>
+										<th/>
+									</tr>
+								</thead>
+								<tbody>
+									<tr dir-paginate="item in appconfigs | orderBy:sortKey:reverse | itemsPerPage:page.pageSize" current-page="page.currentPage" total-items="page.totalElements">
+										<!-- filter by scope -->
+										<td>{{item.scope}}</td>
+										<!-- filter by content -->
+										<td>{{item.content}}</td>
+										<td>
+											<div ng-click="showForm(item.id)" ng-if="isPermisUpdate(item.idcreate, item.idowner)" data-toggle="tooltip" title="{{'clientwh_home_edit' | translate}}">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</div>
+										</td>
+										<td>
+											<div ng-click="delete(item.id, item.version)"  ng-if="isPermisDelete(item.idcreate, item.idowner)" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+												<span class="glyphicon glyphicon-trash"></span>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- panel-footer -->
+					<div class="panel-footer">
+					
+						<!-- bottom actions -->
+						<div class="row">
+							<!-- filter	 -->
+							<div class="col-sm-4">
+								<div class="input-group pull-left">
+									<input type="text" ng-model="search.content" class="inpput-sm" placeholder="{{'clientwh_home_filter' | translate}}" />
+									<div class="btn-group">
+										<button type="button" class="btn btn-default" ng-click="listWithCriteriasByPage(1)" data-toggle="tooltip" title="{{'clientwh_home_filter' | translate}}"><span class="glyphicon glyphicon-filter"></span></button>
+										<button type="button" class="btn btn-default" ng-click="clearFilter()" data-toggle="tooltip" title="{{'clientwh_home_filter_clear' | translate}}"><span class="glyphicon glyphicon-remove"></span></button>
+									</div>
+								</div>
+							</div>
+							<!-- paging -->
+							<div class="col-sm-4">
+								<div class="btn-group">
+									<dir-pagination-controls
+										   max-size="8"
+										   direction-links="true"
+										   boundary-links="true" 
+										   on-page-change="listWithCriteriasByPage(newPageNumber)" >
+									</dir-pagination-controls>
+								</div>
+							</div>
+							<!-- action -->
+							<div class="col-sm-4">
+								<div class="btn-group pull-right">
+									<button class="btn btn-info" ng-click="showCreate()" ng-if="isPermisCreate()" data-toggle="tooltip" title="{{'clientwh_home_create' | translate}}">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div><!-- /.box-body -->
+	    <div class="box-footer">
+	      Footer
+	    </div><!-- /.box-footer-->
+	  </div><!-- /.box -->
+
+</section><!-- /.content -->

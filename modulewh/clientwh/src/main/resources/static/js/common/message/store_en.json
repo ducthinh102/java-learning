@@ -1,0 +1,13 @@
+{
+	"clientwh_store_title": "Store",
+	"clientwh_store_idmanager": "Manager",
+	"clientwh_store_code": "Store code",
+	"clientwh_store_name": "Store name",
+	"clientwh_store_note": "Note",
+	"clientwh_store_detail": "Detail",
+	"clientwh_store_material": "Material",
+	"clientwh_store_quantity": "Quantity",
+	"clientwh_store_total": "Total material",
+	"clientwh_store_existmanager": "Please select existence manager"
+	
+}

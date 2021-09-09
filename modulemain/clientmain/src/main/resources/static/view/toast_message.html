@@ -1,0 +1,7 @@
+<md-toast>
+	<span class="md-toast-text">{{ textContent }}</span>
+	<md-button class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-red'}" ng-if="action" ng-click="closeToast()">
+		<md-tooltip>{{ action }}</md-tooltip>
+		<md-icon md-font-library="material-icons">clear</md-icon>
+	</md-button>
+</md-toast>

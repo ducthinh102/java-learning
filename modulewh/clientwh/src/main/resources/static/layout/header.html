@@ -1,0 +1,37 @@
+<ul class="nav navbar-nav navbar-right">
+
+	<li ng-hide="loggedIn" ng-click="showLoginForm()" style="margin-top:10px"><a>{{'clientmain_header_login' | translate }}</a></li>
+	
+	<li class="sidebar-toggle">
+		<span class="num"  ng-if="notifies.clientwh.count > 0" >{{notifies.clientwh.count}}</span>
+		<md-button class="md-icon-button"  data-ng-if="loggedIn">
+			<md-tooltip md-direction="left">{{'clientwh_home_notifications' | translate }}</md-tooltip>
+         	<i class="material-icons" ng-if="notifies.totalCount==0">notifications</i>
+         	<i class="material-icons"  ng-if="notifies.totalCount>0">notifications_active</i>
+        </md-button>  
+	</li>
+	<li class="sidebar-toggle">
+		<md-button class="md-icon-button" ng-click="changeLanguage('en');" data-ng-if="loggedIn">
+			<md-tooltip md-direction="bottom">English</md-tooltip>
+         	<img src="/clientmain/image/usa.png" alt="English" />
+        </md-button>   
+	</li>
+	<li class="sidebar-toggle">
+         <md-button class="md-icon-button" ng-click="changeLanguage('vi');"  data-ng-if="loggedIn">
+         	<md-tooltip md-direction="bottom">Tiếng Việt</md-tooltip>
+         	<img src="/clientmain/image/vn.png" alt="Tiếng Việt" />
+         </md-button>  
+	</li>
+	
+    <li class="dropdown" data-ng-if="loggedIn" style="margin-top:15px">
+    	<md-tooltip md-direction="bottom">{{'clientwh_home_user_active' | translate }}</md-tooltip>
+    	<div class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+			<img alt="" data-ng-src="{{userthumbnail || '//:0'}}" width="30px" height="30px" class="img-circle"/>
+			{{userdisplayname}} <b class="caret"></b>
+		</div>
+		<ul class="dropdown-menu">
+			<li><a href="#" ng-click="logout()"><i class="glyphicon glyphicon-log-out"></i> {{'clientmain_header_logout' | translate }}</a></li>
+		</ul>
+	</li>
+    
+</ul>

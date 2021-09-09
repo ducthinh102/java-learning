@@ -1,0 +1,23 @@
+{
+	"clientwh_materialconfirm_title": "Xác Nhận Mã Vật Tư",
+	"clientwh_materialconfirm_all": "tất cả",
+	"clientwh_materialconfirm_thumbnail": "hình ảnh",
+	"clientwh_materialconfirm_no_thumbnail": "không có hình ảnh",
+	"clientwh_materialconfirm_name": "tên vật tư",
+	"clientwh_materialconfirm_code": "mã vật tư",
+	"clientwh_materialconfirm_quantity": "số lượng",
+	"clientwh_materialconfirm_attachedfiles": "file đính kèm",
+	"clientwh_materialconfirm_description": "mô tả",
+	"clientwh_materialconfirm_edit": "thay đổi",
+	"clientwh_materialconfirm_name_search": "tìm tên vật tư",
+	"clientwh_materialconfirm_name_search_not_found": "Không tìm thấy",
+	"clientwh_materialconfirm_accept_verify": "' sẽ được gán với mã vật tư là '",
+	"clientwh_materialconfirm_invalid_name": "Một vật tư có tên không hợp lệ !",
+	"clientwh_materialconfirm_invalid_code": "có mã vật tư không hợp lệ",
+	"clientwh_materialconfirm_confirm_selected_items": "Xác nhận mục được chọn",
+	"clientwh_materialconfirm_reference_verify": "' sẽ THAM CHIẾU với mã vật tư đã có của '",
+	"clientwh_materialconfirm_new_verify": "' sẽ TẠO MỚI mã vật tư là '",
+	"clientwh_materialconfirm_confirm_verify": "Bạn có muốn cập nhật các vật tư được chọn?",
+	"clientwh_materialconfirm_confirming": "Đang cập nhật...",
+	"clientwh_materialconfirm_confirmed": "Đã cập nhật!"
+}

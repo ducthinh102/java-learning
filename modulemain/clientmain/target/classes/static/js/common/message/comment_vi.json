@@ -1,0 +1,18 @@
+{
+	"clientmain_comment_title": "Comment",
+	"clientmain_comment_idwriter": "idwriter",
+	"clientmain_comment_idref": "idref",
+	"clientmain_comment_reftype": "reftype",
+	"clientmain_comment_content": "content",
+	"clientmain_comment_status": "status",
+	"clientmain_comment_idowner": "idowner",
+	"clientmain_comment_idcreate": "idcreate",
+	"clientmain_comment_idupdate": "idupdate",
+	"clientmain_comment_iddelete": "iddelete",
+	"clientmain_comment_idlock": "idlock",
+	"clientmain_comment_createdate": "createdate",
+	"clientmain_comment_updatedate": "updatedate",
+	"clientmain_comment_deletedate": "deletedate",
+	"clientmain_comment_lockdate": "lockdate",
+	"clientmain_comment_version": "version"
+}

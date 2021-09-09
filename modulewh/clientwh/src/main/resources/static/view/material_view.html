@@ -1,0 +1,328 @@
+<div>
+	<form name="frmMaterial" novalidate class="css-form">
+	<div class="panel panel-default">
+			<!-- Context -->
+			<div class="panel-heading">
+				<div class="row">
+					<div class="btn btn-link pull-left">{{'clientwh_material_detail' | translate}}</div>
+				</div>
+			</div>
+			
+			<md-tabs md-dynamic-height>			
+				<md-tab label="{{'clientwh_material_general_title' | translate}}">
+					<div class="panel-heading">
+						<div class="row ">
+							<div class="btn-group pull-right ">
+								<!-- Close button -->
+								<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+									<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">close</md-icon>
+								</md-button>
+								<!--/ Close button -->
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<!-- First column -->
+						<div class="col-sm-6">
+							<div class="form-vertical">
+								<!-- code-->
+								<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_code' | translate}}</label>
+							        <input ng-model="materialView.code" type="text" disabled>
+					      		</md-input-container>
+								</div>
+								<!-- materialcode
+								<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_materialcode' | translate}}</label>
+							        <input ng-model="materialView.materialcode" type="text" disabled>
+					      		</md-input-container>
+								</div>-->
+
+								<!-- name-->
+								<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_name' | translate}}</label>
+							        <input ng-model="materialView.name" type="text" disabled>
+					      		</md-input-container>
+								</div>
+
+								<!-- quantity
+								<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_quantity' | translate}}</label>
+							        <input ng-model="materialView.quantity" type="text" disabled>
+					      		</md-input-container>
+								</div>-->
+
+								<!-- description -->
+								<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_description' | translate}}</label>
+							        <input ng-model="materialView.description" type="text" disabled>
+					      		</md-input-container>
+								</div>		
+
+
+
+								<!-- image-->
+								<div class="form-group col-sm-12">
+									<div class="form-group col-sm-12">
+										<div class="col-sm-6"></div>
+										<div class="col-sm-6">
+											<img class="control-label" alt="" data-ng-src="{{material.thumbnail || '//:0'}}" width="150px" height="150px" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /First column -->
+
+						<!-- Second column -->
+						<div class="col-sm-6">
+							<div class="form-vertical">
+
+								<!-- system -->
+									<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_system' | translate}}</label>
+							        <input ng-model="materialView.systemname" type="text" disabled>
+					      		</md-input-container>
+								</div>
+								
+								<!-- type -->
+								<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_type' | translate}}</label>
+							        <input ng-model="materialView.typename" type="text" disabled>
+					      		</md-input-container>
+								</div>
+
+								<!-- spec -->
+									<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_spec' | translate}}</label>
+							        <input ng-model="materialView.specname" type="text" disabled>
+					      		</md-input-container>
+								</div>
+
+
+								<!-- brand -->
+									<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_brand' | translate}}</label>
+							        <input ng-model="materialView.brandname" type="text" disabled>
+					      		</md-input-container>
+								</div>
+
+								<!-- category -->
+									<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_catalog' | translate}}</label>
+							        <input ng-model="materialView.categoryname" type="text" disabled>
+					      		</md-input-container>
+								</div>
+
+								
+								<!-- origin -->
+									<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_origin' | translate}}</label>
+							        <input ng-model="materialView.originname" type="text" disabled>
+					      		</md-input-container>
+								</div>
+
+								<!-- unit -->
+									<div class="form-group col-sm-12">
+									<md-input-container class="md-block" flex-gt-xs>
+							        <label>{{'clientwh_material_unit' | translate}}</label>
+							        <input ng-model="materialView.unitname" type="text" disabled>
+					      		</md-input-container>
+								</div>
+
+							</div>
+						</div>
+						<!-- /Second column -->
+					</div>
+					<!-- Bottom actions -->
+					<div class="panel-footer">
+						<div class="row">
+							<div class="btn-group pull-right">		
+
+								<!-- Close button -->
+								<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+									<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">close</md-icon>
+								</md-button>
+								<!--/ Close button -->
+							</div>
+						</div>
+					</div>
+				</md-tab>
+				<md-tab label="{{'clientwh_material_instore_title' | translate}}" ng-if="material.id > -1">
+					<div ng-init="initList()">
+						<!-- panel-heading -->
+						<div class="panel-heading">
+							<br>
+							<div class="row">
+
+								<div class="col-sm-7">
+									<div class="col-sm-7">
+										<form ng-submit="listWithCriteriasByIdMaterialAndPage(idmaterial,1)">
+											<div class="input-group">
+												<md-input-container class="md-block" style="top: 16px">
+													<label>{{'clientwh_material_search' | translate}}</label>
+													<input md-input ng-model="searchMaterialStore.content">
+												</md-input-container>
+
+												<span class="input-group-btn">
+													<md-button aria-label="search" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}"
+													 type="submit" ng-click="listWithCriteriasByIdMaterialAndPage(idmaterial,1)">
+														<md-tooltip>{{'clientwh_home_search' | translate}}</md-tooltip>
+														<md-icon md-font-library="material-icons">search</md-icon>
+													</md-button>
+
+													<md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearSearchMaterial()">
+														<md-tooltip>{{'clientwh_home_cancel' | translate}}</md-tooltip>
+														<md-icon md-font-library="material-icons">clear</md-icon>
+													</md-button>
+												</span>
+											</div>
+										</form>
+									</div>
+								</div>
+
+								<div class="col-sm-5">
+								</div>
+
+							</div>
+						</div>
+						<!-- /.panel-heading -->
+
+						<div class="panel-body">
+
+							<div class="table-responsive">
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th ng-click="sortByMaterialStore('material')">{{'clientwh_material_instore_title' | translate}}
+												<span ng-show="sortKeyMaterialStore === 'material'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"
+												/>
+											</th>
+											<th ng-click="sortByMaterialStore('quantity')">{{'clientwh_material_instore_quatity' | translate}}
+												<span ng-show="sortKeyMaterialStore === 'quantity'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"
+												/>
+											</th>
+											<th>{{'clientwh_material_instore_note' | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr dir-paginate="item in materialstores | itemsPerPage:pageStore.pageSize" pagination-id="paginationmaterialstore" current-page="pageStore.currentPage"
+										 total-items="pageStore.totalElements">
+											<td>{{item.storename}}</td>
+											<td>{{item.quantity}}</td>
+											<td>{{item.note}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.panel-body -->
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="pull-right">
+										<dir-pagination-controls pagination-id="paginationmaterialstore" max-size="8" direction-links="true" boundary-links="true"
+										 on-page-change="listWithCriteriasByIdMaterialAndPage(idmaterial,newPageNumber)">
+										</dir-pagination-controls>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="panel-footer">
+							<div class="row ">
+								<div class="btn-group pull-right ">
+
+									<!-- Close button -->
+									<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+										<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">close</md-icon>
+									</md-button>
+									<!--/ Close button -->
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</md-tab>
+				<!-- attachment -->
+				<md-tab label="{{'clientwh_material_attachment_title' | translate}}" ng-if="material.id > -1">					
+						<div class = row ng-show="material.id > -1">
+							<div ng-include="attachmentScope.viewdetail" ng-controller="clientwhattachmentController as materialsub">
+							</div>
+						</div>
+						<div class="panel-footer">
+						
+						<div class = "row">
+							<div class="btn-group pull-right">
+								<!-- Close button -->
+								<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+									<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">close</md-icon>
+								</md-button>
+								<!--/ Close button -->
+							</div>
+							
+						</div>
+						</div>				
+				</md-tab>
+				<!-- /attachment -->
+
+				<!-- materialsub -->
+				<md-tab label="{{'clientwh_material_materialsub_title' | translate}}" ng-if="material.id > -1">
+					<div class="row" ng-show="material.id > -1">
+						<div ng-include="materialsubScope.viewdetail" ng-controller="clientwhmaterialsubController">
+						</div>
+					</div>
+					<div class="panel-footer">
+
+						<div class="row">
+							<div class="btn-group pull-right">
+								<!-- Close button -->
+								<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+									<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">close</md-icon>
+								</md-button>
+								<!--/ Close button -->
+							</div>
+						</div>
+					</div>
+					
+				</md-tab>
+				<!-- /materialsub -->
+				<!-- /comment -->
+				<md-tab label="{{'clientwh_home_comment' | translate}}" ng-if="material.id > -1">
+				<div ng-include="commentScope.view" ng-controller="clientwhcommentController"></div>
+				<div class="panel-footer">
+                <div class="row">
+                    <div class="btn-group pull-right">
+                        <md-button class="md-icon-button test-tooltip md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                            ng-click="closeDialog()">
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>		
+			</md-tab>
+			<!-- /comment -->
+			</md-tabs>
+			</div>
+	</form>
+</div>

@@ -1,0 +1,12 @@
+{
+	"clientwh_catalog_type_title": "Loại Vật Tư",
+	"clientwh_catalog_type_code": "Mã loại",
+	"clientwh_catalog_type_name": "Tên loại",
+	"clientwh_catalog_type_search": "Tìm kiếm...",
+	"clientwh_catalog_type_code_exist": "Mã đã tồn tại",
+	"clientwh_catalog_type_note": "Ghi chú",
+	"clientwh_catalog_type_system": "Hệ thống",
+	"clientwh_catalog_type_parent": "Thuộc",
+	"clientwh_catalog_type_choose": "Chọn",
+	"clientwh_catalog_choose_system_exits": "Chọn hệ thống đã tồn tại!"
+}

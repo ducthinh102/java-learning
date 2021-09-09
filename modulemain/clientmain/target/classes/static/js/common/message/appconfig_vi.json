@@ -1,0 +1,16 @@
+{
+	"clientmain_appconfig_title": "Appconfig",
+	"clientmain_appconfig_scope": "scope",
+	"clientmain_appconfig_content": "content",
+	"clientmain_appconfig_status": "status",
+	"clientmain_appconfig_idowner": "idowner",
+	"clientmain_appconfig_idcreate": "idcreate",
+	"clientmain_appconfig_idupdate": "idupdate",
+	"clientmain_appconfig_iddelete": "iddelete",
+	"clientmain_appconfig_idlock": "idlock",
+	"clientmain_appconfig_createdate": "createdate",
+	"clientmain_appconfig_updatedate": "updatedate",
+	"clientmain_appconfig_deletedate": "deletedate",
+	"clientmain_appconfig_lockdate": "lockdate",
+	"clientmain_appconfig_version": "version"
+}

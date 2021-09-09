@@ -1,0 +1,13 @@
+{
+	"clientmain_user_title": "User",
+	"clientmain_user_username": "username",
+	"clientmain_user_password": "password",
+	"clientmain_user_displayname": "displayname",
+	"clientmain_user_email": "email",
+	"clientmain_user_thumbnail": "thumbnail",
+	"clientmain_user_enabled": "enabled",
+	"clientmain_user_firstname": "firstname",
+	"clientmain_user_lastname": "lastname",
+	"clientmain_user_changepassword": "Change password",
+	"clientmain_user_roles": "Roles"
+}

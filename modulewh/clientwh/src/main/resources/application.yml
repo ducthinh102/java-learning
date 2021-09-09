@@ -1,0 +1,9 @@
+
+server:
+  port: 2225
+  context-path: /clientwh
+ 
+spring:
+  profiles:
+    active:
+    - dev

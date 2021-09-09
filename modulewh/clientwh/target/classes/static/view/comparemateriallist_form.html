@@ -1,0 +1,116 @@
+
+<md-content>
+<md-card>
+	<form name="frmComparemateriallist"  novalidate class="css-form">
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{'clientwh_home_select_for_detail' | translate}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+		<div class="row">
+			<div class="col-xs-5">
+				<!-- source form -->
+			    <div layout-gt-sm="row">
+				    <md-input-container flex>
+				        <md-select placeholder="{{'clientwh_comparemateriallist_choose_source_detaul' | translate}}" ng-disabled="isSave" ng-model="comparemateriallist.sourceCombox" ng-change="changeSourceCombox()">
+					        <md-option ng-repeat="sou in sourceList" ng-value="sou.value">
+					            {{sou.display}}
+					        </md-option>
+				        </md-select>
+				    </md-input-container>
+				      
+				    <md-autocomplete ng-show="comparemateriallist.sourceCombox!=null" ng-disabled="isSave"
+				        flex
+				        md-input-name="sellectcodesource" 
+				        required
+				        md-no-cache="sourceSelectcode.noCache"
+				        md-selected-item="sourceSelectcode.selectedItem"
+				        md-search-text-change="sourceSelectcode.searchTextChange(sourceSelectcode.searchText)"
+				        md-search-text="sourceSelectcode.searchText"
+				        md-selected-item-change="sourceSelectcode.selectedItemChange(item)"
+				        md-items="item in sourceSelectcode.querySearch(sourceSelectcode.searchText)"
+				        md-item-text="item.display" 
+				        md-min-length="0"
+				        placeholder="What is your quotation item?"
+				        md-clear-button="true" 
+				        md-require-match=""
+				        md-floating-label="{{'clientwh_comparemateriallist_code' | translate}}">
+			            <md-item-template> 
+			                <span md-highlight-text="sourceSelectcode.searchText" md-highlight-flags="^i">{{item.display}}</span>
+			            </md-item-template>
+			        </md-autocomplete>
+				</div>
+				<!-- /source form -->
+			    <!-- target form -->
+			    <div layout-gt-sm="row">
+				    <md-input-container flex>
+				        <md-select placeholder="{{'clientwh_comparemateriallist_choose_target_detaul' | translate}}" ng-model="comparemateriallist.targetCombox" ng-change="changeTargetCombox()">
+					        <md-option ng-repeat="tar in targetList" ng-value="tar.value">
+					            {{tar.display}}
+					        </md-option>
+				        </md-select>
+				    </md-input-container>
+				      
+				    <md-autocomplete ng-show="comparemateriallist.targetCombox!=null"
+				        flex
+				        md-input-name="sellectcodetarget" 
+				        required
+				        md-no-cache="targetSelectcode.noCache"
+				        md-selected-item="targetSelectcode.selectedItem"
+				        md-search-text-change="targetSelectcode.searchTextChange(targetSelectcode.searchText)"
+				        md-search-text="targetSelectcode.searchText"
+				        md-selected-item-change="targetSelectcode.selectedItemChange(item)"
+				        md-items="item in targetSelectcode.querySearch(targetSelectcode.searchText)"
+				        md-item-text="item.display" 
+				        md-min-length="0"
+				        placeholder="What is your quotation item?"
+				        md-clear-button="true" 
+				        md-require-match=""
+				        md-floating-label="{{'clientwh_comparemateriallist_code' | translate}}">
+			            <md-item-template> 
+			                <span md-highlight-text="targetSelectcode.searchText" md-highlight-flags="^i">{{item.display}}</span>
+			            </md-item-template>
+			        </md-autocomplete>
+				</div>
+				<!-- /target form -->
+			</div>
+        	<!-- result list -->
+        	<div class="col-xs-7">
+				<div layout-gt-sm="row">
+					<div class="form-group col-sm-12">
+					<label>{{'clientwh_comparemateriallist_detail' | translate}}</label> 
+					<select class="form-control" size="20" multiple="multiple">
+						<option ng-repeat="item in resultList" value="{{item.idmaterial}}">{{item.materialname}}</option>
+					</select>
+					</div>
+				</div>
+        	</div>
+        	<!-- /result list -->
+        </div>
+        <div class="row">
+        	<dualmultiselect options="options"> </dualmultiselect>
+        </div>
+    	</md-card-content>
+     	<!-- Bottom actions -->
+        <div class="panel-footer">
+            <div class="row">
+                <div class="btn-group pull-right">
+                    <md-button class="md-icon-button test-tooltip md-raised md-primary" ng-disabled="!isCompare" ng-click="compareList()" md-colors="{background: 'default-green'}">
+                        <md-tooltip md-direction="top">Compare list</md-tooltip>
+                        <md-icon md-font-library="material-icons">compare</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button test-tooltip md-raised md-primary" ng-disabled="!isSave" ng-click="save()" md-colors="{background: 'default-green'}">
+                        <md-tooltip md-direction="top">Save</md-tooltip>
+                        <md-icon md-font-library="material-icons">save</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()">
+                        <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </form>
+</md-card>
+</md-content>

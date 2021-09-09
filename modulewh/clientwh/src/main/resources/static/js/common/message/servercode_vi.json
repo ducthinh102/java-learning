@@ -1,0 +1,12 @@
+
+{
+	"clientwh_servercode_100": "not exist id",
+	"clientwh_servercode_101": "exist code",
+	"clientwh_servercode_102": "exist name",
+	"clientwh_servercode_110": "exist scope",
+	"clientwh_servercode_111": "exist user name",
+	"clientwh_servercode_115": "exist file name",
+	"clientwh_servercode_500": "version difference",
+	"clientwh_servercode_510": "locked",
+	"clientwh_servercode_1000": "error"
+}

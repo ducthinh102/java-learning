@@ -1,0 +1,67 @@
+<div>
+    <md-card>
+        <form name="frmMaterialexportdetail" novalidate class="css-form">
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{'clientwh_materialexportdetail_title' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            
+            <!-- Context -->
+            <div class="row">
+                <!-- First column -->
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="form-vertical">
+
+                        <!-- idmaterial -->
+                        <div class="form-group col-sm-12">
+                            <md-input-container class="md-block">
+                                <label>{{'clientwh_materialexportdetail_materialname' | translate}}</label>
+                                <input ng-model="materialexportDetailView.materialName" disabled>
+                            </md-input-container>
+                        </div>
+
+                        <!-- quantity & unit -->
+                        <div class="form-group col-sm-12">
+                            <div layout="row">
+                                <md-input-container flex="33">
+                                    <label class="control-label col-sm-6">{{'clientwh_materialexportdetail_quantity' | translate}}</label>
+                                    <input required type="number" md-input md-no-asterisk ng-model="materialexportDetailView.quantity" disabled>
+                                </md-input-container>
+                                <md-input-container flex="33">
+                                    <label class="control-label col-sm-6">{{'clientwh_materialexportdetail_unit' | translate}}</label>
+                                    <input disabled type="text" md-input md-no-asterisk ng-model="materialexportDetailView.unitName" disabled>
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <!-- note -->
+                        <div class="form-group col-sm-12">
+                            <md-input-container class="md-block">
+                                <label>{{'clientwh_materialexportdetail_note' | translate}}</label>
+                                <textarea ng-model="materialexportDetailView.note" md-maxlength="500" max="150" rows="5" md-select-on-focus maxlength="500"
+                                    disabled></textarea>
+                            </md-input-container>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+
+            <!-- Bottom actions -->
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="btn-group pull-right">
+                        <md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()">
+                            <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </md-card>
+</div>

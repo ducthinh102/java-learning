@@ -1,0 +1,11 @@
+{
+	"clientwh_materialexportdetail": "Chi tiết phiếu xuất",
+	"clientwh_materialexportdetail_title": "Chi tiết phiếu xuất",
+	"clientwh_materialexportdetail_materialname": "Vật tư",
+	"clientwh_materialexportdetail_unit": "Đơn vị",
+	"clientwh_materialexportdetail_quantity": "Số lượng",
+	"clientwh_materialexportdetail_note": "Ghi chú",
+	"clientwh_materialexportdetail_outofstock": "Số lượng vật tư vượt khỏi kho",
+	"clientwh_materialexportdetail_existedmaterial": "Chọn vật tư đã tồn tại",
+	"clientwh_materialexportdetail_selectdetail": "Chọn vật tư cho chi tiết"
+}

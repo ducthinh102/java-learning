@@ -1,0 +1,22 @@
+{
+	"clientwh_comment_title": "Comment",
+	"clientwh_comment_idwriter": "idwriter",
+	"clientwh_comment_idref": "idref",
+	"clientwh_comment_reftype": "reftype",
+	"clientwh_comment_content": "Content",
+	"clientwh_comment_status": "status",
+	"clientwh_comment_idowner": "idowner",
+	"clientwh_comment_idcreate": "idcreate",
+	"clientwh_comment_idupdate": "idupdate",
+	"clientwh_comment_iddelete": "iddelete",
+	"clientwh_comment_idlock": "idlock",
+	"clientwh_comment_createdate": "createdate",
+	"clientwh_comment_updatedate": "Update date",
+	"clientwh_comment_deletedate": "deletedate",
+	"clientwh_comment_lockdate": "lockdate",
+	"clientwh_comment_version": "version",
+	"clientwh_comment_thumbnail": "User thumbnail",
+	"clientwh_comment_username": "User name",
+	"clientwh_comment_list_comment": "List comment",
+	"clientwh_comment_last_update": "updated: "
+}

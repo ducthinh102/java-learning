@@ -1,0 +1,109 @@
+<div>
+    <md-card>
+        <form name="frmMaterialexportdetail" novalidate class="css-form">
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{'clientwh_materialexportdetail_title' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <!-- Alert Message -->
+            <div id="materialexportDatailAlertMessage" class="alert" style="display: none">
+                <strong>{{materialexportDatailAlertMessage}}</strong>
+            </div>
+
+            <!-- Context -->
+            <div class="row">
+                <!-- First column -->
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="form-vertical">
+
+                        <!-- idmaterial -->
+                        <div class="form-group col-sm-12">
+                            <div class="input-group col-sm-12">
+                                <md-autocomplete md-is-error="(frmDirty || frmMaterialexportdetail.idmaterial.$touched) && (frmMaterialexportdetail.idmaterial.$invalid)||frmMaterialexportdetail.idmaterial.$error.exitsmaterial"
+                                    md-input-name="idmaterial" required md-no-cache="ctlentityfieldMaterial.noCache" md-selected-item="ctlentityfieldMaterial.selectedItem"
+                                    md-search-text-change="ctlentityfieldMaterial.searchTextChange(ctlentityfieldMaterial.searchText)"
+                                    md-search-text="ctlentityfieldMaterial.searchText" md-selected-item-change="ctlentityfieldMaterial.selectedItemChange(item)"
+                                    md-items="item in ctlentityfieldMaterial.querySearch(ctlentityfieldMaterial.searchText)"
+                                    md-item-text="item.display" md-min-length="0" placeholder="What is your Material item?" md-require-match=""
+                                    md-clear-button="true" md-floating-label="{{'clientwh_materialexportdetail_materialname' | translate}}">
+                                    <md-item-template>
+                                        <span md-highlight-text="ctlentityfieldMaterial.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        {{ 'clientwh_home_nofound' | translate }} {{ctlentityfieldMaterial.searchText}}
+                                        <a ng-click="ctlentityfieldMaterial.newState(ctlentityfieldMaterial.searchText)">{{ 'clientwh_home_createnew' | translate }}</a>
+                                    </md-not-found>
+                                    <div ng-messages="(frmDirty || frmMaterialexportdetail.idmaterial.$touched) && (frmMaterialexportdetail.idmaterial.$error)">
+                                        <div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+                                        <div ng-message="md-require-match">{{'clientwh_materialexportdetail_existedmaterial' | translate}}</div>
+                                        <div ng-message="exitsmaterial">{{'clientwh_home_material_is_exits' | translate}}</div>
+                                    </div>
+                                </md-autocomplete>
+                            </div>
+                        </div>
+
+                        <!-- quantity & unit -->
+                        <div class="form-group col-sm-12">
+                            <div layout="row">
+                                <md-input-container flex="33" md-is-error="(frmDirty || frmMaterialexportdetail.quantity.$touched) && (frmMaterialexportdetail.quantity.$invalid)">
+                                    <label class="control-label col-sm-6">{{'clientwh_materialexportdetail_quantity' | translate}}</label>
+                                    <input required type="number" min="1" md-input md-no-asterisk name="quantity" ng-model="materialexportdetail.quantity">
+                                    <div ng-messages="(frmDirty || frmMaterialexportdetail.quantity.$touched) && (frmMaterialexportdetail.quantity.$error)">
+                                        <div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex="33">
+                                    <label class="control-label col-sm-6">{{'clientwh_materialexportdetail_unit' | translate}}</label>
+                                    <input disabled type="text" md-input md-no-asterisk ng-model="unitName">
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <!-- note -->
+                        <div class="form-group col-sm-12">
+                            <md-input-container class="md-block">
+                                <label>{{'clientwh_materialexportdetail_note' | translate}}</label>
+                                <textarea ng-model="materialexportdetail.note" md-maxlength="500" max="150" rows="5" md-select-on-focus maxlength="500"></textarea>
+                            </md-input-container>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+
+            <!-- Bottom actions -->
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="btn-group pull-right">
+                        <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-green'}" ng-click="save()">
+                            <md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">save</md-icon>
+                        </md-button>
+
+                        <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-blue'}" ng-click="createOnForm()">
+                            <md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">add</md-icon>
+                        </md-button>
+                        
+                        <!-- Delete button -->
+                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="materialexportdetail.id > -1" ng-click="cofirmDeleteToastForm()" md-colors="{background: 'default-red'}">
+                            <md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">delete</md-icon>
+                        </md-button>
+                        <!--/ Delete button -->
+
+                        <md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()">
+                            <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </md-card>
+</div>

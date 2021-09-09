@@ -1,0 +1,143 @@
+<section class="content-header"></section>
+
+<!-- Main content -->
+<section class="content">
+	<!-- Default box -->
+	<div class="box">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientwh_requestdetail_title' | translate}}</h3>
+		</div>
+
+		<div class="box-body">
+			<div ng-init="initList()">
+				<!-- panel -->
+					<!-- panel-heading -->
+					<div class="panel-heading">
+					
+						<!-- top actions -->
+						<div class="row">
+						<div class="col-sm-7">
+							<div class="col-sm-7">
+								<form ng-submit="listWithCriteriasByIdrequestAndPage(idrequest,1)">
+								    <div class="input-group">
+								        <md-input-container class="md-block" style="top: 16px">
+								            <label>{{'clientwh_request_search' | translate}}</label>
+								            <input md-input ng-model="search.content">
+								        </md-input-container>
+								
+								        <span class="input-group-btn">
+								            <md-button aria-label="search" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}"
+								                type="submit" ng-click ="listWithCriteriasByIdrequestAndPage(idrequest,1)">
+								                <md-tooltip >{{'clientwh_home_search' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">search</md-icon>
+								            </md-button>
+								
+								            <md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearFilterSearch()">
+								            	<md-tooltip>{{'clientwh_home_cancel' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">clear</md-icon>
+								            </md-button>
+								        </span>
+								    </div>
+								</form>
+							</div>
+                        </div>
+                        
+						<div class="col-sm-5">
+							<div class="pull-right">
+								<md-button style="top: 24px" aria-label="Update Quantity" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-orange'}" ng-click="showInputQuantityFormDialog()">
+										<md-tooltip>{{'clientwh_home_update_quantity' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">library_add</md-icon>
+									</md-button>
+									<md-button style="top: 24px" aria-label="Select for detail" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue-grey'}" ng-click="showDialogWithController()">
+										<md-tooltip>{{'clientwh_home_select_for_detail' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">art_track</md-icon>
+									</md-button>
+								<md-button  style="top: 24px" class="md-icon-button test-tooltip md-primary md-raised" ng-click="showCreate()" ng-if="isPermisCreate()" md-colors="{background: 'default-blue'}" title="{{'clientwh_home_create' | translate}}">
+                                	<md-tooltip md-direction="bottom">{{'clientwh_home_create' | translate}}</md-tooltip>
+                                	<md-icon md-font-library="material-icons">add</md-icon>
+                                </md-button>
+							</div>
+						</div>
+
+					</div>					
+						
+					</div>
+					<!-- /panel-heading -->
+					<div class="panel-body">
+	
+						<div class="row">
+							<div class="col-sm-12 col-md-4" pagination-id="paginationrequestdetail" dir-paginate="item in requestdetails | itemsPerPage:page.pageSize" current-page="page.currentPage" total-items="page.totalElements">
+								<div class="caption">
+									<md-content>
+                                        <md-card>
+                                            <md-card-title>                                            
+                                        	<md-card-title-media>
+									            <div class="md-media-md card-media"><img ng-click="showDetailsub(item.id)" ng-src="{{item.materialthumbnail}}" class="md-card-image" style=" height: auto; width: auto;  max-width: 100%; max-height: 150px;"></div>
+									          </md-card-title-media>
+                                                <md-card-title-text>
+			                                        <span class="md-headline">{{item.materialname | limitTo:12}}</span>
+															<span class="md-subhead" ng-init="limit = 12; moreShown = false">
+																{{'clientwh_requestdetail_quantity' | translate}}: {{item.quantity | limitTo: limit}}{{item.writername.length > limit ? '...' : ''}}
+															</span>															
+                                                </md-card-title-text>
+                                            </md-card-title>
+                                            <md-card-actions>
+                                                <md-fab-toolbar md-open="false" count="0" md-direction="left">
+                                                    <md-fab-trigger class="align-with-text">
+                                                        <md-button aria-label="menu" class="md-icon-button test-tooltip md-raised">
+                                                            <md-icon md-font-library="material-icons">more_vert</md-icon>
+                                                        </md-button>
+                                                    </md-fab-trigger>
+
+                                                    <md-toolbar>
+                                                        <md-fab-actions class="md-toolbar-tools">  
+                                                        	<md-button class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}" ng-click="showDetailrequestdetail(item.id)"
+																 data-toggle="tooltip" title="{{'clientwh_home_detail' | translate}}" aria-label="{{'clientwh_home_detail' | translate}}"
+																 ng-if="isPermisRead(item.idcreate, item.idowner)">
+																	<md-icon md-font-library="material-icons">visibility</md-icon>
+															</md-button>                                                        
+                                                            <md-button class="md-icon-button test-tooltip md-primary md-raised"  md-colors="{background: 'default-green'}" ng-click="showForm(item.id)"
+                                                                ng-if="isPermisCreate()" data-toggle="tooltip" title="{{'clientwh_home_edit' | translate}}"
+                                                                aria-label="{{'clientwh_home_edit' | translate}}">
+                                                                <md-icon md-font-library="material-icons">mode_edit</md-icon>
+                                                            </md-button>                                                 
+                                                            <md-button class="md-icon-button test-tooltip md-primary md-raised"  md-colors="{background: 'default-red'}"  ng-click="cofirmDeleteToastList(item.id,item.version)"
+                                                                ng-if="isPermisDelete(item.idcreate, item.idowner)" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}"
+                                                                aria-label="{{'clientwh_home_delete' | translate}}">
+                                                                <md-icon md-font-library="material-icons">delete</md-icon>
+                                                            </md-button>
+                                                        </md-fab-actions>
+                                                    </md-toolbar>
+                                                </md-fab-toolbar>
+                                            </md-card-actions>
+                                        </md-card>
+                                    </md-content>
+								</div>	
+							</div>
+						</div>	
+					</div>
+					<!-- /.panel-body -->
+					
+					<!-- panel-footer -->
+		                <!-- bootom actions -->
+		                <div class="row">
+		                    <div class="col-sm-12">
+		                        <div class="pull-right">
+		                                <dir-pagination-controls pagination-id="paginationrequestdetail" max-size="8" direction-links="true" boundary-links="true" on-page-change="listWithCriteriasByIdrequestAndPage(idrequest, newPageNumber)">
+		                                </dir-pagination-controls>
+		                            </div>
+		                        </div>
+		                    </div>
+					</div>
+					<!-- /panel-footer -->
+				</div>
+			</div>
+		</div>
+		<!-- /.box-body -->
+
+		<div class="box-footer"></div>
+		<!-- /.box-footer-->
+	</div>
+	<!-- /.box -->
+</section>

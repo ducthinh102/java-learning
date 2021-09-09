@@ -1,0 +1,22 @@
+{
+	"clientwh_comment_title": "Chú thích",
+	"clientwh_comment_idwriter": "idwriter",
+	"clientwh_comment_idref": "idref",
+	"clientwh_comment_reftype": "reftype",
+	"clientwh_comment_content": "Nội dung",
+	"clientwh_comment_status": "status",
+	"clientwh_comment_idowner": "idowner",
+	"clientwh_comment_idcreate": "idcreate",
+	"clientwh_comment_idupdate": "idupdate",
+	"clientwh_comment_iddelete": "iddelete",
+	"clientwh_comment_idlock": "idlock",
+	"clientwh_comment_createdate": "createdate",
+	"clientwh_comment_updatedate": "Ngày cập nhật",
+	"clientwh_comment_deletedate": "deletedate",
+	"clientwh_comment_lockdate": "lockdate",
+	"clientwh_comment_version": "version",
+	"clientwh_comment_thumbnail": "Ảnh đại diện",
+	"clientwh_comment_username": "Tên người dùng",
+	"clientwh_comment_list_comment": "Danh sách chú thích",
+	"clientwh_comment_last_update": "cập nhật: "
+}

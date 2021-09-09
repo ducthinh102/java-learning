@@ -1,0 +1,23 @@
+{
+	"clientmain_attachment_title": "Attachment",
+	"clientmain_attachment_idref": "idref",
+	"clientmain_attachment_reftype": "reftype",
+	"clientmain_attachment_filename": "filename",
+	"clientmain_attachment_filesize": "filesize",
+	"clientmain_attachment_mimetype": "mimetype",
+	"clientmain_attachment_description": "description",
+	"clientmain_attachment_filepath": "filepath",
+	"clientmain_attachment_filetype": "filetype",
+	"clientmain_attachment_note": "note",
+	"clientmain_attachment_status": "status",
+	"clientmain_attachment_idowner": "idowner",
+	"clientmain_attachment_idcreate": "idcreate",
+	"clientmain_attachment_idupdate": "idupdate",
+	"clientmain_attachment_iddelete": "iddelete",
+	"clientmain_attachment_idlock": "idlock",
+	"clientmain_attachment_createdate": "createdate",
+	"clientmain_attachment_updatedate": "updatedate",
+	"clientmain_attachment_deletedate": "deletedate",
+	"clientmain_attachment_lockdate": "lockdate",
+	"clientmain_attachment_version": "version"
+}

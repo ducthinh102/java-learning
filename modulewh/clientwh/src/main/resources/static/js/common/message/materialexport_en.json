@@ -1,0 +1,11 @@
+{
+	"clientwh_materialexport_title": "Material Export",
+	"clientwh_materialexport_code": "Material export code",
+	"clientwh_materialexport_exportdate": "Export date",
+	"clientwh_materialexport_note": "Note",
+	"clientwh_materialexport_store": "Store",
+	"clientwh_materialexport_idexporter": "Exporter",
+	"clientwh_materialexport_existstore": "Please select existence store",
+	"clientwh_materialexport_existuser": "Please select existence user",
+	"clientwh_materialexport_materialexportdetail": "Material export detail"
+}

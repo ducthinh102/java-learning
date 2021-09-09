@@ -1,0 +1,228 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<section class="content-header"></section>
+<!-- Main content -->
+<section class="content">
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientwh_purchase_title' | translate}}</h3>
+		</div>
+		<div class="box-body">
+			<div class="padded" md-whiteframe="1" flex="100" flex-gt-sm="100"
+				layout="column" layout-align="center center">
+				<!-- workflowexecute module -->
+				<md-tabs md-dynamic-height>
+				<div ng-repeat="workflowTab in constants.workflowTabs"
+					ng-controller="clientwhpurchaseController">
+					<md-tab> <md-tab-label> {{workflowTab.name
+					| translate}} <md-button class="md-icon-button md-primary"
+						ng-click="listWithCriteriasByPage(1)"> <md-icon
+						md-font-library="material-icons">autorenew</md-icon> </md-button> </md-tab-label> <md-tab-body>
+
+					<div ng-init="initList()">
+						<!-- panel-heading -->
+						<div class="panel-heading">
+							<!-- top actions -->
+							<div class="row">
+								<div class="col-sm-11 col-md-8">
+									<div class="col-sm-3">
+										<div class="input-group" style="top: 16px">
+											<md-input-container class="md-block" style="width: 100%">
+											<label>{{'clientwh_purchase_store' | translate}}</label> <md-select
+												ng-model="search.store" aria-describedby="basic-addon1"
+												placeholder="{{'clientwh_purchase_store' | translate}}"
+												ng-change="listWithCriteriasByPage(1)"> <md-option
+												value="" selected disabled hidden>{{'clientwh_purchase_choose'
+											| translate}}</md-option> <md-option ng-repeat="c in stores"
+												value="{{c.id}}">{{c.name}}</md-option> </md-select> </md-input-container>
+											<span class="input-group-btn"> <md-button
+													aria-label="clear"
+													class="md-icon-button test-tooltip md-raised"
+													ng-click="clearFilterStore()"> <md-tooltip>{{'clientwh_home_cancel'
+												| translate}}</md-tooltip> <md-icon class="rotate45" md-font-library="material-icons">clear</md-icon>
+												</md-button>
+											</span>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<form ng-submit="listWithCriteriasByPage(1)">
+											<div class="input-group">
+												<md-input-container class="md-block" style="top: 16px">
+												<label>{{'clientwh_purchase_searchcode' |
+													translate}}</label> <input md-input ng-model="search.key" /> </md-input-container>
+												<span class="input-group-btn"> <md-button
+														aria-label="search"
+														class="md-icon-button test-tooltip md-primary md-raised"
+														md-colors="{background: 'blue'}" type="submit">
+													<md-tooltip>{{'clientwh_home_search' |
+													translate}}</md-tooltip> <md-icon class="rotate45" md-font-library="material-icons rotate90">search</md-icon>
+													</md-button> <md-button aria-label="clear"
+														class="md-icon-button test-tooltip md-raised"
+														ng-click="clearFilterSearch()"> <md-tooltip>{{'clientwh_home_cancel'
+													| translate}}</md-tooltip> <md-icon class="rotate45" md-font-library="material-icons">clear</md-icon>
+													</md-button>
+												</span>
+											</div>
+										</form>
+									</div>
+
+									<div class="col-sm-2" style="top: 16px">
+										<div class="input-group">
+											<md-input-container style="width: 100%;">
+											<md-select ng-model="sortName" ng-change="sortBy(sortName)"
+												placeholder="{{'clientwh_home_sort' | translate}}">
+											<md-option ng-value=""> <em>{{'clientwh_home_none'
+												| translate}}</em></md-option> <md-option ng-repeat="s in sortByName"
+												ng-value="s.value">{{s.display| translate}}</md-option> </md-select> </md-input-container>
+											<span class="input-group-btn"> <md-button
+													ng-if="sortName!=null&&!reverse"
+													ng-click="sortBy(sortName)"
+													class="md-icon-button test-tooltip md-primary md-raised"
+													md-colors="{background: 'blue'}"> <md-tooltip>{{'clientwh_home_sort_desc'
+												| translate}}</md-tooltip> <md-icon md-font-library="material-icons">arrow_downward</md-icon>
+												</md-button> <md-button ng-if="sortName!=null&&reverse"
+													ng-click="sortBy(sortName)"
+													class="md-icon-button test-tooltip md-primary md-raised"
+													md-colors="{background: 'blue'}"> <md-tooltip>{{'clientwh_home_sort_asc'
+												| translate}}</md-tooltip> <md-icon md-font-library="material-icons">arrow_upward</md-icon>
+												</md-button> <md-button aria-label="clear"
+													class="md-icon-button test-tooltip md-raised"
+													ng-click="clearSortBy()"> <md-tooltip>{{'clientwh_home_cancel'
+												| translate}}</md-tooltip> <md-icon class="rotate45" md-font-library="material-icons">clear</md-icon>
+												</md-button>
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-1 col-md-4"
+									ng-show="workflowTab.id == 'created'">
+									<!-- workflowexecute module -->
+									<div class="pull-right">
+										<md-button
+											class="md-icon-button test-tooltip md-raised md-primary"
+											style="top: 25px" md-colors="{background: 'blue'}"
+											title="{{'clientwh_home_create' | translate}}"
+											ng-click="showCreate()"> <md-icon class="rotate45"
+											md-font-library="material-icons">add</md-icon> </md-button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- list of content -->
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-12 col-md-4" pagination-id="workflowTab.id"
+									dir-paginate="item in purchases | itemsPerPage:page.pageSize"
+									current-page="page.currentPage"
+									total-items="page.totalElements">
+									<div class="caption">
+										<md-content> <md-card> <md-card-title>
+										<md-card-title-text> <span
+											class="md-headline {{'workflow-status-'+item.status}}"><strong>{{item.name |
+												limitTo:25}}<i ng-if="item.name.length > 25">...</i>
+										</strong></span>
+										<table>
+											<tr class="md-subhead">
+												<td><strong>{{'clientwh_purchase_idstore' |
+														translate}}</strong></td>
+												<td>:&nbsp;</td>
+												<td>{{item.storename | limitTo:13}} <i
+													ng-if="item.storename.toString().length > 13">...</i></td>
+											</tr>
+											<tr class="md-subhead">
+												<td><strong>{{'clientwh_purchase_code' |
+														translate}}</strong></td>
+												<td>:&nbsp;</td>
+												<td>{{item.code | limitTo:13}} <i
+													ng-if="item.code.toString().length > 13">...</i></td>
+											</tr>
+											<tr class="md-subhead">
+												<td><strong>{{'clientwh_purchase_totalamount'
+														| translate}}</strong></td>
+												<td>:&nbsp;</td>
+												<td>{{item.totalamount | number:0 | limitTo:15}} <i
+													ng-if="item.totalamount.toString().length > 15">...</i></td>
+											</tr>
+											<tr class="md-subhead">
+												<td><strong>{{'clientwh_purchase_deliverydate'
+														| translate}}</strong></td>
+												<td>:&nbsp;</td>
+												<td>{{formatDate(item.deliverydate)}}</td>
+											</tr>
+										</table>
+										</md-card-title-text> </md-card-title> <md-card-actions> <md-fab-toolbar
+											md-open="false" count="0" md-direction="left">
+										<md-fab-trigger class="align-with-text"> <md-button
+											aria-label="menu"
+											class="md-icon-button test-tooltip md-raised"> <md-icon 
+											md-font-library="material-icons">more_vert</md-icon> </md-button> </md-fab-trigger> <md-toolbar>
+										<md-fab-actions class="md-toolbar-tools"> <md-button
+											ng-show="workflowTab.id != 'deleted'"
+											class="md-icon-button test-tooltip md-raised"
+											data-toggle="tooltip"
+											title="{{'clientwh_home_copy' | translate}}"
+											aria-label="{{'clientwh_home_copy' | translate}}"
+											ng-click="showCopyTo(item.id)"> <md-icon
+											md-font-library="material-icons">content_copy</md-icon> </md-button> <md-button
+											class="md-icon-button test-tooltip md-primary md-raised"
+											md-colors="{background: 'blue'}" ng-click="showView(item.id)"
+											data-toggle="tooltip"
+											title="{{'clientwh_home_detail' | translate}}"
+											aria-label="{{'clientwh_home_detail' | translate}}"
+											ng-if="isPermisRead(item.idcreate, item.idowner)">
+										<md-icon class="rotate45" md-font-library="material-icons">visibility</md-icon>
+										</md-button> <md-button
+											ng-show="workflowTab.id != 'deleted'"
+											class="md-icon-button test-tooltip md-primary md-raised"
+											md-colors="{background: 'green'}"
+											ng-click="showForm(item.id)" ng-if="isPermisCreate()"
+											data-toggle="tooltip"
+											title="{{'clientwh_home_edit' | translate}}"
+											aria-label="{{'clientwh_home_edit' | translate}}">
+										<md-icon md-font-library="material-icons">mode_edit</md-icon>
+										</md-button> <md-button
+											ng-show="workflowTab.id != 'deleted'"
+											class="md-icon-button test-tooltip md-primary md-raised"
+											md-colors="{background: 'red'}"
+											ng-click="cofirmDeleteToastList(item.id, item.version)"
+											ng-if="isPermisDelete(item.idcreate, item.idowner)"
+											data-toggle="tooltip"
+											title="{{'clientwh_home_delete' | translate}}"
+											aria-label="{{'clientwh_home_delete' | translate}}">
+										<md-icon class="rotate45" md-font-library="material-icons">delete</md-icon> </md-button> </md-fab-actions> </md-toolbar>
+										</md-fab-toolbar> </md-card-actions> </md-card> </md-content>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.panel-body -->
+						<!-- bottom actions -->
+						<div class="row">
+							<!-- paging -->
+							<div class="col-sm-4">
+								<div class="btn-group">
+									<dir-pagination-controls pagination-id="workflowTab.id"
+										max-size="8" direction-links="true" boundary-links="true"
+										on-page-change="listWithCriteriasByPage(newPageNumber)">
+									</dir-pagination-controls>
+								</div>
+							</div>
+						</div>
+						<!--/bottom actions   -->
+					</div>
+
+					</md-tab-body> </md-tab>
+				</div>
+				</md-tabs>
+				<!-- /.workflowexecute module -->
+			</div>
+		</div>
+		<!-- /.box-body -->
+	</div>
+	<!-- /.box -->
+
+</section>
+<!-- /.content -->

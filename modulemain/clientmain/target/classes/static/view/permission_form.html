@@ -1,0 +1,96 @@
+
+<div>
+
+	<form name="frmPermission" novalidate class="css-form">
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+				
+					<div class="btn btn-link pull-left" ng-click="list()">{{'clientmain_permission_title' | translate}}</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="permission.id > -1" data-toggle="tooltip" title="{{'clientmain_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div id="permissionAlertMessage" class="alert" style="display: none">
+				<strong>{{permissionAlertMessage}}</strong>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+							<!-- target -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmPermission.target.$touched) && (frmPermission.target.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientmain_permission_target' | translate}}</label>
+						        	<input md-maxlength="3" md-input required md-no-asterisk name="target" ng-model="permission.target">
+						        	<div ng-messages="(frmDirty || frmPermission.target.$touched) && (frmPermission.target.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The target must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /target -->
+							<!-- rules -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmPermission.rules.$touched) && (frmPermission.rules.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientmain_permission_rules' | translate}}</label>
+						        	<input md-maxlength="3" md-input required md-no-asterisk name="rules" ng-model="permission.rules">
+						        	<div ng-messages="(frmDirty || frmPermission.rules.$touched) && (frmPermission.rules.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The rules must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /rules -->
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+						
+						</div>
+					</div>
+					<!-- /Second column -->
+				</div>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="permission.id > -1" data-toggle="tooltip" title="{{'clientmain_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

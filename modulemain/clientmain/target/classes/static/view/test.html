@@ -1,0 +1,56 @@
+
+<!-- Auto complete -->
+<md-autocomplete md-input-name="entityfield" required
+	ng-disabled="ctlentityfield.isDisabled"
+	md-no-cache="ctlentityfield.noCache"
+	md-selected-item="ctlentityfield.selectedItem"
+	md-search-text-change="ctlentityfield.searchTextChange(ctlentityfield.searchText)"
+	md-search-text="ctlentityfield.searchText"
+	md-selected-item-change="ctlentityfield.selectedItemChange(item)"
+	md-items="item in ctlentityfield.querySearch(ctlentityfield.searchText)"
+	md-item-text="item.display"
+	md-min-length="0"
+	placeholder="What is your favorite item?">
+	<md-item-template>
+		<span md-highlight-text="ctlentityfield.searchText" md-highlight-flags="^i">{{item.display}}</span>
+	</md-item-template>
+	<md-not-found>
+		No items matching "{{ctlentityfield.searchText}}" were found.
+		<a ng-click="ctlentityfield.newState(ctlentityfield.searchText)">Create a new one!</a>
+	</md-not-found>
+</md-autocomplete>
+
+<!-- Date picker -->
+<div class="input-group">
+	<input type="text"
+	       class="form-control"
+	       uib-datepicker-popup="{{dateFormat}}"
+	       ng-model="today"
+	       is-open="status.opened"
+	       min-date="minDate"
+	       max-date="maxDate"
+	       datepicker-options="dateOptions"
+	       ng-required="true" 
+	       close-text="Close" 
+	       date-disabled="disabled(date, mode)"
+	/>
+	<span class="input-group-btn">
+	    <button type="button" 
+	    class="btn btn-default" 
+	    ng-click="open($event)">
+	      <i class="fa fa-calendar"></i>
+	    </button>
+	</span>
+</div>
+
+<!-- angular-ckeditor -->
+<div ckeditor="options" class="form-control" type="text" id="description" name="description" ng-model="description"></div>
+
+<!-- gantt chart -->
+<div gantt data="data">
+	<gantt-tree></gantt-tree>
+	<gantt-groups></gantt-group>
+	<gantt-dependencies></gantt-dependencies>
+	<gantt-movable></gantt-movable>
+	<gantt-draw-task task-factory="factoryTask"></gantt-draw-task>
+</div>

@@ -1,0 +1,132 @@
+<md-card>
+	<form name="frmSelectfordetail" novalidate class="css-form">
+		<!-- Title -->
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{'clientwh_home_select_for_detail' | translate}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<!--/ Title  -->
+		<!-- Content -->
+		<md-card-content>
+			<div class="row" ng-init="initList()">
+				<!-- First column -->
+				<div class="col-xs-5">
+					<div layout-gt-sm="row">
+						<!-- Target -->
+						<md-input-container flex>
+							<md-select placeholder="{{'clientwh_selectfordetail_choose_target_detaul' | translate}}" ng-model="selectfordetail.targetCombox"
+							 ng-change="changeTargetCombox()">
+								<md-option ng-repeat="tar in targetList" ng-value="tar.value">
+									{{tar.display | translate}}
+								</md-option>
+							</md-select>
+						</md-input-container>
+						<!--/ Target  -->
+						<!-- Code -->
+						<md-autocomplete ng-show="selectfordetail.targetCombox!=null" flex md-input-name="sellectcode" required md-no-cache="ctlentityfieldSelectcode.noCache"
+						 md-selected-item="ctlentityfieldSelectcode.selectedItem" md-search-text-change="ctlentityfieldSelectcode.searchTextChange(ctlentityfieldSelectcode.searchText)"
+						 md-search-text="ctlentityfieldSelectcode.searchText" md-selected-item-change="ctlentityfieldSelectcode.selectedItemChange(item)"
+						 md-items="item in ctlentityfieldSelectcode.querySearch(ctlentityfieldSelectcode.searchText)" md-item-text="item.display"
+						 md-min-length="0" placeholder="What is your quotation item?" md-clear-button="true" md-require-match="" md-floating-label="{{'clientwh_selectfordetail_code' | translate}}">
+							<md-item-template>
+								<span md-highlight-text="ctlentityfieldSelectcode.searchText" md-highlight-flags="^i">{{item.display}}</span>
+							</md-item-template>
+							<md-not-found> {{ 'clientwh_home_nofound' | translate }} {{ctlentityfieldStore.searchText}}
+							</md-not-found>
+							<div ng-messages="frmQuotation.idquotation.$error" ng-if="frmQuotation.idquotation.$touched">
+								<div ng-message="required">{{'clientwh_home_required_field'| translate}}</div>
+							</div>
+						</md-autocomplete>
+						<!--/ Code -->
+					</div>
+				</div>
+				<!-- First column -->
+			</div>
+			<div class="row">
+				<!-- First column -->
+				<div class="col-sm-5">
+					<fieldset>
+						<label>{{'clientwh_selectfordetail_detail' | translate}}</label>
+						<select class="form-control" size="20" multiple="multiple" ng-model="idmove">
+							<optgroup ng-style="{'color': !material.display?'#3F51B5':''}" label="{{'clientwh_home_material_price' | translate}}: {{material.price| number:2}} | {{'clientwh_home_material_quantity' | translate}}: {{material.quantity| number:0}}"
+							 ng-repeat="material in listMaterialById| orderBy:'display'">
+								<option ng-if="!material.display" ng-value="{{material.id}}" style="color:'#3F51B5'">{{material.materialname}}</option>
+								<option ng-if="material.display" ng-value="{{material.id}}" ng-disabled="material.display">{{material.materialname}}</option>
+							</optgroup>
+						</select>
+					</fieldset>
+				</div>
+				<!-- First column -->
+				<!-- Second column -->
+				<div class="col-sm-2" style="padding-top: 6%;">
+					<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+						<!-- Move all button -->
+						<md-button class="md-raised" ng-click="moveAll(listMaterialById,selected)">
+							<i class="glyphicon glyphicon-forward"></i>
+						</md-button>
+						<!--/ Move all button  -->
+						<!-- Move right button -->
+						<md-button class="md-raised" ng-click="moveItem(idmove,listMaterialById,selected)">
+							<i class="glyphicon glyphicon-chevron-right"></i>
+						</md-button>
+						<!--/ Move right button  -->
+						<!-- Move left button -->
+						<md-button class="md-raised" ng-click="moveItem(idselected,selected,listMaterialById)">
+							<i class="glyphicon glyphicon-chevron-left"></i>
+						</md-button>
+						<!--/ Move left button -->
+						<!-- Move back all button -->
+						<md-button class="md-raised" ng-click="moveAll(selected,listMaterialById)">
+							<i class="glyphicon glyphicon-backward"></i>
+						</md-button>
+						<!--/ Move back all button  -->
+					</section>
+				</div>
+				<!-- Second column -->
+				<!-- Third column -->
+				<div class="col-sm-5">
+					<div class="tab-content">
+						<div id="accessRight" class="tab-pane fade in active">
+							<fieldset>
+								<div class="tab-content">
+									<div>
+										<label>{{'clientwh_selectfordetail_detail_selected'|translate}}</label>
+										<select class="form-control" size="20" multiple="multiple" ng-model="idselected">
+											<optgroup ng-style="{'color':'#3F51B5'}" label="{{'clientwh_home_material_price' | translate}}: {{s.price| number:2}} | {{'clientwh_home_material_quantity' | translate}}: {{s.quantity| number:0}}"
+											 ng-repeat="s in selected">
+												<option ng-value="{{s.id}}" ng-disabled="s.display" style="color:#3F51B5">{{s.materialname}}</option>
+											</optgroup>
+										</select>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+				<!--/ Third column  -->
+			</div>
+		</md-card-content>
+		<!--/ Content  -->
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<div class="btn-group pull-right">
+					<!-- Ok button -->
+					<md-button class="md-icon-button md-raised md-primary" ng-click="selectForData()" md-colors="{background: 'default-green'}">
+						<md-tooltip md-direction="top">Ok</md-tooltip>
+						<md-icon md-font-library="material-icons">done</md-icon>
+					</md-button>
+					<!--/ Ok button  -->
+					<!-- Close button -->
+					<md-button class="md-icon-button md-raised" ng-click="closeDialog()">
+						<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+					<!--/ Close button  -->
+				</div>
+			</div>
+		</div>
+		<!-- Bottom actions -->
+	</form>
+</md-card>

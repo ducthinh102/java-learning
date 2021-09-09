@@ -1,0 +1,26 @@
+{
+	"clientwh_materialform_title": "Material Form",
+	"clientwh_materialform_code": "Code",
+	"clientwh_materialform_name": "Name",
+	"clientwh_materialform_scope": "scope",
+	"clientwh_materialform_formdate": "Form Date",
+	"clientwh_materialform_note": "note",
+	"clientwh_materialform_status": "status",
+	"clientwh_materialform_totalamount": "Total amount",
+	"clientwh_materialform_idowner": "idowner",
+	"clientwh_materialform_idcreate": "idcreate",
+	"clientwh_materialform_idupdate": "idupdate",
+	"clientwh_materialform_iddelete": "iddelete",
+	"clientwh_materialform_idlock": "idlock",
+	"clientwh_materialform_createdate": "createdate",
+	"clientwh_materialform_updatedate": "updatedate",
+	"clientwh_materialform_deletedate": "deletedate",
+	"clientwh_materialform_lockdate": "lockdate",
+	"clientwh_materialform_version": "version",
+	"clientwh_materialform_detail": "Detail Form",
+	"clientwh_materialform_commnent": "Comment",
+	"clientwh_materialform_existname": "Name is existed",
+	"clientwh_materialform_existcode": "Code is existed",
+	"clientwh_materialform_existall": "Code & Name are existed"
+	
+}

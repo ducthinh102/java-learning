@@ -1,0 +1,135 @@
+<section class="content-header">
+</section>
+
+<!-- Main content -->
+<section class="content">
+	
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientwh_attachment_title' | translate}}</h3>
+		</div>
+		<div class="box-body">
+	
+			<div ng-init="initList()">
+				<!-- panel -->
+					<!-- panel-heading -->
+					<div class="panel-heading">
+					
+						<!-- top actions -->
+						<div class="row">
+						<div class="col-sm-7">
+							<div class="col-sm-7">
+								<form ng-submit="listWithCriteriasByIdrefAndReftypeAndPage(idref, reftype, 1)">
+								    <div class="input-group">
+								        <md-input-container class="md-block" style="top: 16px">
+								            <label>{{'clientwh_home_filter' | translate}}</label>
+								            <input md-input ng-model="search.content">
+								        </md-input-container>
+								
+								        <span class="input-group-btn">
+								            <md-button aria-label="search" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}"
+								                type="submit">
+								                <md-tooltip >{{'clientwh_home_filter' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">search</md-icon>
+								            </md-button>
+								
+								            <md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearFilter()">
+								            	<md-tooltip>{{'clientwh_home_cancel' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">clear</md-icon>
+								            </md-button>
+								        </span>
+								    </div>
+								</form>
+							</div>
+							<div class="col-sm-5" style="top: 20px">
+								    <div class="input-group">
+								       <md-input-container style="width: 100%;">
+                                           <label>{{'clientwh_home_sort' | translate}}</label>
+                                           <md-select ng-model="sortByArr.name" ng-change="sortBy(sortByArr.name)" >
+                                           		<md-option ng-value=""><em>{{'clientwh_home_none' | translate}}</em></md-option>
+                                               	<md-option ng-repeat="s in sortByName" ng-value="s.value">{{s.display| translate}}</md-option>
+                                            </md-select>
+                                       </md-input-container>
+								        <span class="input-group-btn">
+								            <md-button ng-if="sortByArr.name!=null&&!reverse" ng-click="sortBy(sortByArr.name)" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}">
+								                <md-tooltip >{{'clientwh_home_sort_desc' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">arrow_downward</md-icon>
+								            </md-button>
+								
+								 			<md-button ng-if="sortByArr.name!=null&&reverse" ng-click="sortBy(sortByArr.name)" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}">
+								                <md-tooltip >{{'clientwh_home_sort_asc' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">arrow_upward</md-icon>
+								            </md-button>
+								
+								            <md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearSortBy()">
+								            	<md-tooltip>{{'clientwh_home_cancel' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">clear</md-icon>
+								            </md-button>
+								        </span>
+								    </div>
+							</div>
+                        </div>
+
+						</div>					
+						
+					</div>
+					
+					<!-- list of content -->
+					<div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4" pagination-id="paginationattachment" dir-paginate="item in attachments | orderBy:sortKey:reverse | itemsPerPage:page.pageSize" 
+                                current-page="page.currentPage" total-items="page.totalElements">
+                                <div class="caption">
+                                    <md-content>
+                                        <md-card>                                            
+                                            <md-card-title>
+                                                <md-card-title-text>
+                                                    <span class="md-headline">{{item.filename | limitTo:20}}</span>
+                                                </md-card-title-text>
+                                            </md-card-title>
+                                            <md-card-content>
+                                                <p>{{item.description}}</p>
+                                            </md-card-content>
+                                            <md-card-actions>
+                                                <md-fab-toolbar md-open="false" count="0" md-direction="left">
+                                                    <md-fab-trigger class="align-with-text">
+                                                        <md-button aria-label="menu" class="md-icon-button test-tooltip md-raised">
+                                                            <md-icon md-font-library="material-icons">more_vert</md-icon>
+                                                        </md-button>
+                                                    </md-fab-trigger>
+
+                                                    <md-toolbar>
+                                                        <md-fab-actions class="md-toolbar-tools">                                                           
+                                                            <md-button class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue'}" ng-click="downloadFile(item)"
+                                                                data-toggle="tooltip" title="{{'clientwh_home_download' | translate}}"
+                                                                aria-label="{{'clientwh_home_download' | translate}}">
+                                                                <md-icon md-font-library="material-icons">file_download</md-icon>
+                                                            </md-button>
+                                                        </md-fab-actions>
+                                                    </md-toolbar>
+                                                </md-fab-toolbar>
+                                            </md-card-actions>
+                                        </md-card>
+                                    </md-content>
+                                </div>
+                            </div>
+                        </div>
+                    </div>					
+					<!-- panel-footer -->					
+		                <!-- bootom actions -->
+		                <div class="row">
+		                    <div class="col-sm-12">
+		                        <div class="pull-right">
+		                            <div class="btn-group">
+		                                <dir-pagination-controls pagination-id="paginationattachment" max-size="8" direction-links="true" boundary-links="true" on-page-change="listWithCriteriasByIdrefAndReftypeAndPage(idref, reftype, newPageNumber)">
+		                                </dir-pagination-controls>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+				</div>
+			</div>
+		</div>
+
+</section><!-- /.content -->

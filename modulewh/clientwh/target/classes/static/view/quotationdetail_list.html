@@ -1,0 +1,139 @@
+
+<section class="content-header"></section>
+
+<!-- Main content -->
+<section class="content">
+
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientwh_quotationdetail_title' |
+				translate}}</h3>
+		</div>
+		<div class="box-body">
+			<div class="padded" md-whiteframe="1" flex="100" flex-gt-sm="100"
+				layout="column" layout-align="center center">
+				<div ng-init="initList()">
+					<!-- panel -->
+					<!-- panel-heading -->
+					<div class="panel-heading">
+
+						<!-- top actions -->
+						<div class="row">
+							<div class="col-sm-7">
+								<div class="col-sm-5">
+									<form
+										ng-submit="listWithCriteriasByIdquotationAndPage(idquotation,1)">
+										<div class="input-group">
+											<md-input-container class="md-block" style="top: 20px">
+											<label class="control-label">{{'clientwh_home_search'
+												| translate}}</label> <input md-input ng-model="search.content">
+											</md-input-container>
+
+											<span class="input-group-btn"> <md-button
+													class="md-icon-button test-tooltip md-raised md-primary"
+													md-colors="{background: 'default-blue'}"
+													title="{{'clientwh_home_search' | translate}}"
+													type="submit"
+													ng-click="listWithCriteriasByIdmaterialexportAndPage(idmaterialexport,1)">
+												<md-icon md-font-library="material-icons">search</md-icon> </md-button>
+
+												<md-button class="md-icon-button test-tooltip md-raised"
+													title="{{'clientwh_home_filter_clear' | translate}}"
+													ng-click="clearFilter()"> <md-icon
+													md-font-library="material-icons">clear</md-icon> </md-button>
+											</span>
+										</div>
+									</form>
+								</div>
+							</div>
+
+							<div class="col-sm-5">
+								<div class="pull-right">
+									<md-button style="top: 20px" aria-label="Update price" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-green'}" ng-click="showInputPriceFormDialog()">
+										<md-tooltip>{{'clientwh_home_update_price' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">attach_money</md-icon>
+									</md-button>
+									<md-button style="top: 20px" aria-label="Select for detail" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'default-blue-grey'}" ng-click="showDialogWithController()">
+										<md-tooltip>{{'clientwh_home_select_for_detail' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">art_track</md-icon>
+									</md-button>
+									<md-button
+										class="md-icon-button test-tooltip md-raised md-primary"
+										style="top: 20px" md-colors="{background: 'default-blue'}"
+										title="{{'clientwh_home_create' | translate}}"
+										ng-click="showCreate()"> <md-icon
+										md-font-library="material-icons">add</md-icon> </md-button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- list of content -->
+					<div class="panel-body">
+						<div class="panel-body">
+							<div class="col-sm-12 col-md-4"
+								pagination-id="paginationquotationdetail"
+								dir-paginate="item in quotationdetails | itemsPerPage:page.pageSize"
+								current-page="page.currentPage" total-items="page.totalElements">
+								<div class="caption">
+									<md-content> <md-card> <md-card-title>
+									<md-card-title-text ng-click="showForm(item.id)">
+									<span class="md-headline">{{item.materialname | limitTo:20}}</span> </md-card-title-text> </md-card-title> <md-card-content>
+									<p><label>{{'clientwh_quotationdetail_idunit' | translate}}:</label> {{item.unitname}}</p>
+									<p><label>{{'clientwh_quotationdetail_materialcode' | translate}}:</label> {{item.materialcode}}</p>
+									</md-card-content> <md-card-actions> <md-fab-toolbar
+										md-open="false" count="0" md-direction="left">
+									<md-fab-trigger class="align-with-text"> <md-button
+										aria-label="menu"
+										class="md-icon-button test-tooltip md-raised"> <md-icon
+										md-font-library="material-icons">more_vert</md-icon> </md-button> </md-fab-trigger> <md-toolbar>
+									<md-fab-actions class="md-toolbar-tools"> <md-button
+										class="md-icon-button test-tooltip md-primary md-raised"
+										md-colors="{background: 'default-blue'}"
+										ng-click="showDetail(item.id)" data-toggle="tooltip"
+										title="{{'clientwh_home_detail' | translate}}"
+										aria-label="{{'clientwh_home_detail' | translate}}">
+									<md-icon md-font-library="material-icons">visibility</md-icon>
+									</md-button> <md-button
+										class="md-icon-button test-tooltip md-primary md-raised"
+										md-colors="{background: 'default-green'}"
+										ng-click="showForm(item.id)" data-toggle="tooltip"
+										title="{{'clientwh_home_edit' | translate}}"
+										aria-label="{{'clientwh_home_edit' | translate}}">
+									<md-icon md-font-library="material-icons">mode_edit</md-icon> </md-button>
+									<md-button
+										class="md-icon-button test-tooltip md-primary md-raised"
+										md-colors="{background: 'default-red'}"
+										ng-click="cofirmDeleteToastList(item.id, item.version)" data-toggle="tooltip"
+										title="{{'clientwh_home_delete' | translate}}"
+										aria-label="{{'clientwh_home_delete' | translate}}">
+									<md-icon md-font-library="material-icons">delete</md-icon> </md-button> </md-fab-actions> </md-toolbar> </md-fab-toolbar>
+									</md-card-actions> </md-card> </md-content>
+								</div>
+							</div>
+							<!-- paging -->
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="pull-right">
+										<dir-pagination-controls
+											pagination-id="paginationquotationdetail" max-size="8"
+											direction-links="true" boundary-links="true"
+											on-page-change="listWithCriteriasByIdquotationAndPage(idquotation, newPageNumber)">
+										</dir-pagination-controls>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.box-body -->
+			<div class="box-footer"></div>
+			<!-- /.box-footer-->
+		</div>
+		<!-- /.box -->
+</section>
+<!-- /.content -->

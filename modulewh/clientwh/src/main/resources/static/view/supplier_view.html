@@ -1,0 +1,128 @@
+<div>
+	<md-card>
+	<form name="frmSupplier" novalidate class="css-form">
+
+		<md-card-title> <md-card-title-text>
+		<span class="md-headline">{{'clientwh_supplier_title' |
+			translate}}</span> </md-card-title-text></md-card-title>
+
+		<!-- Context -->
+		<div class="panel-body">
+			<div class="row">
+
+				<!-- First column -->
+
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<div class="form-vertical">
+
+
+						<!-- code -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"> <label
+								class="control-label col-sm-6">{{'clientwh_supplier_code'
+								| translate}}</label> <input ng-model="supplier.code" disabled>
+							</md-input-container>
+						</div>
+						<!-- /code -->
+
+						<!-- name -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"> <label
+								class="control-label col-sm-6">{{'clientwh_supplier_name'
+								| translate}}</label> <input ng-model="supplier.name" disabled>
+							</md-input-container>
+						</div>
+						<!-- /name -->
+
+						<!-- address -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"> <label
+								class="control-label col-sm-6">{{'clientwh_supplier_address'
+								| translate}}</label> <input ng-model="supplier.address" disabled>
+
+							</md-input-container>
+						</div>
+						<!-- /address -->
+
+						<!-- email -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_email'
+								| translate}}</label> <input ng-model="supplier.email" disabled>
+
+							</md-input-container>
+						</div>
+						<!-- /email -->
+
+
+						<!-- mobile -->
+
+						<div class="form-group col-sm-6">
+							<md-input-container class="md-block">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_mobile'
+								| translate}}</label> <input ng-model="supplier.mobile" disabled>
+
+							</md-input-container>
+						</div>
+						<!-- telephone -->
+						<div class="form-group col-sm-6">
+							<md-input-container class="md-block">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_telephone'
+								| translate}}</label> <input ng-model="supplier.telephone" disabled>
+
+							</md-input-container>
+						</div>
+
+
+						<!-- /mobile -->
+						<!-- /telephone -->
+
+
+
+
+						<!-- FAX -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block">
+							<label class="control-label col-sm-6">{{'clientwh_supplier_fax'
+								| translate}}</label> <input ng-model="supplier.fax" disabled> </md-input-container>
+						</div>
+						<!-- /FAX -->
+
+						<!-- NOTE -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"> <label>{{'clientwh_supplier_note'
+								| translate}}</label> <textarea ng-model="supplier.note" disabled></textarea>
+							</md-input-container>
+						</div>
+						<!-- /FAX -->
+
+
+
+
+					</div>
+				</div>
+				<!-- /First column -->
+
+				<!-- Second column -->
+				<div class="col-sm-3">
+					<div class="form-vertical"></div>
+				</div>
+				<!-- /Second column -->
+			</div>
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<div class="btn-group pull-right">
+					<md-button class="md-icon-button test-tooltip md-raised"
+						data-toggle="tooltip"
+						title="{{'clientwh_home_close' | translate}}"
+						ng-click="closeDialog()"> <md-icon
+						md-font-library="material-icons">close</md-icon> </md-button>
+				</div>
+			</div>
+		</div>
+	</form>
+	</md-card>
+</div>

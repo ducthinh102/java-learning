@@ -1,0 +1,46 @@
+
+<div>
+	<md-card>
+	<form name="frmUser" novalidate class="css-form">
+		<md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{'clientmain_userroles_title' | translate}}: {{username}}</span>
+            </md-card-title-text>
+        </md-card-title>
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					<dualmultiselect options="options" ng-model="userroles"> </dualmultiselect>
+				</div>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<md-card>
+</div>

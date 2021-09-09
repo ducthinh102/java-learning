@@ -1,0 +1,168 @@
+
+<div>
+
+	<form name="frmNotify" novalidate class="css-form">
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+				
+					<div class="btn btn-link pull-left" ng-click="list()">{{'clientwh_notify_title' | translate}}</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientwh_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientwh_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="notify.id > -1" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div id="notifyAlertMessage" class="alert" style="display: none">
+				<strong>{{notifyAlertMessage}}</strong>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+							<!-- idsender -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmNotify.idsender.$touched) && (frmNotify.idsender.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_notify_idsender' | translate}}</label>
+						        	<input md-maxlength="3" md-input required md-no-asterisk name="idsender" ng-model="notify.idsender">
+						        	<div ng-messages="(frmDirty || frmNotify.idsender.$touched) && (frmNotify.idsender.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The idsender must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /idsender -->
+							<!-- idreceiver -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmNotify.idreceiver.$touched) && (frmNotify.idreceiver.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_notify_idreceiver' | translate}}</label>
+						        	<input md-maxlength="3" md-input required md-no-asterisk name="idreceiver" ng-model="notify.idreceiver">
+						        	<div ng-messages="(frmDirty || frmNotify.idreceiver.$touched) && (frmNotify.idreceiver.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The idreceiver must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /idreceiver -->
+							<!-- idref -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmNotify.idref.$touched) && (frmNotify.idref.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_notify_idref' | translate}}</label>
+						        	<input md-maxlength="3" md-input required md-no-asterisk name="idref" ng-model="notify.idref">
+						        	<div ng-messages="(frmDirty || frmNotify.idref.$touched) && (frmNotify.idref.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The idref must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /idref -->
+							<!-- reftype -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmNotify.reftype.$touched) && (frmNotify.reftype.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_notify_reftype' | translate}}</label>
+						        	<input md-maxlength="3" md-input required md-no-asterisk name="reftype" ng-model="notify.reftype">
+						        	<div ng-messages="(frmDirty || frmNotify.reftype.$touched) && (frmNotify.reftype.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The reftype must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /reftype -->
+							<!-- content -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmNotify.content.$touched) && (frmNotify.content.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_notify_content' | translate}}</label>
+						        	<input md-maxlength="3" md-input required md-no-asterisk name="content" ng-model="notify.content">
+						        	<div ng-messages="(frmDirty || frmNotify.content.$touched) && (frmNotify.content.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The content must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /content -->
+							<!-- method -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmNotify.method.$touched) && (frmNotify.method.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_notify_method' | translate}}</label>
+						        	<input md-maxlength="3" md-input required md-no-asterisk name="method" ng-model="notify.method">
+						        	<div ng-messages="(frmDirty || frmNotify.method.$touched) && (frmNotify.method.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The method must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /method -->
+							<!-- priority -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmNotify.priority.$touched) && (frmNotify.priority.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_notify_priority' | translate}}</label>
+						        	<input md-maxlength="3" md-input required md-no-asterisk name="priority" ng-model="notify.priority">
+						        	<div ng-messages="(frmDirty || frmNotify.priority.$touched) && (frmNotify.priority.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The priority must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /priority -->
+							<!-- isactive -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmNotify.isactive.$touched) && (frmNotify.isactive.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_notify_isactive' | translate}}</label>
+						        	<input md-input type="checkbox" md-no-asterisk name="isactive" ng-model="notify.isactive" ng-init="notify.isactive=true">
+						        	<div ng-messages="(frmDirty || frmNotify.isactive.$touched) && (frmNotify.isactive.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The isactive must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /isactive -->
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+						
+						</div>
+					</div>
+					<!-- /Second column -->
+				</div>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientwh_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientwh_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="notify.id > -1" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

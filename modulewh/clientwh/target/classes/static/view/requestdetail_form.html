@@ -1,0 +1,253 @@
+<div>
+
+    
+        <div class="panel panel-default">
+            <!-- Top actions -->
+            <md-tabs md-dynamic-height>
+                <md-tab label="{{'clientwh_requestdetail_title' | translate}}">
+            <div class="panel-heading">
+                <div class="row">
+
+                    <div class="btn btn-link pull-left" ng-click="list()">{{'clientwh_requestdetail_title' | translate}}</div>
+                    <div class="btn-group pull-right ">
+
+                        <!-- Save button -->
+                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="save()" md-colors="{background: 'default-green'}"
+                            data-toggle="tooltip">
+
+                            <md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">save</md-icon>
+                        </md-button>
+                        <!--/ Save button -->
+
+                        <!-- Create button -->
+                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="createOnForm()" md-colors="{background: 'default-blue'}"
+                            data-toggle="tooltip">
+
+                            <md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">add</md-icon>
+                        </md-button>
+                        <!--/ Create button -->
+
+                        <!-- Delete button -->
+                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="requestdetail.id > -1" ng-click="cofirmDeleteToastForm()"
+                            md-colors="{background: 'default-red'}" data-toggle="tooltip">
+
+                            <md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">delete</md-icon>
+                        </md-button>
+                        <!--/ Delete button -->
+
+                        <!-- Close button -->
+                        <md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+                            <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                        <!--/ Close button -->
+                    </div>
+                </div>
+            </div>
+            <!-- Context -->
+            <div class="panel-body">
+            <form name="frmRequestdetail" novalidate class="css-form">
+                <div class="row">
+
+                    <!-- First column -->
+                    <div class="col-sm-6">
+                        <div class="form-vertical">
+                            <!-- idmaterial -->
+                            <div class="form-group col-sm-12">
+                                <div class="input-group col-sm-12" ng-class="{ 'has-error': (frmRequestdetail.idmaterial.$touched || frmRequestdetail.idmaterial.$dirty || frmDirty) && frmRequestdetail.idmaterial.$invalid }">
+                                    <md-autocomplete md-input-name="idmaterial" ng-click="resetInvalidMaterial()" required="" ng-disabled="ctlentityfieldMaterial.isDisabled"
+                                        md-no-cache="ctlentityfieldMaterial.noCache" md-selected-item="ctlentityfieldMaterial.selectedItem"
+                                        md-search-text-change="ctlentityfieldMaterial.searchTextChange(ctlentityfieldMaterial.searchText)"
+                                        md-search-text="ctlentityfieldMaterial.searchText" md-selected-item-change="ctlentityfieldMaterial.selectedItemChange(item)"
+                                        md-items="item in ctlentityfieldMaterial.querySearch(ctlentityfieldMaterial.searchText)"
+                                        md-item-text="item.display" md-min-length="0" placeholder="What is your Material item?"
+                                        md-require-match="" md-clear-button="true" md-floating-label="{{'clientwh_requestdetail_materialname' | translate}}">
+                                        <md-item-template>
+                                            <span md-highlight-text="ctlentityfieldMaterial.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                                        </md-item-template>
+                                        <md-not-found>
+                                            No items matching "{{ctlentityfieldMaterial.searchText}}" were found.
+                                            <a ng-click="ctlentityfieldMaterial.newState(ctlentityfieldMaterial.searchText)">Create a new one!</a>
+                                        </md-not-found>
+                                        <div ng-messages="(frmDirty || frmRequestdetail.idmaterial.$touched) && (frmRequestdetail.idmaterial.$error)">
+                                            <div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+                                            <div ng-message="md-require-match">Chá»�n váº­t tÆ° Ä‘Ã£ tá»“n táº¡i !</div>
+                                        </div>
+                                    </md-autocomplete>
+                                </div>
+                            </div>
+                            <!-- /idmaterial -->
+
+                            <!-- quantity -->
+                            <div class="form-group col-sm-12">
+                                <div layout="row">
+                                    <md-input-container flex="50" md-is-error="(frmDirty || frmRequestdetail.quantity.$touched) && (frmRequestdetail.quantity.$invalid)">
+                                        <label class="control-label col-sm-6">{{'clientwh_requestdetail_quantity' | translate}}</label>
+                                        <input required type="number"  oninput="validity.valid||(value='');" min="1" md-input md-no-asterisk name="quantity" ng-model="requestdetail.quantity">
+                                        <div ng-messages="(frmDirty || frmRequestdetail.quantity.$touched) && (frmRequestdetail.quantity.$error)">
+                                            <div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="50" md-is-error="(frmDirty || frmRequestdetail.softquantity.$touched) && (frmRequestdetail.softquantity.$invalid)">
+                                        <label class="control-label col-sm-6">{{'clientwh_requestdetail_softquantity' | translate}}</label>
+                                        <input type="number" oninput="validity.valid||(value='');" min="1" md-input md-no-asterisk name="softquantity" ng-model="requestdetail.softquantity">
+                                        <div ng-messages="(frmDirty || frmRequestdetail.softquantity.$touched) && (frmRequestdetail.softquantity.$error)">
+                                            <div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <!-- /quantity -->
+
+                            <!-- workitem -->
+                            <div class="form-group col-sm-12">
+                                <md-input-container class="md-block" md-is-error="(frmDirty || frmRequestdetail.workitem.$touched) && (frmRequestdetail.workitem.$invalid)||frmRequestdetail.workitem.$error.duplicate"
+                                    flex-gt-xs>
+                                    <label>{{ 'clientwh_requestdetail_workitem' | translate }}</label>
+                                    <input md-maxlength="20" md-input md-no-asterisk name="workitem" ng-model="requestdetail.workitem" ng-change="resetValidateDuplicate()"
+                                        id="workitem" maxlength="20">
+                                </md-input-container>
+                            </div>
+                            <!-- /workitem -->
+                        </div>
+                    </div>
+                    <!-- /First column -->
+
+                    <!-- Second column -->
+                    <div class="col-sm-6">
+                        <div class="form-vertical">
+                            <!-- deliverydate -->
+                            <div class="form-group col-sm-12">
+                                <md-input-container>
+                                    <label>{{ 'clientwh_requestdetail_deliverydate' | translate }}</label>
+                                    <md-datepicker ng-click="resetInvalidDeliveryDate()" name="deliverydate" required ng-model="requestdetail.deliverydate" md-placeholder="{{'clientwh_requestdetail_deliverydate' | translate}}"
+                                        md-open-on-focus name="datepicker"></md-datepicker>
+                                    <div ng-messages="(frmDirty || frmRequestdetail.deliverydate.$touched) && (frmRequestdetail.deliverydate.$error)">
+                                        <div ng-message="required">{{ 'clientwh_home_required_field' | translate }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <!-- /deliverydate -->
+                            <!-- drawingname -->
+                            <div class="form-group col-sm-12">
+                                <md-input-container class="md-block" md-is-error="(frmDirty || frmRequestdetail.drawingname.$touched) && (frmRequestdetail.drawingname.$invalid)||frmRequestdetail.drawingname.$error.duplicate"
+                                    flex-gt-xs>
+                                    <label>{{ 'clientwh_requestdetail_drawingname' | translate }}</label>
+                                    <input md-maxlength="20" md-input md-no-asterisk name="drawingname" ng-model="requestdetail.drawingname" ng-change="resetValidateDuplicate()"
+                                        id="drawingname" maxlength="20">
+                                </md-input-container>
+                            </div>
+                            <!-- /drawingname -->
+                            <!-- teamname -->
+                            <div class="form-group col-sm-12">
+                                <md-input-container class="md-block" md-is-error="(frmDirty || frmRequestdetail.teamname.$touched) && (frmRequestdetail.teamname.$invalid)||frmRequestdetail.teamname.$error.duplicate"
+                                    flex-gt-xs>
+                                    <label>{{ 'clientwh_requestdetail_teamname' | translate }}</label>
+                                    <input md-maxlength="20" md-input md-no-asterisk name="teamname" ng-model="requestdetail.teamname" ng-change="resetValidateDuplicate()"
+                                        id="teamname" maxlength="20">
+                                </md-input-container>
+                            </div>
+                            <!-- /teamname -->
+
+                            <!-- note -->
+                            <div class="form-group col-sm-12">
+                                <md-input-container class="md-block">
+                                    <label>{{ 'clientwh_requestdetail_note' | translate }}</label>
+                                    <textarea ng-model="requestdetail.note" name="note" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                                </md-input-container>
+                            </div>
+                            <!-- /note -->
+                        </div>
+                    </div>
+                    <!-- /Second column -->
+                </div>
+                
+    </form>
+            </div>
+            
+            <!-- Bottom actions -->
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="btn-group pull-right ">
+
+                        <!-- Save button -->
+                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="save()" md-colors="{background: 'default-green'}"
+                            data-toggle="tooltip">
+
+                            <md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">save</md-icon>
+                        </md-button>
+                        <!--/ Save button -->
+
+                        <!-- Create button -->
+                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="createOnForm()" md-colors="{background: 'default-blue'}"
+                            data-toggle="tooltip">
+
+                            <md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">add</md-icon>
+                        </md-button>
+                        <!--/ Create button -->
+
+                        <!-- Delete button -->
+                        <md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="requestdetail.id > -1" ng-click="cofirmDeleteToastForm()"
+                            md-colors="{background: 'default-red'}" data-toggle="tooltip">
+
+                            <md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">delete</md-icon>
+                        </md-button>
+                        <!--/ Delete button -->
+
+                        <!-- Close button -->
+                        <md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+                            <md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                        <!--/ Close button -->
+                    </div>
+                </div>
+            </div>
+            </md-tab>
+            <!-- attachment -->
+				<md-tab label="{{'clientwh_requestdetail_attachment_title' | translate}}" ng-if="requestdetail.id > -1">					
+						
+							<div ng-include="attachmentScope.view" ng-controller="clientwhattachmentController as requestdetail">
+							</div>
+						<div class="panel-footer">
+						
+						<div class = "row">
+							<div class="btn-group pull-right">
+								<!-- Close button -->
+								<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+									<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+									<md-icon md-font-library="material-icons">close</md-icon>
+								</md-button>
+								<!--/ Close button -->
+							</div>
+							
+						</div>
+						</div>				
+				</md-tab>
+				<!-- /attachment -->
+				<!-- /comment  -->
+				<md-tab label="{{'clientwh_home_comment' | translate}}" ng-if="requestdetail.id > -1">
+				<div ng-include="commentScope.view" ng-controller="clientwhcommentController"></div>
+				<div class="panel-footer">
+                <div class="row">
+                    <div class="btn-group pull-right">
+                        <md-button class="md-icon-button test-tooltip md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                            ng-click="closeDialog()">
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>		
+			</md-tab>
+			<!-- /comment -->
+            </md-tabs>
+        </div>
+</div>

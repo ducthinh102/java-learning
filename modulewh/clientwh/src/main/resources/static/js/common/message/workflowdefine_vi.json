@@ -1,0 +1,23 @@
+{
+	"clientwh_workflowdefine_title": "Quản Lý Qui Trình",
+	"clientwh_workflowdefine_transmit_title": "Qui Trình",
+	"clientwh_workflowdefine_workflowname": "loại qui trình",
+	"clientwh_workflowdefine_code": "mã",
+	"clientwh_workflowdefine_name": "tên",
+	"clientwh_workflowdefine_step": "bước",
+	"clientwh_workflowdefine_transmit": "qui trình",
+	"clientwh_workflowdefine_duration": "thời hạn (ngày)",
+	"clientwh_workflowdefine_sender": "người gửi",
+	"clientwh_workflowdefine_receiver": "người nhận",
+	"clientwh_workflowdefine_approver": "người duyệt",
+	"clientwh_workflowdefine_search_user": "Tìm theo tên user",
+	"clientwh_workflowdefine_edit": "thay đổi",
+	"clientwh_workflowdefine_delete": "xóa",
+	"clientwh_workflowdefine_add": "thêm",
+	"clientwh_workflowdefine_delete_confirm": "Bạn muốn xóa mục này ?",
+	"clientwh_workflowdefine_deleted": "Qui trình đã được xóa.",
+	"clientwh_workflowdefine_step_existed": "bước này đã được định nghĩa",
+	"clientwh_workflowdefine_item_existed_in_sender": "đã tồn tại ở danh sách người gửi. Không chọn được!",
+	"clientwh_workflowdefine_item_existed_in_receiver": "đã tồn tại ở danh sách người nhận. Không chọn được!",
+	"clientwh_workflowdefine_item_existed_in_approver": "đã tồn tại ở danh sách người duyệt. Không chọn được!"
+}

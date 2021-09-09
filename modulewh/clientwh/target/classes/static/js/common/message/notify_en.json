@@ -1,0 +1,22 @@
+{
+	"clientwh_notify_title": "Notify",
+	"clientwh_notify_idsender": "idsender",
+	"clientwh_notify_idreceiver": "idreceiver",
+	"clientwh_notify_idref": "idref",
+	"clientwh_notify_reftype": "reftype",
+	"clientwh_notify_content": "content",
+	"clientwh_notify_method": "method",
+	"clientwh_notify_priority": "priority",
+	"clientwh_notify_isactive": "isactive",
+	"clientwh_notify_status": "status",
+	"clientwh_notify_idowner": "idowner",
+	"clientwh_notify_idcreate": "idcreate",
+	"clientwh_notify_idupdate": "idupdate",
+	"clientwh_notify_iddelete": "iddelete",
+	"clientwh_notify_idlock": "idlock",
+	"clientwh_notify_createdate": "createdate",
+	"clientwh_notify_updatedate": "updatedate",
+	"clientwh_notify_deletedate": "deletedate",
+	"clientwh_notify_lockdate": "lockdate",
+	"clientwh_notify_version": "version"
+}

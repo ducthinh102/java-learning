@@ -1,0 +1,25 @@
+{
+
+	"clientwh_supplier_title": "Nhà Cung Cấp",
+	"clientwh_supplier_code": "Mã",
+	"clientwh_supplier_name": "Tên",
+	"clientwh_supplier_address": "Địa chỉ",
+	"clientwh_supplier_email": "Email",
+	"clientwh_supplier_mobile": "Điện thoại",
+	"clientwh_supplier_telephone": "Điện thoại bàn",
+	"clientwh_supplier_fax":"Fax",
+	"clientwh_supplier_note":"Ghi chú",
+	"clientwh_supplier_status":"Status",
+	"clientwh_supplier_idowner":"Idowner",
+	"clientwh_supplier_idcreate":"Idcreate",
+	"clientwh_supplier_idupdate":"Idupdate",
+	"clientwh_supplier_iddelete":"Iddelete",
+	"clientwh_supplier_createdate":"CreateDate",
+	"clientwh_supplier_updatedate":"UpdateDate",
+	"clientwh_supplier_deletedate":"DeleteDate",
+	"clientwh_supplier_exist": "Tên và mã nhà cung cấp đã trùng vui lòng kiểm tra lại",
+	"clientwh_supplier_name_exist": "Tên nhà cung cấp bị trùng, vui lòng kiểm tra lại",
+	"clientwh_supplier_name_code": "Mã nhà cung cấp bị trùng, vui lòng kiểm tra lại",
+	"clientwh_supplier_search": "Tìm kiếm..."
+	
+}

@@ -1,0 +1,71 @@
+<div ng-show="workflowIdref > -1" ng-controller="clientwhworkflowexecuteController">
+	
+	<div class="btn-group pull-left col-sm-3">
+		<!-- Send button -->
+		<div class="form-group col-sm-12" ng-show="showSendButton">
+			<label class="control-label col-sm-6">{{'clientwh_workflowexecute_send' | translate}}</label>
+			<div class="form-group col-sm-6">
+				<button class="btn btn-info" ng-click="executeCommand(constants.workflowStatuses.SEND)" data-toggle="tooltip" title="{{'clientwh_workflowexecute_send' | translate}}">
+					<span class="glyphicon glyphicon-send"></span>
+				</button>
+			</div>
+		</div>
+		
+		<!-- Approve button -->
+		<div class="form-group col-sm-12" ng-show="showApproveButton">
+			<label class="control-label col-sm-6">{{'clientwh_workflowexecute_sign' | translate}}</label>
+			<div class="form-group col-sm-6">
+				<button class="btn btn-info" ng-click="executeCommand(constants.workflowStatuses.APPROVE)" data-toggle="tooltip" title="{{'clientwh_workflowexecute_sign' | translate}}">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+			</div>
+		</div>
+		
+		<!-- Cancel button -->
+		<div class="form-group col-sm-12" ng-show="showCancelButton">
+			<label class="control-label col-sm-6">{{'clientwh_workflowexecute_cancel' | translate}}</label>
+			<div class="form-group col-sm-6">
+				<button class="btn btn-info" ng-click="executeCommand(constants.workflowStatuses.CANCEL)" data-toggle="tooltip" title="{{'clientwh_workflowexecute_cancel' | translate}}">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="btn-group pull-left col-sm-3">
+		<!-- Get Back button -->
+		<div class="form-group col-sm-12" ng-show="showGetBackButton">
+			<label class="control-label col-sm-6">{{'clientwh_workflowexecute_getback' | translate}}</label>
+			<div class="form-group col-sm-6">
+				<button class="btn btn-info" ng-click="executeCommand(constants.workflowStatuses.GETBACK)" data-toggle="tooltip" title="{{'clientwh_workflowexecute_getback' | translate}}">
+					<span class="glyphicon glyphicon-step-backward"></span>
+				</button>
+			</div>
+		</div>
+		
+		<!-- Send Back button -->
+		<div class="form-group col-sm-12" ng-show="showSendBackButton">
+			<label class="control-label col-sm-6">{{'clientwh_workflowexecute_sendback' | translate}}</label>
+			<div class="form-group col-sm-6">
+				<button class="btn btn-info" ng-click="executeCommand(constants.workflowStatuses.SENDBACK)" data-toggle="tooltip" title="{{'clientwh_workflowexecute_sendback' | translate}}">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="btn-group pull-left col-sm-3" ng-show="showAssign">
+		<!-- Assignee select -->
+		<div class="input-group col-sm-8">
+			<select class="form-control" ng-model="selectedAssignee" ng-options="assignee.display for assignee in assigneeList">
+				<option value=""></option>
+			</select>
+			<span class="input-group-btn">
+				<button class="btn btn-info" ng-click="assign()" data-toggle="tooltip" ng-disabled="!selectedAssignee">
+					{{'clientwh_workflowexecute_assign' | translate}}
+				</button>
+			</span>
+		</div>
+	</div>
+	
+</div>

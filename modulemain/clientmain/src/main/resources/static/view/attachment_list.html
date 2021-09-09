@@ -1,0 +1,182 @@
+
+<section class="content-header">
+</section>
+
+<!-- Main content -->
+<section class="content">
+	
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientmain_attachment_title' | translate}}</h3>
+		</div>
+		<div class="box-body">
+	
+			<div ng-init="initList()">
+				<!-- panel -->
+				<div class="panel panel-default">
+					<!-- panel-heading -->
+					<div class="panel-heading">
+					
+						<!-- top actions -->
+						<div class="row">
+							<!-- filter	 -->
+							<div class="col-sm-4">
+								<div class="input-group pull-left">
+									<input type="text" ng-model="search.content" class="inpput-sm" placeholder="{{'clientmain_home_filter' | translate}}" />
+									<div class="btn-group">
+										<button type="button" class="btn btn-default" ng-click="listWithCriteriasByPage(1)" data-toggle="tooltip" title="{{'clientmain_home_filter' | translate}}"><span class="glyphicon glyphicon-filter"></span></button>
+										<button type="button" class="btn btn-default" ng-click="clearFilter()" data-toggle="tooltip" title="{{'clientmain_home_filter_clear' | translate}}"><span class="glyphicon glyphicon-remove"></span></button>
+									</div>
+								</div>
+							</div>
+							<!-- paging -->
+							<div class="col-sm-4">
+								<div class="btn-group">
+									<dir-pagination-controls pagination-id="paginationattachment"
+										   max-size="8"
+										   direction-links="true"
+										   boundary-links="true" 
+										   on-page-change="listWithCriteriasByPage(newPageNumber)" >
+									</dir-pagination-controls>
+								</div>
+							</div>
+							<!-- action -->
+							<div class="col-sm-4">
+								<div class="btn-group pull-right">
+									<button class="btn btn-info" ng-click="showCreate()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				
+					<!-- list of content -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<!-- idref -->
+										<th ng-click="sortBy('idref')">{{'clientmain_attachment_idref' | translate}}
+											<span ng-show="sortKey === 'idref'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- reftype -->
+										<th ng-click="sortBy('reftype')">{{'clientmain_attachment_reftype' | translate}}
+											<span ng-show="sortKey === 'reftype'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filename -->
+										<th ng-click="sortBy('filename')">{{'clientmain_attachment_filename' | translate}}
+											<span ng-show="sortKey === 'filename'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filesize -->
+										<th ng-click="sortBy('filesize')">{{'clientmain_attachment_filesize' | translate}}
+											<span ng-show="sortKey === 'filesize'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- mimetype -->
+										<th ng-click="sortBy('mimetype')">{{'clientmain_attachment_mimetype' | translate}}
+											<span ng-show="sortKey === 'mimetype'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- description -->
+										<th ng-click="sortBy('description')">{{'clientmain_attachment_description' | translate}}
+											<span ng-show="sortKey === 'description'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filepath -->
+										<th ng-click="sortBy('filepath')">{{'clientmain_attachment_filepath' | translate}}
+											<span ng-show="sortKey === 'filepath'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filetype -->
+										<th ng-click="sortBy('filetype')">{{'clientmain_attachment_filetype' | translate}}
+											<span ng-show="sortKey === 'filetype'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- note -->
+										<th ng-click="sortBy('note')">{{'clientmain_attachment_note' | translate}}
+											<span ng-show="sortKey === 'note'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<th/>
+										<th/>
+									</tr>
+								</thead>
+								<tbody>
+									<tr pagination-id="paginationattachment" dir-paginate="item in attachments | orderBy:sortKey:reverse | itemsPerPage:page.pageSize" current-page="page.currentPage" total-items="page.totalElements">
+										<!-- idref -->
+										<td>{{item.idref}}</td>
+										<!-- reftype -->
+										<td>{{item.reftype}}</td>
+										<!-- filename -->
+										<td>{{item.filename}}</td>
+										<!-- filesize -->
+										<td>{{item.filesize}}</td>
+										<!-- mimetype -->
+										<td>{{item.mimetype}}</td>
+										<!-- description -->
+										<td>{{item.description}}</td>
+										<!-- filepath -->
+										<td>{{item.filepath}}</td>
+										<!-- filetype -->
+										<td>{{item.filetype}}</td>
+										<!-- note -->
+										<td>{{item.note}}</td>
+										<td>
+											<div ng-click="showForm(item.id)" data-toggle="tooltip" title="{{'clientmain_home_edit' | translate}}">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</div>
+										</td>
+										<td>
+											<div ng-click="delete(item.id, item.version)" data-toggle="tooltip" title="{{'clientmain_home_delete' | translate}}">
+												<span class="glyphicon glyphicon-trash"></span>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- panel-footer -->
+					<div class="panel-footer">
+					
+						<!-- bottom actions -->
+						<div class="row">
+							<!-- filter	 -->
+							<div class="col-sm-4">
+								<div class="input-group pull-left">
+									<input type="text" ng-model="search.content" class="inpput-sm" placeholder="{{'clientmain_home_filter' | translate}}" />
+									<div class="btn-group">
+										<button type="button" class="btn btn-default" ng-click="listWithCriteriasByPage(1)" data-toggle="tooltip" title="{{'clientmain_home_filter' | translate}}"><span class="glyphicon glyphicon-filter"></span></button>
+										<button type="button" class="btn btn-default" ng-click="clearFilter()" data-toggle="tooltip" title="{{'clientmain_home_filter_clear' | translate}}"><span class="glyphicon glyphicon-remove"></span></button>
+									</div>
+								</div>
+							</div>
+							<!-- paging -->
+							<div class="col-sm-4">
+								<div class="btn-group">
+									<dir-pagination-controls pagination-id="paginationattachment"
+										   max-size="8"
+										   direction-links="true"
+										   boundary-links="true" 
+										   on-page-change="listWithCriteriasByPage(newPageNumber)" >
+									</dir-pagination-controls>
+								</div>
+							</div>
+							<!-- action -->
+							<div class="col-sm-4">
+								<div class="btn-group pull-right">
+									<button class="btn btn-info" ng-click="showCreate()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div><!-- /.box-body -->
+	    <div class="box-footer">
+	      Footer
+	    </div><!-- /.box-footer-->
+	  </div><!-- /.box -->
+
+</section><!-- /.content -->

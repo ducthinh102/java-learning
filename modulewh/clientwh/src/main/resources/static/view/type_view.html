@@ -1,0 +1,88 @@
+<md-card>
+	<form name="frmCatalog" novalidate class="css-form">
+		<!-- Title -->
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{'clientwh_catalog_type_title' | translate}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<!--/ Title  -->
+		<!-- Context -->
+		<div class="row">
+			<!-- First column -->
+			<div class="col-sm-3"></div>
+			<!--/ First column  -->
+			<!-- Second column -->
+			<div class="col-sm-6">
+				<div class="form-vertical">
+					<!-- System -->
+					<div class="form-group col-sm-12">
+						<div class="input-group col-sm-12">
+							<md-autocomplete md-input-name="idsystem" ng-disabled="true" md-no-cache="ctlentityfieldSystem.noCache" md-selected-item="ctlentityfieldSystem.selectedItem"
+							 md-search-text-change="ctlentityfieldSystem.searchTextChange(ctlentityfieldSystem.searchText)" md-search-text="ctlentityfieldSystem.searchText"
+							 md-selected-item-change="ctlentityfieldSystem.selectedItemChange(item)" md-items="item in ctlentityfieldSystem.querySearch(ctlentityfieldSystem.searchText)"
+							 md-item-text="item.display" md-min-length="0" md-clear-button="true" md-require-match md-floating-label="{{'clientwh_catalog_type_system' | translate}}"
+							 placeholder="What is your system item?">
+								<md-item-template>
+									<span md-highlight-text="ctlentityfieldSystem.searchText" md-highlight-flags="^i">{{item.display}}</span>
+								</md-item-template>
+								<md-not-found>
+									{{'clientwh_home_no_item_matching' | translate}} "{{ctlentityfieldSystem.searchText}}".
+									<a ng-click="ctlentityfieldSystem.newState(ctlentityfieldSystem.searchText)">{{'clientwh_home_create_new_one' | translate}}</a>
+								</md-not-found>
+							</md-autocomplete>
+
+						</div>
+					</div>
+					<!--/ System -->
+					<!-- Type code -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label class="control-label col-sm-6">{{'clientwh_catalog_type_code' | translate}}</label>
+							<input ng-model="catalog.code" disabled>
+						</md-input-container>
+					</div>
+					<!--/ Type code -->
+					<!-- Type name -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label class="control-label col-sm-6">{{'clientwh_catalog_type_name' | translate}}</label>
+							<input ng-model="catalog.name" disabled>
+						</md-input-container>
+					</div>
+					<!--/ Type code -->
+					<!-- Note -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label>{{'clientwh_catalog_type_note' | translate}}</label>
+							<textarea ng-model="catalog.note" disabled name="note" md-maxlength="500" rows="5" md-select-on-focus maxlength="500"></textarea>
+						</md-input-container>
+					</div>
+					<!--/ Note  -->
+				</div>
+			</div>
+			<!-- /Second column -->
+
+			<!-- Thrid column -->
+			<div class="col-sm-3"></div>
+			<!-- /Third column -->
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer ">
+			<div class="row ">
+				<div class="btn-group pull-right ">
+
+					<!-- Close button -->
+					<md-button class="md-icon-button md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+						<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+					<!--/ Close button -->
+
+				</div>
+			</div>
+		</div>
+		<!--/ Bottom actions -->
+	</form>
+</md-card>

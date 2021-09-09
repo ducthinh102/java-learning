@@ -1,0 +1,218 @@
+
+<div>
+	<md-card>
+	<form name="frmUser" novalidate class="css-form">
+		<md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{'clientmain_user_title' | translate}}</span>
+            </md-card-title-text>
+        </md-card-title>
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="cofirmDeleteToastForm()" ng-show="user.id > -1" data-toggle="tooltip" title="{{'clientmain_home_filter_clear' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+							<!-- username -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="username">{{'clientmain_user_username' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmUser.username.$touched || frmUser.username.$dirty || frmDirty) && frmUser.username.$invalid }">
+									<input class="form-control" ng-disabled="user.id > -1" type="text" id="username" name="username" ng-model="user.username" required maxlength="50"></input>
+<!--									
+									<div class="input-group-addon" ng-show="frmUser.username.$invalid">
+										<validation-tooltip target="username">
+										<ul class="list-unstyled">
+											<li validation-message ng-if="$field.$error.required">{{'clientmain_home_required_field' | translate}}</li>
+										</ul>
+										</validation-tooltip>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /username -->
+							<!-- password -->
+							<div class="form-group col-sm-12" ng-show="user.id < 1 || isUpdatePassword">
+								<label class="control-label col-sm-6" for="password">{{'clientmain_user_password' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmUser.password.$touched || frmUser.password.$dirty || frmDirty) && frmUser.password.$invalid }">
+									<input class="form-control" type="password" id="password" name="password" ng-model="user.password" required maxlength="50"></input>
+<!--									
+									<div class="input-group-addon" ng-show="frmUser.password.$invalid">
+										<validation-tooltip target="password">
+										<ul class="list-unstyled">
+											<li validation-message ng-if="$field.$error.required">{{'clientmain_home_required_field' | translate}}</li>
+										</ul>
+										</validation-tooltip>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /password -->
+							<!-- displayname -->
+							<div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+								<label class="control-label col-sm-6" for="displayname">{{'clientmain_user_displayname' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmUser.displayname.$touched || frmUser.displayname.$dirty || frmDirty) && frmUser.displayname.$invalid }">
+									<input class="form-control" type="text" id="displayname" name="displayname" ng-model="user.displayname" maxlength="50"></input>
+<!--									
+									<div class="input-group-addon" ng-show="frmUser.displayname.$invalid">
+										<validation-tooltip target="displayname">
+										<ul class="list-unstyled">
+											<li validation-message ng-if="$field.$error.required">{{'clientmain_home_required_field' | translate}}</li>
+										</ul>
+										</validation-tooltip>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /displayname -->
+							<!-- email -->
+							<div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+								<label class="control-label col-sm-6" for="email">{{'clientmain_user_email' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmUser.email.$touched || frmUser.email.$dirty || frmDirty) && frmUser.email.$invalid }">
+									<input class="form-control" type="email" id="email" name="email" ng-model="user.email" maxlength="50"></input>
+<!--									
+									<div class="input-group-addon" ng-show="frmUser.email.$invalid">
+										<validation-tooltip target="email">
+										<ul class="list-unstyled">
+											<li validation-message ng-if="$field.$error.required">{{'clientwh_home_required_field' | translate}}</li>
+										</ul>
+										</validation-tooltip>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /email -->
+							<!-- firstname -->
+							<div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+								<label class="control-label col-sm-6" for="firstname">{{'clientmain_user_firstname' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmUser.firstname.$touched || frmUser.firstname.$dirty || frmDirty) && frmUser.firstname.$invalid }">
+									<input class="form-control" type="text" id="firstname" name="firstname" ng-model="user.firstname" maxlength="50"></input>
+<!--									
+									<div class="input-group-addon" ng-show="frmUser.firstname.$invalid">
+										<validation-tooltip target="firstname">
+										<ul class="list-unstyled">
+											<li validation-message ng-if="$field.$error.required">{{'clientmain_home_required_field' | translate}}</li>
+										</ul>
+										</validation-tooltip>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /firstname -->
+							<!-- lastname -->
+							<div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+								<label class="control-label col-sm-6" for="lastname">{{'clientmain_user_lastname' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmUser.lastname.$touched || frmUser.lastname.$dirty || frmDirty) && frmUser.lastname.$invalid }">
+									<input class="form-control" type="text" id="lastname" name="lastname" ng-model="user.lastname" maxlength="50"></input>
+<!--									
+									<div class="input-group-addon" ng-show="frmUser.lastname.$invalid">
+										<validation-tooltip target="lastname">
+										<ul class="list-unstyled">
+											<li validation-message ng-if="$field.$error.required">{{'clientmain_home_required_field' | translate}}</li>
+										</ul>
+										</validation-tooltip>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /lastname -->
+							<!-- enabled -->
+							<div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+								<label class="control-label col-sm-6" for="enabled">{{'clientmain_user_enabled' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmUser.enabled.$touched || frmUser.enabled.$dirty || frmDirty) && frmUser.enabled.$invalid }">
+									<input class="form-control" type="checkbox" id="enabled" name="enabled" ng-model="user.enabled" ng-init="user.enabled=true"></input>
+<!--									
+									<div class="input-group-addon" ng-show="frmUser.enabled.$invalid">
+										<validation-tooltip target="enabled">
+										<ul class="list-unstyled">
+											<li validation-message ng-if="$field.$error.required">{{'clientmain_home_required_field' | translate}}</li>
+										</ul>
+										</validation-tooltip>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /enabled -->
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+                            <!-- thumbnail-->
+                            <div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+                            	<div class="form-group col-sm-12">
+                            	 	<input	type="file"
+								        class = "ng-hide"
+										name="thumbnailImage" 
+										ng-click="thumbnailImageFileClear($event)" 
+										id="thumbnailImage"
+										ng-files="addThumbnailImage($files)"/>
+									<label for="thumbnailImage" class="md-button md-raised md-primary">{{'clientmain_user_thumbnail' | translate}}</label>						        
+								</div>
+								<div class="form-group col-sm-12">
+		                             <div class="col-sm-6"></div>
+		                             <div class="col-sm-6">
+		                             	<img class="control-label" alt="" data-ng-src="{{user.thumbnail || '//:0'}}" width="150px" height="150px" />
+		                             </div>
+	                             </div>
+                       		</div>
+                       		<!-- /thumbnail-->
+                       		<!-- roles -->
+							<div class="form-group col-sm-12" ng-if="user.id > -1">
+								<div class="btn-group">
+									<button class="btn btn-info" ng-click="showRoles(user.username)" data-toggle="tooltip" title="{{'clientmain_user_roles' | translate}}">
+										<span class="glyphicon glyphicon-lock"></span>
+									</button>
+								</div>
+							</div>
+							<!-- /roles -->
+						</div>
+					</div>
+					<!-- /Second column -->
+				</div>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientmain_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="cofirmDeleteToastForm()" ng-show="user.id > -1" data-toggle="tooltip" title="{{'clientmain_home_filter_clear' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientmain_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<md-card>
+</div>

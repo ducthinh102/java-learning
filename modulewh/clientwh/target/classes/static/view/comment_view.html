@@ -1,0 +1,108 @@
+<div>
+<md-card-title>
+	<md-card-title-text>
+		<span class="md-headline">{{'clientwh_comment_title' | translate}}</span>
+	</md-card-title-text>
+</md-card-title>
+
+<md-card-content>
+	<div ng-init="initList()">
+		<form ng-submit="save()" name="frmComment">
+			<section>
+				<md-list layout-padding>
+					<md-list-item class="md-3-line" ng-show="false">
+	
+						<img ng-src="{{userthumbnail || '//:0'}}" class="md-avatar">
+	
+						<div class="md-list-item-text">
+							<input ng-show="false" name="idref" ng-model="comment.idref">
+							<input ng-show="false" name="reftype" ng-model="comment.reftype">
+							<md-input-container class="md-block">
+								<label>{{'clientwh_comment_title' | translate}}</label>
+								<input md-maxlength="100" ng-model="input.comment" ng-disabled="comment.id > -1" maxlength="100">
+							</md-input-container>
+						</div>
+						<md-button class="md-secondary md-icon-button" type="submit" ng-disabled="input.comment==null||input.comment==''"><i class="material-icons">present_to_all</i></md-button>
+						<md-button class="md-secondary md-icon-button" ng-click="createNew()" ng-disabled="input.comment==null||input.comment==''"><i class="material-icons">refresh</i></md-button>       
+					</md-list-item>
+				</md-list>
+			</section>
+		</form>
+		<!--search  -->
+		<div class="row">
+			<div class="col-sm-11 col-md-8">
+				<div class="col-sm-5">
+					<form
+						ng-submit="listWithCriteriasByIdrefAndReftypeAndPage(idref, reftype, 1)">
+						<div class="input-group">
+		
+							<md-input-container class="md-block" style="top: 16px">
+							<label>{{'clientwh_home_search' | translate}}</label> <input
+								md-input ng-model="search.all"> </md-input-container>
+		
+							<span class="input-group-btn"> <md-button
+									aria-label="search"
+									class="md-icon-button test-tooltip md-primary md-raised"
+									md-colors="{background: 'default-blue'}" type="submit">
+								<md-tooltip>{{'clientwh_home_search' | translate}}</md-tooltip> <md-icon
+									md-font-library="material-icons">search</md-icon> </md-button> <md-button
+									aria-label="clear" class="md-icon-button test-tooltip md-raised"
+									ng-click="clearFilterSearch()"> <md-tooltip>{{'clientwh_home_cancel'
+								| translate}}</md-tooltip> <md-icon md-font-library="material-icons">clear</md-icon>
+								</md-button>
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>	
+	
+		<!-- list of content -->
+		<section ng-if="comments.length!=0">
+			<md-subheader class="md-primary">
+				<h4>{{'clientwh_comment_list_comment' | translate}}</h4>
+			</md-subheader>
+			<md-list layout-padding>
+				<md-list-item 
+							class="md-3-line" 
+							pagination-id="paginationcomment" 
+							dir-paginate="item in comments | itemsPerPage:page.pageSize" 
+							current-page="page.currentPage" 
+							total-items="page.totalElements" >
+					<img ng-src="{{item.thumbnail}}" class="md-avatar" alt="{{message.who}}">
+					<div class="md-list-item-text">           	
+						<h3 ng-show="item.id!=comment.id">{{item.content}}</h3>
+						<md-input-container class="md-block" ng-show="item.id==comment.id">
+							<input type="text" value="{{item.content}}" ng-model="comment.content">
+						</md-input-container>       
+						<p>
+							{{item.username | limitTo:20}} {{'clientwh_comment_last_update' | translate}}</p>
+						<p md-truncate>
+								{{formatDate(item.updatedate)}}
+						</p>
+					</div>
+				</md-list-item>
+
+				<!-- paging -->
+				<div class="row">
+					<div class="col-sm-4"></div>
+					<div class="col-sm-4">
+						<div class="btn-group">
+							<dir-pagination-controls 
+								pagination-id="paginationcomment"
+								max-size="8"
+								direction-links="true"
+								boundary-links="true" 
+								on-page-change="listWithCriteriasByIdrefAndReftypeAndPage(idref, reftype, newPageNumber)" >
+							</dir-pagination-controls>
+						</div>
+					</div>
+					<div class="col-sm-4"></div>
+				</div>
+				<!--/ paging -->
+			</md-list>	
+		</section>
+		<!--/ list of content -->
+	</div>
+</md-card-content>
+</div>

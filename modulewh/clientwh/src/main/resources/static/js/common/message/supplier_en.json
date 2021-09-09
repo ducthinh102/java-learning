@@ -1,0 +1,24 @@
+{
+	"clientwh_supplier_title": "Supplier",
+	"clientwh_supplier_code": "Code",
+	"clientwh_supplier_name": "Name",
+	"clientwh_supplier_address": "Address",
+	"clientwh_supplier_email": "Email",
+	"clientwh_supplier_mobile": "Mobile",
+	"clientwh_supplier_telephone": "Telephone",
+	"clientwh_supplier_fax":"Fax",
+	"clientwh_supplier_note":"Note",
+	"clientwh_supplier_status":"Status",
+	"clientwh_supplier_idowner":"Idowner",
+	"clientwh_supplier_idcreate":"Idcreate",
+	"clientwh_supplier_idupdate":"Idupdate",
+	"clientwh_supplier_iddelete":"Iddelete",
+	"clientwh_supplier_createdate":"CreateDate",
+	"clientwh_supplier_updatedate":"UpdateDate",
+	"clientwh_supplier_deletedate":"DeleteDate",
+	"clientwh_supplier_exist": "Code and Name are exist",
+	"clientwh_supplier_name_exist": "Name's supplier is exist",
+	"clientwh_supplier_name_code": "Code's supplier is exist ",
+	"clientwh_supplier_search": "Search..."
+	
+}

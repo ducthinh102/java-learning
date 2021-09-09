@@ -1,0 +1,22 @@
+{
+	"clientwh_quotationdetail_title": "Chi tiết bảng báo giá",
+	"clientwh_quotationdetail_idquotation": "idquotation",
+	"clientwh_quotationdetail_idmaterial": "Vật tư",
+	"clientwh_quotationdetail_idunit": "Đơn vị",
+	"clientwh_quotationdetail_materialcode": "Mã vật tư",
+	"clientwh_quotationdetail_price": "Giá",
+	"clientwh_quotationdetail_note": "Ghi chú",
+	"clientwh_quotationdetail_exist":"Vật tư đã tồn tại, vui lòng chọn vật tư khác!",
+	"clientwh_quotationdetail_status": "status",
+	"clientwh_quotationdetail_idowner": "idowner",
+	"clientwh_quotationdetail_idcreate": "idcreate",
+	"clientwh_quotationdetail_idupdate": "idupdate",
+	"clientwh_quotationdetail_iddelete": "iddelete",
+	"clientwh_quotationdetail_idlock": "idlock",
+	"clientwh_quotationdetail_createdate": "createdate",
+	"clientwh_quotationdetail_updatedate": "updatedate",
+	"clientwh_quotationdetail_deletedate": "deletedate",
+	"clientwh_quotationdetail_lockdate": "lockdate",
+	"clientwh_quotationdetail_version": "version",
+	"clientwh_quotationdetail_materialname": "Tên vật tư"
+}

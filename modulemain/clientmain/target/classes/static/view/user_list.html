@@ -1,0 +1,175 @@
+<section class="content-header">
+</section>
+
+<!-- Main content -->
+<section class="content">
+	
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientmain_user_title' | translate}}</h3>
+		</div>
+		<div class="box-body">
+	
+			<div ng-init="initList()">
+				<!-- panel -->
+				<div class="panel panel-default">
+					<!-- panel-heading -->
+					<div class="panel-heading">
+					
+						<!-- top actions -->
+						<div class="row">
+							<!-- filter	 -->
+							<div class="col-sm-4">
+								<div class="input-group pull-left">
+									<input type="text" ng-model="search.content" class="inpput-sm" placeholder="{{'clientmain_home_filter' | translate}}" />
+									<div class="btn-group">
+										<button type="button" class="btn btn-default" ng-click="listWithCriteriasByPage(1)" data-toggle="tooltip" title="{{'clientmain_home_filter' | translate}}"><span class="glyphicon glyphicon-filter"></span></button>
+										<button type="button" class="btn btn-default" ng-click="clearFilter()" data-toggle="tooltip" title="{{'clientmain_home_filter_clear' | translate}}"><span class="glyphicon glyphicon-remove"></span></button>
+									</div>
+								</div>
+							</div>
+							<!-- paging -->
+							<div class="col-sm-4">
+								<div class="btn-group">
+									<dir-pagination-controls
+										   max-size="8"
+										   direction-links="true"
+										   boundary-links="true" 
+										   on-page-change="listWithCriteriasByPage(newPageNumber)" >
+									</dir-pagination-controls>
+								</div>
+							</div>
+							<!-- action -->
+							<div class="col-sm-4">
+								<div class="btn-group pull-right">
+									<button class="btn btn-info" ng-click="showCreate()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+	
+					</div>
+				
+					<!-- list of content -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<!-- filter by username -->
+										<th ng-click="sortBy('username')">{{'clientmain_user_username' | translate}}
+											<span ng-show="sortKey === 'username'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filter by displayname -->
+										<th ng-click="sortBy('displayname')">{{'clientmain_user_displayname' | translate}}
+											<span ng-show="sortKey === 'displayname'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filter by email -->
+										<th ng-click="sortBy('email')">{{'clientmain_user_email' | translate}}
+											<span ng-show="sortKey === 'email'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filter by firstname -->
+										<th ng-click="sortBy('firstname')">{{'clientmain_user_firstname' | translate}}
+											<span ng-show="sortKey === 'firstname'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filter by lastname -->
+										<th ng-click="sortBy('lastname')">{{'clientmain_user_lastname' | translate}}
+											<span ng-show="sortKey === 'lastname'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<!-- filter by enabled -->
+										<th ng-click="sortBy('enabled')">{{'clientmain_user_enabled' | translate}}
+											<span ng-show="sortKey === 'enabled'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+										</th>
+										<th>{{'clientmain_user_roles' | translate}}</th>
+										<th>{{'clientmain_user_changepassword' | translate}}</th>
+										<th>{{'clientmain_home_edit' | translate}}</th>
+										<th>{{'clientmain_home_delete' | translate}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr dir-paginate="item in users | itemsPerPage:page.pageSize" current-page="page.currentPage" total-items="page.totalElements">
+										<!-- filter by username -->
+										<td>{{item.username}}</td>
+										<!-- filter by displayname -->
+										<td>{{item.displayname}}</td>
+										<!-- filter by email -->
+										<td>{{item.email}}</td>
+										<!-- filter by firstname -->
+										<td>{{item.firstname}}</td>
+										<!-- filter by lastname -->
+										<td>{{item.lastname}}</td>
+										<!-- filter by enabled -->
+										<td>{{item.enabled}}</td>
+										<td>
+											<div ng-click="showRoles(item.username)" data-toggle="tooltip" title="{{'clientmain_user_roles' | translate}}">
+												<span class="glyphicon glyphicon-lock"></span>
+											</div>
+										</td>
+										<td>
+											<div ng-click="showForm(item.id, true)" data-toggle="tooltip" title="{{'clientmain_user_changepassword' | translate}}">
+												<span class="glyphicon glyphicon-transfer"></span>
+											</div>
+										</td>
+										<td>
+											<div ng-click="showForm(item.id, false)" data-toggle="tooltip" title="{{'clientmain_home_edit' | translate}}">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</div>
+										</td>
+										<td>
+											<div ng-click="delete(item)" data-toggle="tooltip" title="{{'clientmain_home_delete' | translate}}">
+												<span class="glyphicon glyphicon-trash"></span>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- panel-footer -->
+					<div class="panel-footer">
+						
+						<!-- bottom actions -->
+						<div class="row">
+							<!-- filter	 -->
+							<div class="col-sm-4">
+								<div class="input-group pull-left">
+									<input type="text" ng-model="search.content" class="inpput-sm" placeholder="{{'clientmain_home_filter' | translate}}" />
+									<div class="btn-group">
+										<button type="button" class="btn btn-default" ng-click="listWithCriteriasByPage(1)" data-toggle="tooltip" title="{{'clientmain_home_filter' | translate}}"><span class="glyphicon glyphicon-filter"></span></button>
+										<button type="button" class="btn btn-default" ng-click="clearFilter()" data-toggle="tooltip" title="{{'clientmain_home_filter_clear' | translate}}"><span class="glyphicon glyphicon-remove"></span></button>
+									</div>
+								</div>
+							</div>
+							<!-- paging -->
+							<div class="col-sm-4">
+								<div class="btn-group">
+									<dir-pagination-controls
+										   max-size="8"
+										   direction-links="true"
+										   boundary-links="true" 
+										   on-page-change="listWithCriteriasByPage(newPageNumber)" >
+									</dir-pagination-controls>
+								</div>
+							</div>
+							<!-- action -->
+							<div class="col-sm-4">
+								<div class="btn-group pull-right">
+									<button class="btn btn-info" ng-click="showCreate()" data-toggle="tooltip" title="{{'clientmain_home_create' | translate}}">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div><!-- /.box-body -->
+	    <div class="box-footer">
+	      
+	    </div><!-- /.box-footer-->
+	  </div><!-- /.box -->
+
+</section><!-- /.content -->

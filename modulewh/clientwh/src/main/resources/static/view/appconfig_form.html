@@ -1,0 +1,106 @@
+
+<div>
+
+	<form name="frmAppconfig" novalidate class="css-form">
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+				
+					<div class="btn btn-link pull-left" ng-click="list()">{{'clientwh_appconfig_title' | translate}}</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientwh_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientwh_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="appconfig.id > -1" data-toggle="tooltip" title="{{'clientwh_home_filter_clear' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div id="alertMessage" class="alert" style="display: none">
+				<strong>{{alertMessage}}</strong>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+							<!-- scope -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="scope">{{'clientwh_appconfig_scope' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmAppconfig.scope.$touched || frmAppconfig.scope.$dirty || frmDirty) && frmAppconfig.scope.$invalid }">
+									<input class="form-control" type="text" id="scope" name="scope" ng-model="appconfig.scope" required maxlength="50"></input>
+<!--									
+									<div class="input-group-addon" ng-show="frmAppconfig.scope.$invalid">
+										<validation-tooltip target="scope">
+										<ul class="list-unstyled">
+											<li validation-message ng-if="$field.$error.required">{{'clientwh_home_required_field' | translate}}</li>
+										</ul>
+										</validation-tooltip>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /scope -->
+							<!-- content -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="content">{{'clientwh_appconfig_content' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmAppconfig.content.$touched || frmAppconfig.content.$dirty || frmDirty) && frmAppconfig.content.$invalid }">
+									<input class="form-control" type="text" id="content" name="content" ng-model="appconfig.content" required></input>
+<!--									
+									<div class="input-group-addon" ng-show="frmAppconfig.content.$invalid">
+										<validation-tooltip target="content">
+										<ul class="list-unstyled">
+											<li validation-message ng-if="$field.$error.required">{{'clientwh_home_required_field' | translate}}</li>
+										</ul>
+										</validation-tooltip>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /content -->
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+						
+						</div>
+					</div>
+					<!-- /Second column -->
+				</div>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientwh_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientwh_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="appconfig.id > -1" data-toggle="tooltip" title="{{'clientwh_home_filter_clear' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

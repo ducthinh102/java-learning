@@ -1,0 +1,9 @@
+{
+	"clientmain_login_title": "Đăng nhập",
+	"clientmain_login_username": "Tên đăng nhập",
+	"clientmain_login_password": "Mật khẩu",
+	"clientmain_login_login": "Đăng nhập",
+	"clientmain_login_invalid": "Tên đăng nhập hoặc mật khẩu không đúng.",
+	"clientmain_login_successfully": "Đăng nhập thành công.",
+	"clientmain_logout_successfully": "Đăng xuất thành công."
+}

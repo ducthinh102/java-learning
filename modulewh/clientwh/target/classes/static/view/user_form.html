@@ -1,0 +1,160 @@
+
+<div>
+<md-card>
+	<form name="frmUser">
+		  <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{'clientwh_user_title' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+			<!-- Context -->
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-3">
+						<div class="row">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-6">
+								<img class="control-label" alt="" data-ng-src="{{user.thumbnail || '//:0'}}" width="150px" height="150px" />
+								<div class="text-center"><label for="thumbnailImage" class="md-button md-raised md-primary">{{'clientwh_user_thumbnail' | translate}}</label></div>
+								<input	type="file"
+								        class = "ng-hide"
+										name="thumbnailImage" 
+										ng-click="thumbnailImageFileClear($event)" 
+										id="thumbnailImage"
+										ng-files="addThumbnailImage($files)"/>
+															        
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-vertical">
+                            <!-- thumbnail-->
+                            <div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+                            	<div class="form-group col-sm-12">
+                            	 	
+								</div>
+								
+                       		</div>
+                       		<!-- /thumbnail-->
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-vertical">
+									 	<!-- firstname -->
+							<div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+							<div layout-gt-xs="row">
+								<md-input-container flex="50" class="md-block" md-is-error="(frmUser.firstname.$touched || frmUser.firstname.$dirty || frmDirty) && frmUser.firstname.$invalid">
+							        <label>{{'clientwh_user_firstname' | translate}}</label>
+							        <input ng-model="user.firstname" required md-maxlength="50" name="firstname">
+							        <div ng-messages="(frmDirty || frmUser.firstname.$touched) && (frmUser.firstname.$error)">
+							          	<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+							        </div>
+						     	</md-input-container>		
+							
+							<!-- /firstname -->
+							
+							<!-- lastname -->
+								<md-input-container flex="50" class="md-block" md-is-error="(frmUser.lastname.$touched || frmUser.lastname.$dirty || frmDirty) && frmUser.lastname.$invalid">
+							        <label>{{'clientwh_user_lastname' | translate}}</label>
+							        <input ng-model="user.lastname" required md-maxlength="50" name="lastname">
+							        <div ng-messages="(frmDirty || frmUser.lastname.$touched) && (frmUser.lastname.$error)">
+							          	<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+							        </div>
+						     	</md-input-container>							     		
+							</div>
+							<!-- /lastname -->
+							 </div>
+							<!-- username -->
+							<div class="form-group col-sm-12">
+							 	<md-input-container  class="md-block" md-is-error="(frmUser.username.$touched || frmUser.username.$dirty || frmDirty) && frmUser.username.$invalid">
+							        <label>{{'clientwh_user_username' | translate}}</label>
+							        <input ng-model="user.username" name="username" ng-disabled="user.id > -1" required md-maxlength="50">
+							        <div ng-messages="(frmDirty || frmUser.username.$touched) && (frmUser.username.$error)">
+							          	<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+							        </div>
+						     	</md-input-container>
+							</div>
+							<!-- /username -->
+							<!-- password -->
+							<div class="form-group col-sm-12" ng-show="user.id < 1 || isUpdatePassword">
+								<md-input-container class="md-block" md-is-error="(frmUser.password.$touched || frmUser.password.$dirty || frmDirty) && frmUser.password.$invalid">
+							        <label>{{'clientwh_user_password' | translate}}</label>
+							        <input ng-model="user.password" name="password" required md-maxlength="50" type="password">
+							        <div ng-messages="(frmDirty || frmUser.password.$touched) && (frmUser.password.$error)">
+							          	<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+							        </div>
+						     	</md-input-container>
+							</div>
+							<!-- /password -->
+							<!-- displayname -->
+							<div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+								<md-input-container class="md-block" md-is-error="(frmUser.displayname.$touched || frmUser.displayname.$dirty || frmDirty) && frmUser.displayname.$invalid">
+							        <label>{{'clientwh_user_displayname' | translate}}</label>
+							        <input ng-model="user.displayname" required md-maxlength="50" name="displayname">
+							        <div ng-messages="(frmDirty || frmUser.displayname.$touched) && (frmUser.displayname.$error)">
+							          	<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+							        </div>
+						     	</md-input-container>						     	
+							</div>
+							<!-- /displayname -->
+							<!-- email -->
+							<div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+								<md-input-container class="md-block" md-is-error="(frmUser.email.$touched || frmUser.email.$dirty || frmDirty) && frmUser.email.$invalid">
+							        <label>{{'clientwh_user_email' | translate}}</label>
+							        <input ng-model="user.email" required md-maxlength="50" name="email" type="email" id="Inputemail">
+							        <div ng-messages="(frmDirty || frmUser.email.$touched) && (frmUser.email.$error)">
+							          	<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+							          	<div ng-message="email">{{'clientwh_home_email_invalid' | translate}}</div>
+							        </div>
+						     	</md-input-container>		
+							</div>
+							<!-- /email -->
+							<!-- enabled -->
+							<div class="form-group col-sm-12" ng-hide="isUpdatePassword">
+								<md-input-container class="md-block">
+							        <md-switch ng-model="user.enabled" aria-label="enabled" ng-init="user.enabled=true" name="enabled" class="md-primary">
+							           {{'clientwh_user_enabled' | translate}}
+							        </md-switch>
+					      		</md-input-container>
+							</div>
+							<!-- /enabled -->
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-3">
+					</div>
+					<!-- /Second column -->
+				</div>
+				<!-- Bottom actions -->
+			<div class="panel-footer">
+			 <div class="row">
+                        <div class="btn-group pull-right">
+                            <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-green'}" data-toggle="tooltip"
+                                title="{{'clientwh_home_save' | translate}}" ng-click="save()">
+                                <md-icon md-font-library="material-icons">save</md-icon>
+                            </md-button>
+
+                            <md-button class="md-icon-button test-tooltip md-raised md-primary" md-colors="{background: 'default-blue'}" data-toggle="tooltip"
+                                title="{{'clientwh_home_create' | translate}}" ng-click="createOnForm()">
+                                <md-icon md-font-library="material-icons">add</md-icon>
+                            </md-button>
+                            
+							<md-button class="md-icon-button test-tooltip md-raised md-primary" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}"
+                                ng-click="cofirmDeleteToastForm()" ng-show="user.id > -1" md-colors="{background: 'default-red'}">
+                                <md-icon md-font-library="material-icons">delete</md-icon>
+                            </md-button>
+                            
+                            <md-button class="md-icon-button test-tooltip md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                                ng-click="closeDialog()">
+                                <md-icon md-font-library="material-icons">close</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+			</div>
+			</div>
+			
+	</form>
+	</md-card>
+</div>

@@ -1,0 +1,27 @@
+
+* Note: idcreate, idowner, idupdate, iddelete, idlock, createdate, updatedate, deletedate, lockdate.
+status: 1=new, 2=update, 3=delete, 4=notuse.
+notify status: 51=send, 52=view, 53=cannotsend, 55=cancel.
+
+attachment:
+id, idref, reftype, filename, filesize, mimetype, description, filepath, filetype
+
+comment:
+id, idwriter, idref, reftype, content
+
+notify: status as 51=send, 52=receive, 53=cannotsend, 55=cancel; method as push message (hàng chục), email (hàng trăm). Ex for method: 10 gởi message, 100 gởi email, 110 gởi message và  email, 20 nhận message, 200 nhận email, 220 nhận message và email.
+id, idsend, idreceiver, idref, reftype, content, method, priority, isactive
+
+history:
+id, idref, reftype, content
+
+
+calendar: content as "{dayofweek: { 1: {iswork: false}, 2: {iswork: true}, 3: {iswork: true}, 4: {iswork: true}, 5: {iswork: true}, 6: {iswork: true}, 7: {iswork: false} } }".
+id, code, name, content, sortorder 
+
+calendarextend:
+id, idcalendar, code, name, iswork, calendardate, day, week, month, year
+
+appconfig:
+id, scope, content
+1, 'mailserver', '{ host:'smtp.gmail.com', port: 465, protocol: 'smtp', username: 'redsunatvn@gmail.com', password: 'yLc/+k4xje6HDSm4XrDPcvbG1lQO4x0z' }'

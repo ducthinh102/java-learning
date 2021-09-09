@@ -1,0 +1,99 @@
+
+<div>
+<md-card>
+	<form name="frmQuotationdetail" novalidate class="css-form">
+		  <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{'clientwh_quotationdetail_title' | translate}}</span>
+                </md-card-title-text>
+            </md-card-title>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6">
+						<div class="form-vertical">
+						
+<!-- 							idquotation -->
+<!-- 							<div class="form-group col-sm-12"> -->
+<!-- 								<md-input-container class="md-block" md-is-error="(frmDirty || frmQuotationdetail.idquotation.$touched) && (frmQuotationdetail.idquotation.$invalid)"> -->
+<!-- 						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_idquotation' | translate}}</label> -->
+<!-- 						        	<input disabled type="number" md-input md-no-asterisk name="idquotation" ng-model="quotationdetail.idquotation"> -->
+<!-- 						      	</md-input-container> -->
+<!-- 							</div> -->
+<!-- 							/idquotation -->
+							
+							<!-- idmaterial -->
+							<div class="form-group col-sm-12">
+	                              <md-input-container class="md-block">
+							        <label>{{'clientwh_quotationdetail_idmaterial' | translate}}</label>
+							        <input ng-model="quotationDetailView.materialname" disabled>
+							      </md-input-container>
+                            </div>
+							<!-- /idmaterial -->
+							
+							<!-- idunit -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" >
+						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_idunit' | translate}}</label>
+						        	<input ng-model="quotationDetailView.unitname" disabled>
+						      	</md-input-container>
+							</div>
+							<!-- /idunit -->
+							
+							<!-- materialcode -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" >
+						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_materialcode' | translate}}</label>
+						        	<input ng-model="quotationDetailView.materialcode" disabled>
+						      	</md-input-container>
+							</div>
+							<!-- /materialcode -->
+							
+							<!-- price -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block">
+						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_price' | translate}}</label>
+						        	<input ng-model="quotationDetailView.price" disabled>
+						      	</md-input-container>
+							</div>
+							<!-- /price -->
+							
+							<!-- note -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block">
+						        	<label class="control-label col-sm-6" >{{'clientwh_quotationdetail_note' | translate}}</label>
+						        	<input ng-model="quotationDetailView.note" disabled>
+						      	</md-input-container>
+							</div>
+							<!-- /note -->
+							
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-3">
+						<div class="form-vertical">
+						
+						</div>
+					</div>
+					<!-- /Second column -->
+				</div>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					 <div class="btn-group pull-right">
+                            <md-button class="md-icon-button test-tooltip md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                                ng-click="closeDialog()">
+                                <md-icon md-font-library="material-icons">close</md-icon>
+                            </md-button>
+                        </div>
+				</div>
+			</div>
+	</form>
+	</md-card>
+</div>

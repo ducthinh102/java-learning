@@ -1,0 +1,67 @@
+<md-card>
+	<form name="frmCatalog" novalidate class="css-form">
+		<!-- Title -->
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{'clientwh_spec_title' | translate}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<!--/ Title  -->
+		<!-- Context -->
+		<div class="row">
+			<!-- First column -->
+			<div class="col-sm-3"></div>
+			<!--/ First column  -->
+			<!-- Second column -->
+			<div class="col-sm-6">
+				<div class="form-vertical">
+					<!-- Spec code -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label class="control-label col-sm-6">{{'clientwh_spec_code' | translate}}</label>
+							<input ng-model="catalog.code" disabled>
+						</md-input-container>
+					</div>
+					<!--/ Spec code  -->
+					<!-- Spec name -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label class="control-label col-sm-6">{{'clientwh_spec_name' | translate}}</label>
+							<input ng-model="catalog.name" disabled>
+						</md-input-container>
+					</div>
+					<!-- Spec name -->
+					<!-- Note -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label>{{'clientwh_spec_note' | translate}}</label>
+							<textarea ng-model="catalog.note" disabled name="note" md-maxlength="500" rows="5" md-select-on-focus maxlength="500"></textarea>
+						</md-input-container>
+					</div>
+					<!--/ Note  -->
+				</div>
+			</div>
+			<!-- /Second column -->
+
+			<!-- Third column -->
+			<div class="col-sm-3"></div>
+			<!-- /Third column -->
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer ">
+			<div class="row ">
+				<div class="btn-group pull-right ">
+					<!-- Close button -->
+					<md-button class="md-icon-button md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+						<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+					<!--/ Close button -->
+
+				</div>
+			</div>
+		</div>
+		<!-- Bottom actions -->
+	</form>
+</md-card>

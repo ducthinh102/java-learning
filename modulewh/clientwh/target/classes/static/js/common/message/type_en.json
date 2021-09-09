@@ -1,0 +1,12 @@
+{
+	"clientwh_catalog_type_title": "Type",
+	"clientwh_catalog_type_code": "Type code",
+	"clientwh_catalog_type_name": "Type name",
+	"clientwh_catalog_type_search": "Search...",
+	"clientwh_catalog_type_code_exist": "Code is exist",
+	"clientwh_catalog_type_note": "Note",
+	"clientwh_catalog_type_system": "System",
+	"clientwh_catalog_type_parent": "Parent",
+	"clientwh_catalog_type_choose": "Choose here",
+	"clientwh_catalog_choose_system_exits": "Choose exits system!"
+}

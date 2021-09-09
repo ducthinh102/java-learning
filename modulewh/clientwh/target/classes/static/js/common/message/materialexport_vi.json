@@ -1,0 +1,11 @@
+{
+	"clientwh_materialexport_title": "Phiếu xuất kho",
+	"clientwh_materialexport_code": "Mã phiếu",
+	"clientwh_materialexport_exportdate": "Ngày xuất",
+	"clientwh_materialexport_note": "Ghi chú",
+	"clientwh_materialexport_store": "Kho",
+	"clientwh_materialexport_idexporter": "Người xuất",
+	"clientwh_materialexport_existstore": "Chọn kho đã tồn tại",
+	"clientwh_materialexport_existuser": "Chọn user đã tồn tại",
+	"clientwh_materialexport_materialexportdetail": "Chi tiết phiếu xuất"
+}

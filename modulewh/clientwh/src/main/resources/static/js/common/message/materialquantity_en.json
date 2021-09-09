@@ -1,0 +1,19 @@
+{
+	"clientwh_materialquantity_title": "Materialquantity",
+	"clientwh_materialquantity_idref": "idref",
+	"clientwh_materialquantity_reftype": "reftype",
+	"clientwh_materialquantity_scope": "scope",
+	"clientwh_materialquantity_quantity": "quantity",
+	"clientwh_materialquantity_note": "note",
+	"clientwh_materialquantity_status": "status",
+	"clientwh_materialquantity_idowner": "idowner",
+	"clientwh_materialquantity_idcreate": "idcreate",
+	"clientwh_materialquantity_idupdate": "idupdate",
+	"clientwh_materialquantity_iddelete": "iddelete",
+	"clientwh_materialquantity_idlock": "idlock",
+	"clientwh_materialquantity_createdate": "createdate",
+	"clientwh_materialquantity_updatedate": "updatedate",
+	"clientwh_materialquantity_deletedate": "deletedate",
+	"clientwh_materialquantity_lockdate": "lockdate",
+	"clientwh_materialquantity_version": "version"
+}

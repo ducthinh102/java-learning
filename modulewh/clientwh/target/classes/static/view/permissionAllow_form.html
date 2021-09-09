@@ -1,0 +1,453 @@
+<md-card>
+	<!-- Title -->
+	<md-card-title>
+		<md-card-title-text>
+			<span class="md-headline">{{'clientwh_permission_'+permission.target | translate}}</span>
+			<span class="md-subhead">{{'clientwh_permission_allow'| translate}}</span>
+		</md-card-title-text>
+	</md-card-title>
+	<!-- Title -->
+	<md-card-content>
+		<div class="row">
+			<!-- First column -->
+			<div class="col-sm-2">
+				<div class="list-group">
+					<a class="list-group-item" ng-class="{active: tar.active===true}" ng-click="changeTarget(tar.value)" ng-repeat="tar in ArrTarget">{{tar.display}}</a>
+				</div>
+			</div>
+			<!--/ First column -->
+			<div class="col-sm-10">
+				<div class="row">
+					<!-- First column -->
+					<div class="col-sm-4">
+						<fieldset>
+							<legend>{{'clientwh_permission_useravailable' | translate}}</legend>
+							<select class="form-control" size="26" multiple="multiple" ng-model="available">
+								<option ng-repeat="av in availableUser" value="{{av.id}}" ng-disabled="av.display">{{av.username}}
+									<i ng-show="false">{{av.group}}</i>
+								</option>
+							</select>
+						</fieldset>
+					</div>
+					<!--/ First column  -->
+					<!-- Second column -->
+					<div class="col-sm-2" style="padding-top: 16%;">
+						<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+							<!-- Move all button -->
+							<md-button class="md-raised" ng-click="moveAll(availableUser)">
+								<i class="glyphicon glyphicon-forward"></i>
+							</md-button>
+							<!--/ Move all button  -->
+							<!-- Move right button -->
+							<md-button class="md-raised" ng-click="moveItem(available,availableUser)">
+								<i class="glyphicon glyphicon-chevron-right"></i>
+							</md-button>
+							<!--/ Move right button -->
+							<!-- Move left button -->
+							<md-button class="md-raised" ng-click="remove()">
+								<i class="glyphicon glyphicon-chevron-left"></i>
+							</md-button>
+							<!--/ Move left button -->
+							<!-- Move back all button -->
+							<md-button class="md-raised" ng-click="removeAll()">
+								<i class="glyphicon glyphicon-backward"></i>
+							</md-button>
+							<!--/ Move back all button  -->
+						</section>
+					</div>
+					<!-- Second column -->
+					<div class="col-sm-6">
+						<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndexPermissionForAction">
+							<md-tab label="{{'clientwh_permission_action' | translate}}" ng-click="changePrimaryTab(0)">
+								<md-content class="md-padding">
+									<fieldset>
+										<ul class="nav nav-tabs">
+											<li class="active">
+												<a data-toggle="tab" href="#home" ng-click="changeTab(0)">Admin</a>
+											</li>
+											<li>
+												<a data-toggle="tab" href="#menu1" ng-click="changeTab(1)">{{'clientwh_permission_reads' | translate}}</a>
+											</li>
+											<li>
+												<a data-toggle="tab" href="#menu2" ng-click="changeTab(2)">{{'clientwh_permission_creates' | translate}}</a>
+											</li>
+											<li>
+												<a data-toggle="tab" href="#menu3" ng-click="changeTab(3)">{{'clientwh_permission_updates' | translate}}</a>
+											</li>
+											<li>
+												<a data-toggle="tab" href="#menu4" ng-click="changeTab(4)">{{'clientwh_permission_deletes' | translate}}</a>
+											</li>
+											<li>
+												<a data-toggle="tab" href="#menu5" ng-click="changeTab(5)">{{'clientwh_permission_AdOncreates' | translate}}</a>
+											</li>
+											<li>
+												<a data-toggle="tab" href="#menu6" ng-click="changeTab(6)">{{'clientwh_permission_ADOnOwner' | translate}}</a>
+											</li>
+										</ul>
+
+										<div class="tab-content">
+											<div id="home" class="tab-pane fade in active">
+												<label>{{'clientwh_permission_lstUser' | translate}}</label>
+												<select id="selectedAdmins" class="form-control" size="8" multiple="multiple" ng-model="adminPermission">
+													<option ng-repeat="sAdmins in selectedAdmins" value="{{sAdmins.id}}">{{sAdmins.username}}</option>
+												</select>
+											</div>
+											<div id="menu1" class="tab-pane fade">
+												<label>{{'clientwh_permission_lstUser' | translate}}</label>
+												<select id="selectedReads" class="form-control" size="8" multiple="multiple" ng-model="readsPermission">
+													<option ng-repeat="sReads in selectedReads" value="{{sReads.id}}">{{sReads.username}}</option>
+												</select>
+											</div>
+											<div id="menu2" class="tab-pane fade">
+												<label>{{'clientwh_permission_lstUser' | translate}}</label>
+												<select id="selectedCreates" class="form-control" size="8" multiple="multiple" ng-model="createPermission">
+													<option ng-repeat="sCreate in selectedCreates" value="{{sCreate.id}}">{{sCreate.username}}</option>
+												</select>
+											</div>
+											<div id="menu3" class="tab-pane fade">
+												<label>{{'clientwh_permission_lstUser' | translate}}</label>
+												<select id="selectedUpdates" class="form-control" size="8" multiple="multiple" ng-model="updatePermission">
+													<option ng-repeat="sUpdates in selectedUpdates" value="{{sUpdates.id}}">{{sUpdates.username}}</option>
+												</select>
+											</div>
+											<div id="menu4" class="tab-pane fade">
+												<label>{{'clientwh_permission_lstUser' | translate}}</label>
+												<select id="selectedDeletes" class="form-control" size="8" multiple="multiple" ng-model="deletePermission">
+													<option ng-repeat="sDeletes in selectedDeletes" value="{{sDeletes.id}}">{{sDeletes.username}}</option>
+												</select>
+											</div>
+											<div id="menu5" class="tab-pane fade">
+												<label>{{'clientwh_permission_lstUser' | translate}}</label>
+												<select id="selectedAdOnCreate" class="form-control" size="8" multiple="multiple" ng-model="adOnCreate">
+													<option ng-repeat="sAdOnCreate in selectedAdOnCreate" value="{{sAdOnCreate.id}}">{{sAdOnCreate.username}}</option>
+												</select>
+											</div>
+											<div id="menu6" class="tab-pane fade">
+												<label>{{'clientwh_permission_lstUser' | translate}}</label>
+												<select id="selectedAdOnOwner" class="form-control" size="8" multiple="multiple" ng-model="adOnOwner">
+													<option ng-repeat="sAdOnOwner in selectedAdOnOwner" value="{{sAdOnOwner.id}}">{{sAdOnOwner.username}}</option>
+												</select>
+											</div>
+										</div>
+									</fieldset>
+									<br>
+									<section layout="row" layout-sm="column" layout-wrap>
+										<md-button class="md-icon-button md-primary md-raised" ng-click="adminPer(available,1)" aria-label="{{'clientwh_permission_all_admin' | translate}}">
+											<md-tooltip md-direction="bottom">{{'clientwh_permission_all_admin' | translate}}</md-tooltip>
+											<md-icon>
+												<i class="material-icons">supervisor_account</i>
+											</md-icon>
+										</md-button>
+
+										<md-button class="md-icon-button md-primary md-raised" md-colors="{background: 'red'}" ng-click="allPermission(1)"
+										 aria-label="{{'clientwh_permission_all_denied' | translate}}">
+											<md-tooltip md-direction="bottom">{{'clientwh_permission_all_denied' | translate}}</md-tooltip>
+											<md-icon>
+												<i class="material-icons">block</i>
+											</md-icon>
+										</md-button>
+
+										<md-button class="md-icon-button md-primary md-raised" md-colors="{background: 'green'}" ng-click="allDenied(1)"
+										 aria-label="{{'clientwh_permission_all_permission' | translate}}">
+											<md-tooltip md-direction="bottom">{{'clientwh_permission_all_permission' | translate}}</md-tooltip>
+											<md-icon>
+												<i class="material-icons">check_circle</i>
+											</md-icon>
+										</md-button>
+									</section>
+								</md-content>
+							</md-tab>
+
+							<md-tab label="{{'clientwh_permission_data' | translate}}" ng-click="changePrimaryTab(1)">
+								<md-content class="md-padding">
+									<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndexCreate">
+										<md-tab label="{{'clientwh_permission_creat' | translate}}" ng-click="changePrimaryTab(2)">
+											<md-content class="md-padding">
+												<ul class="nav nav-tabs">
+													<li class="active">
+														<a data-toggle="tab" href="#creatCData" ng-click="changeTab(7)">{{'clientwh_permission_creat' | translate}}</a>
+													</li>
+													<li>
+														<a data-toggle="tab" href="#adminCData" ng-click="changeTab(8)">Admin</a>
+													</li>
+													<li>
+														<a data-toggle="tab" href="#readCData" ng-click="changeTab(9)">{{'clientwh_permission_reads' | translate}}</a>
+													</li>
+													<li>
+														<a data-toggle="tab" href="#updataCData" ng-click="changeTab(10)">{{'clientwh_permission_updates' | translate}}</a>
+													</li>
+													<li>
+														<a data-toggle="tab" href="#deleteCData" ng-click="changeTab(11)">{{'clientwh_permission_deletes' | translate}}</a>
+													</li>
+												</ul>
+												<div class="tab-content">
+													<div id="creatCData" class="tab-pane fade in active">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedCreatCData" class="form-control" size="8" multiple="multiple" ng-model="creatCData">
+															<option ng-repeat="sCreatCData in selectedCreatCData" value="{{sCreatCData.id}}">{{sCreatCData.username}}</option>
+														</select>
+													</div>
+													<div id="adminCData" class="tab-pane fade">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedAdminsCData" class="form-control" size="8" multiple="multiple" ng-model="adminCData">
+															<option ng-repeat="sAdminsCData in selectedAdminsCData" value="{{sAdminsCData.id}}">{{sAdminsCData.username}}</option>
+														</select>
+													</div>
+													<div id="readCData" class="tab-pane fade">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedReadsCData" class="form-control" size="8" multiple="multiple" ng-model="readsCData">
+															<option ng-repeat="sReadsCData in selectedReadsCData" value="{{sReadsCData.id}}">{{sReadsCData.username}}</option>
+														</select>
+													</div>
+													<div id="updataCData" class="tab-pane fade">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedUpdatesCData" class="form-control" size="8" multiple="multiple" ng-model="updateCData">
+															<option ng-repeat="sUpdatesCData in selectedUpdatesCData" value="{{sUpdatesCData.id}}">{{sUpdatesCData.username}}</option>
+														</select>
+													</div>
+													<div id="deleteCData" class="tab-pane fade">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedDeletesCData" class="form-control" size="8" multiple="multiple" ng-model="deleteCData">
+															<option ng-repeat="sDeletesCData in selectedDeletesCData" value="{{sDeletesCData.id}}">{{sDeletesCData.username}}</option>
+														</select>
+													</div>
+													<br>
+													<div class="row">
+														<div class="col-sm-8">
+															<section layout="row" layout-sm="column" layout-wrap>
+																<md-button class="md-icon-button md-primary md-raised" ng-click="adminPer(available,2)" aria-label="{{'clientwh_permission_all_admin' | translate}}">
+																	<md-tooltip md-direction="bottom">{{'clientwh_permission_all_admin' | translate}}</md-tooltip>
+																	<md-icon style="width: 24px; height: 24px">
+																		<i class="material-icons">supervisor_account</i>
+																	</md-icon>
+																</md-button>
+
+																<md-button class="md-icon-button md-primary md-raised" md-colors="{background: 'red'}" ng-click="allPermission(2)"
+																 aria-label="{{'clientwh_permission_all_denied' | translate}}">
+																	<md-tooltip md-direction="bottom">{{'clientwh_permission_all_denied' | translate}}</md-tooltip>
+																	<md-icon>
+																		<i class="material-icons">block</i>
+																	</md-icon>
+																</md-button>
+																<md-button class="md-icon-button md-primary md-raised" md-colors="{background: 'green'}" ng-click="allDenied(2)"
+																 aria-label="{{'clientwh_permission_all_permission' | translate}}">
+																	<md-tooltip md-direction="bottom">{{'clientwh_permission_all_permission' | translate}}</md-tooltip>
+																	<md-icon style="width: 24px; height: 24px">
+																		<i class="material-icons">check_circle</i>
+																	</md-icon>
+																</md-button>
+															</section>
+														</div>
+														<div class="col-sm-4">
+															<div class="pull-right">
+																<section layout="row" layout-sm="column" layout-wrap>
+																	<md-button ng-show="addOneCreat" class="md-icon-button md-primary md-raised" md-colors="{background: 'green'}"
+																	 ng-click="addRuleCreat()" aria-label="{{'clientwh_permission_save_creat' | translate}}">
+																		<md-tooltip md-direction="bottom">{{'clientwh_permission_save_creat' | translate}}</md-tooltip>
+																		<md-icon>
+																			<i class="material-icons">save</i>
+																		</md-icon>
+																	</md-button>
+																	<md-button ng-show="forCreate.id > -1" class="md-icon-button md-primary md-raised" md-colors="{background: 'green'}"
+																	 ng-click="allPermission(5)" aria-label="{{'clientwh_permission_creat_new' | translate}}">
+																		<md-tooltip md-direction="bottom">{{'clientwh_permission_creat_new' | translate}}</md-tooltip>
+																		<md-icon>
+																			<i class="material-icons">add</i>
+																		</md-icon>
+																	</md-button>
+																</section>
+															</div>
+														</div>
+													</div>
+
+													<table class="table table-striped">
+														<thead>
+															<tr>
+																<th>{{'clientwh_permission_creat' | translate}}</th>
+																<th></th>
+																<th></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="rc in ruleCreate">
+																<td ng-click="loadUserForCreat($index)">
+																	<i ng-if="rc.createbyids[0]==0">All</i>
+																	<i ng-if="rc.createbyids[0]!=0">{{'clientwh_permission_group' | translate}}{{$index}}</i>
+																</td>
+																<td>
+																	<div ng-click="loadUserForCreat($index)" data-toggle="tooltip" title="{{'clientwh_home_edit' | translate}}">
+																		<span class="glyphicon glyphicon-pencil"></span>
+																	</div>
+																</td>
+																<td>
+																	<div ng-click="removeRowCreate($index)" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+																		<span class="glyphicon glyphicon-trash"></span>
+																	</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</md-content>
+										</md-tab>
+										<md-tab label="{{'clientwh_permission_owner' | translate}}" ng-click="changePrimaryTab(3)">
+											<md-content class="md-padding">
+												<ul class="nav nav-tabs">
+
+													<li class="active">
+														<a data-toggle="tab" href="#ownerOData" ng-click="changeTab(12)">{{'clientwh_permission_owner' | translate}}</a>
+													</li>
+													<li>
+														<a data-toggle="tab" href="#adminOData" ng-click="changeTab(13)">Admin</a>
+													</li>
+													<li>
+														<a data-toggle="tab" href="#readOData" ng-click="changeTab(14)">{{'clientwh_permission_reads' | translate}}</a>
+													</li>
+													<li>
+														<a data-toggle="tab" href="#updataOData" ng-click="changeTab(15)">{{'clientwh_permission_updates' | translate}}</a>
+													</li>
+													<li>
+														<a data-toggle="tab" href="#deleteOData" ng-click="changeTab(16)">{{'clientwh_permission_deletes' | translate}}</a>
+													</li>
+												</ul>
+
+												<div class="tab-content">
+													<div id="ownerOData" class="tab-pane fade in active">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedOwnersOData" class="form-control" size="8" multiple="multiple" ng-model="ownerOData">
+															<option ng-repeat="sOwnersOData in selectedOwnersOData" value="{{sOwnersOData.id}}">{{sOwnersOData.username}}</option>
+														</select>
+													</div>
+													<div id="adminOData" class="tab-pane fade">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedAdminsOData" class="form-control" size="8" multiple="multiple" ng-model="adminOData">
+															<option ng-repeat="sAdminsOData in selectedAdminsOData" value="{{sAdminsOData.id}}">{{sAdminsOData.username}}</option>
+														</select>
+													</div>
+													<div id="readOData" class="tab-pane fade">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedReadsOData" class="form-control" size="8" multiple="multiple" ng-model="readsOData">
+															<option ng-repeat="sReadsOData in selectedReadsOData" value="{{sReadsOData.id}}">{{sReadsOData.username}}</option>
+														</select>
+													</div>
+													<div id="updataOData" class="tab-pane fade">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedUpdatesOData" class="form-control" size="8" multiple="multiple" ng-model="updateOData">
+															<option ng-repeat="sUpdatesOData in selectedUpdatesOData" value="{{sUpdatesOData.id}}">{{sUpdatesOData.username}}</option>
+														</select>
+													</div>
+													<div id="deleteOData" class="tab-pane fade">
+														<label>{{'clientwh_permission_lstUser' | translate}}</label>
+														<select id="selectedDeletesOData" class="form-control" size="8" multiple="multiple" ng-model="deleteOData">
+															<option ng-repeat="sDeletesOData in selectedDeletesOData" value="{{sDeletesOData.id}}">{{sDeletesOData.username}}</option>
+														</select>
+													</div>
+													<br>
+													<div class="row">
+														<div class="col-sm-8">
+															<section layout="row" layout-sm="column" layout-wrap>
+																<md-button class="md-icon-button md-primary md-raised" ng-click="adminPer(available,3)" aria-label="{{'clientwh_permission_all_admin' | translate}}">
+																	<md-tooltip md-direction="bottom">{{'clientwh_permission_all_admin' | translate}}</md-tooltip>
+																	<md-icon>
+																		<i class="material-icons">supervisor_account</i>
+																	</md-icon>
+																</md-button>
+																<md-button class="md-icon-button md-primary md-raised" md-colors="{background: 'red'}" ng-click="allPermission(3)"
+																 aria-label="{{'clientwh_permission_all_denied' | translate}}">
+																	<md-tooltip md-direction="bottom">{{'clientwh_permission_all_denied' | translate}}</md-tooltip>
+																	<md-icon>
+																		<i class="material-icons">block</i>
+																	</md-icon>
+																</md-button>
+																<md-button class="md-icon-button md-primary md-raised" md-colors="{background: 'green'}" ng-click="allDenied(3)"
+																 aria-label="{{'clientwh_permission_all_permission' | translate}}">
+																	<md-tooltip md-direction="bottom">{{'clientwh_permission_all_permission' | translate}}</md-tooltip>
+																	<md-icon>
+																		<i class="material-icons">check_circle</i>
+																	</md-icon>
+																</md-button>
+															</section>
+														</div>
+														<div class="col-sm-4">
+															<div class="pull-right">
+																<section layout="row" layout-sm="column" layout-wrap>
+																	<md-button ng-show="addOneOwner" class="md-icon-button md-primary md-raised" md-colors="{background: 'green'}"
+																	 ng-click="addRuleOwner()" aria-label="{{'clientwh_permission_save_owner' | translate}}">
+																		<md-tooltip md-direction="bottom">{{'clientwh_permission_save_owner' | translate}}</md-tooltip>
+																		<md-icon>
+																			<i class="material-icons">save</i>
+																		</md-icon>
+																	</md-button>
+																	<md-button ng-show="forOwner.id > -1" class="md-icon-button md-primary md-raised" md-colors="{background: 'green'}"
+																	 ng-click="allPermission(6)" aria-label="{{'clientwh_permission_creat_new' | translate}}">
+																		<md-tooltip md-direction="bottom">{{'clientwh_permission_creat_new' | translate}}</md-tooltip>
+																		<md-icon>
+																			<i class="material-icons">add</i>
+																		</md-icon>
+																	</md-button>
+																</section>
+															</div>
+														</div>
+													</div>
+													<table class="table table-striped">
+														<thead>
+															<tr>
+																<th>{{'clientwh_permission_owner' | translate}}</th>
+																<th></th>
+																<th></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="rc in ruleOwner">
+																<td ng-click="loadUserForOwner($index)">
+																	<i ng-if="rc.ownerbyids[0]==0">All</i>
+																	<i ng-if="rc.ownerbyids[0]!=0">{{'clientwh_permission_group' | translate}}{{$index}}</i>
+																</td>
+																<td>
+																	<div ng-click="loadUserForOwner($index)" data-toggle="tooltip" title="{{'clientwh_home_edit' | translate}}">
+																		<span class="glyphicon glyphicon-pencil"></span>
+																	</div>
+																</td>
+																<td>
+																	<div ng-click="removeRowOwner($index)" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+																		<span class="glyphicon glyphicon-trash"></span>
+																	</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</md-content>
+										</md-tab>
+									</md-tabs>
+								</md-content>
+							</md-tab>
+						</md-tabs>
+					</div>
+					<!-- Second column -->
+				</div>
+			</div>
+		</div>
+	</md-card-content>
+	<!-- /.box-body -->
+	<div>
+	</div>
+	<div class="panel-footer ">
+		<div class="row ">
+			<div class="btn-group pull-right ">
+
+				<!-- Save button -->
+				<md-button class="md-icon-button md-primary md-raised" ng-click="save()" md-colors="{background: 'default-green'}"
+				 data-toggle="tooltip">
+
+					<md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+					<md-icon md-font-library="material-icons">save</md-icon>
+				</md-button>
+				<!--/ Save button -->
+
+
+			</div>
+		</div>
+	</div>
+	<!-- /.box-footer-->
+</md-card>

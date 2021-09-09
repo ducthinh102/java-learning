@@ -1,0 +1,123 @@
+
+<div>
+	<md-card>
+	<md-tabs md-dynamic-height md-border-bottom>
+			<md-tab label="{{'clientwh_quotation_title' | translate}}">
+	
+	<form name="frmQuotation" novalidate class="css-form">
+		<md-card-title> <md-card-title-text>
+		<span class="md-headline">{{'clientwh_quotation_title' |
+			translate}}</span> </md-card-title-text> </md-card-title>
+
+
+		<!-- Context -->
+		<div class="panel-body">
+			<div class="row">
+
+				<!-- First column -->
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<div class="form-vertical">
+
+						<!-- idsupplier -->
+						<div class="form-group col-sm-12">
+							<md-input-container class="md-block"> <label>{{'clientwh_quotation_idsupplier'
+								| translate}}</label> <input ng-model="quotationView.idsupplier"
+								type="text" disabled> </md-input-container>
+						</div>
+						<!-- /idsupplier -->
+
+						<!-- code -->
+						 <div class="form-group col-sm-12">
+                        	<md-input-container class="md-block">
+						        <label>{{'clientwh_quotation_code' | translate}}</label>
+						        <input ng-model="quotationView.code"  disabled>
+					      	</md-input-container>
+                        </div>
+						<!-- /code -->
+
+						<!-- date -->
+						<div class="form-group col-sm-12">
+
+							<!--start date -->
+							<md-input-container>
+                                    <label>{{'clientwh_quotation_startdate' | translate}}</label>
+                                    <md-datepicker ng-model="quotationView.startdate" md-open-on-focus name="datepicker" disabled></md-datepicker>
+                                </md-input-container>
+							<!--start date -->
+
+							<!--end date -->
+							<md-input-container>
+                                    <label>{{'clientwh_quotation_enddate' | translate}}</label>
+                                    <md-datepicker ng-model="quotationView.enddate" md-open-on-focus name="datepicker" disabled></md-datepicker>
+                                </md-input-container>
+							<!--end date -->
+						</div>
+						<!-- /date -->
+
+						<!-- enddate -->
+						<!-- 							<div class="form-group col-sm-12"> -->
+						<!-- 								<md-input-container> <label>{{'clientwh_quotation_enddate' -->
+						<!-- 									| translate}}</label> <md-datepicker ng-click="resetInvalidEnddate()" -->
+						<!-- 									name="enddate" required ng-model="quotation.enddate" -->
+						<!-- 									md-placeholder="{{'clientwh_quotation_enddate' | translate}}" -->
+						<!-- 									md-open-on-focus name="datepicker"></md-datepicker> -->
+						<!-- 								<div -->
+						<!-- 									ng-messages="(frmDirty || frmQuotation.enddate.$touched) && (frmQuotation.enddate.$error)"> -->
+						<!-- 									<div ng-message="required">{{'clientwh_home_required_field' -->
+						<!-- 										| translate}}</div> -->
+						<!-- 								</div> -->
+						<!-- 								</md-input-container> -->
+						<!-- 							</div> -->
+						<!-- /enddate -->
+
+						<!-- note -->
+						<div class="form-group col-sm-12">
+                            <md-input-container class="md-block">
+                                <label>{{'clientwh_quotation_note' | translate}}</label>
+                                <textarea ng-model="quotationView.note" md-maxlength="500" rows="5" md-select-on-focus maxlength="500" disabled></textarea>
+                            </md-input-container>
+                        </div>
+						<!-- /note -->
+					</div>
+				</div>
+				<!-- /First column -->
+
+				<!-- Second column -->
+				<div class="col-sm-3">
+					
+				</div>
+				<!-- /Second column -->
+			</div>
+			
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<div class="btn-group pull-right">
+					<md-button class="md-icon-button test-tooltip md-raised"
+						data-toggle="tooltip"
+						title="{{'clientwh_home_close' | translate}}"
+						ng-click="closeDialog()"> <md-icon
+						md-font-library="material-icons">close</md-icon> </md-button>
+				</div>
+			</div>
+		</div>
+	</form>
+	</md-tab>
+	<md-tab label="{{'clientwh_quotation_quotationdetail' | translate}}">
+			<div ng-include="quotationdetailForView" ng-controller="clientwhquotationdetailController"></div>
+			<div class="panel-footer">
+                <div class="row">
+                    <div class="btn-group pull-right">
+                        <md-button class="md-icon-button test-tooltip md-raised" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+                            ng-click="closeDialog()">
+                            <md-icon md-font-library="material-icons">close</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+			</md-tab>
+	</md-tabs>
+	</md-card>
+</div>

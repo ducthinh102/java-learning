@@ -1,0 +1,110 @@
+<md-card>
+	<form name="frmCatalog" novalidate class="css-form">
+		<!-- Title -->
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{'clientwh_catalog_origin_title' | translate}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<!-- Title -->
+		<!-- Context -->
+		<div class="row">
+			<!-- First column -->
+			<div class="col-sm-3"></div>
+			<!--/ First column  -->
+			<!-- Second column -->
+			<div class="col-sm-6">
+				<div class="form-vertical">
+					<!-- Origin code -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block" md-is-error="(frmDirty || frmCatalog.code.$touched) && (frmCatalog.code.$invalid || frmCatalog.code.$error.duplicate)">
+							<label class="control-label col-sm-6">{{'clientwh_catalog_origin_code' | translate}}</label>
+							<input md-maxlength="20" md-input required md-no-asterisk name="code" ng-model="catalog.code" ng-change="resetValidateDuplicate(1)"
+							 id="code" maxlength="20" ng-pattern="/\S/">
+							<div ng-messages="(frmDirty || frmCatalog.code.$touched) && (frmCatalog.code.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+								<div ng-message="duplicate">{{'clientwh_home_code_is_exits' | translate}}</div>
+								<div ng-message="pattern">{{'clientwh_home_white_space' | translate}}</div>
+							</div>
+						</md-input-container>
+					</div>
+					<!--/ Origin code -->
+					<!-- Origin name -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block" md-is-error="(frmDirty || frmCatalog.name.$touched) && (frmCatalog.name.$invalid || frmCatalog.name.$error.duplicate)">
+							<label class="control-label col-sm-6">{{'clientwh_catalog_origin_name' | translate}}</label>
+							<input md-maxlength="100" md-input required md-no-asterisk name="name" ng-model="catalog.name" ng-change="resetValidateDuplicate(2)"
+							 id="name" maxlength="100" ng-pattern="/\S/">
+							<div ng-messages="(frmDirty || frmCatalog.name.$touched) && (frmCatalog.name.$error)">
+								<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+								<div ng-message="duplicate">{{'clientwh_home_name_is_exits' | translate}}</div>
+								<div ng-message="pattern">{{'clientwh_home_white_space' | translate}}</div>
+							</div>
+						</md-input-container>
+					</div>
+					<!--/ Origin name  -->
+					<!-- Note -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block">
+							<label>{{'clientwh_catalog_origin_note' | translate}}</label>
+							<textarea ng-model="catalog.note" name="note" md-maxlength="500" rows="5" md-select-on-focus maxlength="500" ng-pattern="/\S/"></textarea>
+							<div ng-messages="frmCatalog.note.$error">
+								<div ng-message="pattern">{{'clientwh_home_white_space' | translate}}</div>
+							</div>
+						</md-input-container>
+					</div>
+					<!--/ Note  -->
+				</div>
+			</div>
+			<!-- /Second column -->
+
+			<!-- Third column -->
+			<div class="col-sm-3"></div>
+			<!-- /Third column -->
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer ">
+			<div class="row ">
+				<div class="btn-group pull-right ">
+
+					<!-- Save button -->
+					<md-button class="md-icon-button md-primary md-raised" ng-click="save()" md-colors="{background: 'default-green'}"
+					 data-toggle="tooltip">
+
+						<md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">save</md-icon>
+					</md-button>
+					<!--/ Save button -->
+
+					<!-- Create button -->
+					<md-button class="md-icon-button md-primary md-raised" ng-click="create()" md-colors="{background: 'default-blue'}"
+					 data-toggle="tooltip">
+
+						<md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">add</md-icon>
+					</md-button>
+					<!--/ Create button -->
+
+					<!-- Delete button -->
+					<md-button class="md-icon-button md-primary md-raised" ng-show="catalog.id > -1" ng-click="cofirmDeleteToastForm()"
+					 md-colors="{background: 'default-red'}" data-toggle="tooltip">
+
+						<md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">delete</md-icon>
+					</md-button>
+					<!--/ Delete button -->
+
+					<!-- Close button -->
+					<md-button class="md-icon-button md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+
+						<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+						<md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+					<!--/ Close button -->
+
+				</div>
+			</div>
+		</div>
+		<!--/ Bottom actions -->
+	</form>
+</md-card>

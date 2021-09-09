@@ -1,0 +1,71 @@
+debug: true
+
+server:
+  #use-forward-headers: true
+  port: 1111
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.jks
+    key-store-password: authserverstorepass
+    key-password: authserverkeypass
+    key-store-type: JKS
+  connection-timeout: 3600000
+    
+#security:
+  #sessions: ALWAYS
+      
+zuul:
+  host:
+    max-total-connections: 200
+    max-per-route-connections: 20
+    socket-timeout-millis: 3600000
+    connect-timeout-millis: 3600000
+  routes:
+    clientmain:
+      path: /clientmain/**
+      url: http://localhost:2228/clientmain
+    clientbuilding:
+      path: /clientbuilding/**
+      url: http://localhost:2229/clientbuilding
+    clientwh:
+      path: /clientwh/**
+      url: http://localhost:2225/clientwh
+    clienthr:
+      path: /clienthr/**
+      url: http://localhost:2226/clienthr
+    servermain:
+      path: /servermain/**
+      url: http://localhost:4448/servermain
+    serverbuilding:
+      path: /serverbuilding/**
+      url: http://localhost:4449/serverbuilding
+    serverwh:
+      path: /serverwh/**
+      url: http://localhost:4445/serverwh
+    serverhr:
+      path: /serverhr/**
+      url: http://localhost:4446/serverhr
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/serverauth
+    username: postgres
+    password: ENC(e6TY2nTHNJhLB8dQ17qNQKmyId2qz8on)
+    driverClassName: org.postgresql.Driver
+
+fileserver:
+  path: http://localhost:4445/serverwh/
+
+#TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
+logging:
+  level:
+    root: ERROR
+    com.lankydan.service: ERROR
+    org.springframework.web: ERROR
+    com.howtodoinjava: ERROR
+    org.hibernate: ERROR
+  path: logs
+  file: #${logging.path}/log.log
+  pattern:
+    file: #"%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n"
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"

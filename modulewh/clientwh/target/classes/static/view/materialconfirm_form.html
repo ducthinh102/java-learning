@@ -1,0 +1,139 @@
+<div>
+	<form name="frmMaterialConfirm" novalidate class="css-form">
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+					<div class="btn btn-link pull-left" ng-click="list()">{{'clientwh_materialconfirm_title' | translate}}</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientwh_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Alert Message -->
+			<div id="alertMessage" class="alert" style="display: none">
+				<strong>{{alertMessage}}</strong>
+			</div>
+			
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+							<!-- thumbnail -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="thumbnail">{{'clientwh_materialconfirm_thumbnail' | translate}}</label>
+								<div class="input-group col-sm-6">
+									<img id="thumbnail" class="thumbnail-form" name="thumbnail" ng-if="materialconfirm.thumbnail" ng-src={{materialconfirm.thumbnail}} alt="{{'clientwh_materialconfirm_no_thumbnail' | translate}}" >
+								</div>
+							</div>
+							<!-- /thumbnail -->
+							<!-- name -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="name">{{'clientwh_materialconfirm_name' | translate}}</label>
+								<div class="input-group col-sm-6">
+									{{materialconfirm.name}}
+								</div>
+							</div>
+							<!-- /name -->
+							<!-- quantity -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="quantity">{{'clientwh_materialconfirm_quantity' | translate}}</label>
+								<div class="input-group col-sm-6">
+									{{materialconfirm.quantity}}
+								</div>
+							</div>
+							<!-- /quantity -->
+							<!-- attached files -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="">{{'clientwh_materialconfirm_attachedfiles' | translate}}</label>
+								<div class="input-group col-sm-6">
+									<a href="http://www.axmag.com/download/pdfurl-guide.pdf" target="_blank">Specifications.pdf</a>
+									<span>, </span>
+									<a href="http://www.infosecwriters.com/text_resources/doc/Demystifying_Google_Hacks.doc" target="_blank">Details.doc</a>
+								</div>
+							</div>
+							<!-- /attached files -->
+							<!-- description -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="description">{{'clientwh_materialconfirm_description' | translate}}</label>
+								<div class="input-group col-sm-6">
+									{{materialconfirm.description}}
+								</div>
+							</div>
+							<!-- /description -->
+							<!-- code -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="code">{{'clientwh_materialconfirm_code' | translate}}</label>
+								<div class="input-group col-sm-6" ng-class="{ 'has-error': (frmMaterialConfirm.code.$touched || frmMaterialConfirm.code.$dirty || frmDirty) && frmMaterialConfirm.code.$invalid }">
+									<input class="form-control" type="text" id="code" name="code" ng-model="materialconfirm.code" ng-change="clearNameSearch()" maxlength="50" readonly></input>
+								</div>
+							</div>
+							<!-- /code -->
+							<!-- search by name -->
+							<div class="form-group col-sm-12">
+								<label class="control-label col-sm-6" for="nameSearch">{{'clientwh_materialconfirm_name_search' | translate}}</label>
+								<div class="input-group col-sm-6 md-autocomplete-wrap-custom">
+									<md-autocomplete
+										md-search-text="frmMaterialConfirm.nameSearch.searchText"
+										md-items="materialItem in searchByName()"
+										md-item-text="materialItem.name"
+										md-clear-button="true"
+										md-input-id="nameSearch"
+										md-delay=400
+										md-selected-item-change="selectedItemChange(materialItem)"
+										md-menu-class="autocomplete-custom-template">
+										<md-item-template>
+											<span class="item-title">
+												<img ng-if="materialItem.thumbnail" ng-src={{materialItem.thumbnail}}>
+												<span>{{materialItem.name}}</span>
+											</span> 
+											<span class="item-metadata"> 
+												<span><strong>{{materialItem.code}}</strong></span> 
+											</span> 
+										</md-item-template>
+										<md-not-found>
+											{{'clientwh_materialconfirm_name_search_not_found' | translate}}
+										</md-not-found>
+									</md-autocomplete>
+								</div>
+							</div>
+							<!-- /search by name -->
+
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-6">
+						<div class="form-vertical"></div>
+					</div>
+					<!-- /Second column -->
+				</div>
+			</div>
+			
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientwh_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</form>
+</div>

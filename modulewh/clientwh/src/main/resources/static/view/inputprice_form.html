@@ -1,0 +1,84 @@
+<md-card>
+	<div class="row">
+		<!-- Title -->
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{'clientwh_home_update_price' | translate}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<!--/ Title  -->
+	</div>
+	<!-- Content -->
+	<md-card-content>
+		<div class="row" ng-init="initList()">
+			<!-- First column -->
+			<div class="col-sm-6">
+				<form ng-submit="updatePriceOfMaterial()" name="frmInputprice">
+					<!-- Material name -->
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>{{'clientwh_home_material_name' | translate}}</label>
+						<input ng-model="inputPrice.materialname" disabled>
+					</md-input-container>
+					<!--/ Material name  -->
+					<!-- Price -->
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>{{'clientwh_home_material_price' | translate}}</label>
+						<input type="number" step="0.01" name="price" ng-model="inputPrice.price">
+					</md-input-container>
+					<!--/ Price  -->
+					<!-- Submit -->
+					<md-button class="md-secondary md-icon-button pull-right" type="submit" ng-disabled="frmInputprice.price.$invalid||inputPrice.price==null||inputPrice.price==''">
+						<md-tooltip md-direction="bottom">{{'clientwh_home_update' | translate}}</md-tooltip>
+						<i class="material-icons">present_to_all</i>
+					</md-button>
+					<!--/ Submit  -->
+				</form>
+			</div>
+			<!--/ First column -->
+			<!-- Second column -->
+			<div class="col-sm-6">
+				<fieldset>
+					<label>{{'clientwh_home_material_list' | translate}}
+						<!-- Reset button -->
+						<md-button class="md-secondary md-icon-button" ng-click="materialformResetPrice()" ng-disabled="inputPrice.price==null||inputPrice.price==''">
+							<md-tooltip md-direction="right">{{'clientwh_home_reset_price' | translate}}</md-tooltip>
+							<i class="material-icons">refresh</i>
+						</md-button>
+						<!--/ Reset button -->
+					</label>
+					<!-- Items selected -->
+					<select class="form-control" size="20" multiple="multiple" ng-model="idselectedPrice">
+						<optgroup label="{{'clientwh_home_material_price' | translate}}: {{material.price| number:2}}" ng-repeat="material in materialdetaillist">
+							<option ng-selected="$index===indexItemPrice" ng-value="material.id" ng-click="getMaterialByIndex($index)">
+								{{material.materialname}}
+							</option>
+						</optgroup>
+					</select>
+					<!--/ Items selected  -->
+				</fieldset>
+			</div>
+			<!-- Second column -->
+		</div>
+	</md-card-content>
+	<!--/ Content  -->
+	<!-- Bottom actions -->
+	<div class="panel-footer">
+		<div class="row">
+			<div class="btn-group pull-right">
+				<!-- Ok button -->
+				<md-button class="md-icon-button md-raised md-primary" ng-click="saveAllInputPrice()" md-colors="{background: 'default-green'}">
+					<md-tooltip md-direction="top">Ok</md-tooltip>
+					<md-icon md-font-library="material-icons">done</md-icon>
+				</md-button>
+				<!--/ Ok button  -->
+				<!-- Close button -->
+				<md-button class="md-icon-button md-raised" ng-click="closeDialog()">
+					<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+					<md-icon md-font-library="material-icons">close</md-icon>
+				</md-button>
+				<!--/ Close button -->
+			</div>
+		</div>
+	</div>
+	<!--/ Bottom actions -->
+</md-card>

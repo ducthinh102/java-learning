@@ -1,0 +1,15 @@
+{
+	"clientwh_comparemateriallist_title": "Lựa chọn chi tiết",
+	"clientwh_comparemateriallist_code": "Mã",
+	"clientwh_comparemateriallist_detail": "Danh sách chi tiết",
+	"clientwh_comparemateriallist_detail_selected": "Danh sách chi tiết đã chọn",
+	"clientwh_comparemateriallist_search": "Tìm kiếm",
+	"clientwh_comparemateriallist_choose_source_detaul": "Chọn phiếu cần lấy chi tiết",
+	"clientwh_comparemateriallist_choose_target_detaul": "Chọn phiếu cần lấy chi tiết",
+	"clientwh_comparemateriallist_helpMessage": "Click to selct",
+	"clientwh_comparemateriallist_labelAll": "All items",
+	"clientwh_comparemateriallist_labelSelected": "Selected items",
+	"clientwh_comparemateriallist_labelSelectAll": "Select all",
+	"clientwh_comparemateriallist_labelDeselectAll": "Deselect all"
+	
+}

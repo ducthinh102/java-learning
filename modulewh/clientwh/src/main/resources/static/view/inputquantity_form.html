@@ -1,0 +1,90 @@
+<md-card>
+	<div class="row">
+		<!-- Title -->
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{'clientwh_home_update_quantity' | translate}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<!--/ Title  -->
+	</div>
+	<!-- Content -->
+	<md-card-content>
+		<div class="row" ng-init="initList()">
+			<!-- First column -->
+			<div class="col-sm-6">
+				<form ng-submit="updateQuantityOfMaterial()" name="frmInputquantity">
+					<!-- Material name -->
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>{{'clientwh_home_material_name' | translate}}</label>
+						<input ng-model="inputQuantity.materialname" disabled>
+					</md-input-container>
+					<!--/ Material name -->
+					<!-- Quantity -->
+					<md-input-container class="md-block" flex-gt-xs>
+						<label>{{'clientwh_home_material_quantity' | translate}}</label>
+						<input type="number" min="0" max="999999999" name="quantity" ng-model="inputQuantity.quantity">
+					</md-input-container>
+					<!--/ Quantity -->
+					<!-- Submit -->
+					<md-button class="md-secondary md-icon-button pull-right" type="submit" ng-disabled="frmInputquantity.quantity.$invalid|| inputQuantity.quantity==null||inputQuantity.quantity==''">
+						<md-tooltip md-direction="bottom">{{'clientwh_home_update' | translate}}</md-tooltip>
+						<i class="material-icons">present_to_all</i>
+					</md-button>
+					<!-- Submit -->
+				</form>
+			</div>
+			<!--/ First column -->
+			<!-- Second column -->
+			<div class="col-sm-6">
+				<div class="tab-content">
+					<div class="tab-pane fade in active">
+						<fieldset>
+							<div class="tab-content">
+								<label>{{'clientwh_home_material_list' | translate}}
+									<!-- Reset button -->
+									<md-button class="md-secondary md-icon-button" ng-click="materialformResetQuantity()" ng-disabled="inputQuantity.quantity==null||inputQuantity.quantity==''">
+										<md-tooltip md-direction="right">{{'clientwh_home_reset_quantity' | translate}}</md-tooltip>
+										<i class="material-icons">refresh</i>
+									</md-button>
+									<!--/ Reset button  -->
+								</label>
+								<!-- Items selected -->
+								<select class="form-control" size="20" multiple="multiple" ng-model="idselectedQuantity">
+									<optgroup label="{{'clientwh_home_material_quantity' | translate}}: {{material.quantity| number:0}}" ng-repeat="material in materialdetaillistQuantity">
+										<option ng-selected="$index===indexItemQuantity" ng-value="material.id" ng-click="getMaterialByIndexQuantity($index)">
+											{{material.materialname}}
+										</option>
+									</optgroup>
+								</select>
+								<!--/ Items selected  -->
+							</div>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+			<!--/ Second column  -->
+		</div>
+	</md-card-content>
+	<!--/ Content -->
+	<!-- Bottom actions -->
+	<div class="panel-footer">
+		<div class="row">
+			<div class="btn-group pull-right">
+				<!-- Ok button -->
+				<md-button class="md-icon-button md-raised md-primary" ng-click="saveAllInputQuantity()" md-colors="{background: 'default-green'}">
+					<md-tooltip md-direction="top">Ok</md-tooltip>
+					<md-icon md-font-library="material-icons">done</md-icon>
+				</md-button>
+				<!--/ Ok button  -->
+				<!-- Close button -->
+				<md-button class="md-icon-button md-raised" ng-click="closeDialog()">
+					<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+					<md-icon md-font-library="material-icons">close</md-icon>
+				</md-button>
+				<!--/ Close button  -->
+			</div>
+		</div>
+	</div>
+	<!--/ Bottom actions -->
+</md-card>

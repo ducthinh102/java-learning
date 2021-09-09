@@ -1,0 +1,150 @@
+<section class="content-header"></section>
+
+<!-- Main content -->
+<section class="content">
+	<!-- Default box -->
+	<div class="box">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">{{'clientwh_user_title' | translate}}</h3>
+		</div>
+
+		<div class="box-body">
+		<div class="padded" md-whiteframe="1" flex="100" flex-gt-sm="100" layout="column" layout-align="center center">
+  
+			<div ng-init="initList()">
+				<!-- panel-heading -->
+				<div class="panel-heading">
+					<br>
+					<div class="row">
+
+						<div class="col-sm-7">
+							<div class="col-sm-7">
+								<form ng-submit="listWithCriteriasByPage(1)">
+								    <div class="input-group">
+								        <md-input-container class="md-block" style="top: 16px">
+								            <label>{{'clientwh_home_search' | translate}}</label>
+								            <input md-input ng-model="search.content">
+								        </md-input-container>
+								
+								        <span class="input-group-btn">
+								            <md-button aria-label="search" class="md-icon-button test-tooltip md-primary md-raised" md-colors="{background: 'blue'}"
+								                type="submit">
+								                <md-tooltip >{{'clientwh_home_search' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">search</md-icon>
+								            </md-button>
+								
+								            <md-button aria-label="clear" class="md-icon-button test-tooltip md-raised" ng-click="clearFilter()">
+								            	<md-tooltip>{{'clientwh_home_cancel' | translate}}</md-tooltip>
+								                <md-icon md-font-library="material-icons">clear</md-icon>
+								            </md-button>
+								        </span>
+								    </div>
+								</form>
+							</div>
+                        </div>
+                        
+						<div class="col-sm-5">
+							<div class="pull-right">
+								<md-button  style="top: 24px" class="md-icon-button test-tooltip md-primary md-raised" ng-click="showCreate()" ng-if="isPermisCreate()" md-colors="{background: 'blue'}" title="{{'clientwh_home_create' | translate}}">
+                                	<md-tooltip md-direction="bottom">{{'clientwh_home_create' | translate}}</md-tooltip>
+                                	<md-icon md-font-library="material-icons">add</md-icon>
+                                </md-button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- /.panel-heading -->
+
+				<div class="panel-body">
+					
+					<div class="table-responsive">
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<!-- filter by username -->
+									<th ng-click="sortBy('username')">{{'clientwh_user_username' | translate}}
+										<span ng-show="sortKey === 'username'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+									</th>
+									<!-- filter by displayname -->
+									<th ng-click="sortBy('displayname')">{{'clientwh_user_displayname' | translate}}
+										<span ng-show="sortKey === 'displayname'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+									</th>
+									<!-- filter by email -->
+									<th ng-click="sortBy('email')">{{'clientwh_user_email' | translate}}
+										<span ng-show="sortKey === 'email'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+									</th>
+									<!-- filter by firstname -->
+									<th ng-click="sortBy('firstname')">{{'clientwh_user_firstname' | translate}}
+										<span ng-show="sortKey === 'firstname'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+									</th>
+									<!-- filter by lastname -->
+									<th ng-click="sortBy('lastname')">{{'clientwh_user_lastname' | translate}}
+										<span ng-show="sortKey === 'lastname'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+									</th>
+									<!-- filter by enabled -->
+									<th ng-click="sortBy('enabled')">{{'clientwh_user_enabled' | translate}}
+										<span ng-show="sortKey === 'enabled'" class="glyphicon sort-icon" ng-class="{'glyphicon-chevron-up': reverse, 'glyphicon-chevron-down': !reverse}"/>
+									</th>
+									<th/>
+									<th/>
+									<th/>
+								</tr>
+							</thead>
+								<tbody>
+									<tr dir-paginate="item in users | itemsPerPage:page.pageSize" current-page="page.currentPage" total-items="page.totalElements">
+										<!-- filter by username -->
+										<td>{{item.username}}</td>
+										<!-- filter by displayname -->
+										<td>{{item.displayname}}</td>
+										<!-- filter by email -->
+										<td>{{item.email}}</td>
+										<!-- filter by firstname -->
+										<td>{{item.firstname}}</td>
+										<!-- filter by lastname -->
+										<td>{{item.lastname}}</td>
+										<!-- filter by enabled -->
+										<td>{{item.enabled}}</td>
+										<td>
+											<div ng-click="showForm(item.id, true)" ng-if="isPermisUpdate(item.idcreate, item.idowner)" data-toggle="tooltip" title="{{'clientwh_home_changepassword' | translate}}">
+												<span class="glyphicon glyphicon-transfer"></span>
+											</div>
+										</td>
+										<td>
+											<div ng-click="showForm(item.id, false)" ng-if="isPermisUpdate(item.idcreate, item.idowner)" data-toggle="tooltip" title="{{'clientwh_home_edit' | translate}}">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</div>
+										</td>
+										<td>
+											<div ng-click="cofirmDeleteToastList(item.id,item.version)" ng-if="isPermisDelete(item.idcreate, item.idowner)" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+												<span class="glyphicon glyphicon-trash"></span>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>                   
+					<!-- /.panel-body -->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="pull-right">
+							<dir-pagination-controls
+								max-size="8"
+								direction-links="true"
+								boundary-links="true" 
+								on-page-change="listWithCriteriasByPage(newPageNumber)" >
+							</dir-pagination-controls>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- /.box-body -->
+		</div>
+	</div>
+	<!-- /.box -->
+</section>

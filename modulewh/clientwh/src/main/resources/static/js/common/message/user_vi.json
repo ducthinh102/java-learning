@@ -1,0 +1,11 @@
+{
+	"clientwh_user_title": "Người Dùng",
+	"clientwh_user_username": "Tên đăng nhập",
+	"clientwh_user_password": "Mật khẩu",
+	"clientwh_user_displayname": "Tên hiển thị",
+	"clientwh_user_email": "Email",
+	"clientwh_user_thumbnail": "Ảnh",
+	"clientwh_user_enabled": "Kích hoạt",
+	"clientwh_user_firstname": "Tên",
+	"clientwh_user_lastname": "Họ"
+}

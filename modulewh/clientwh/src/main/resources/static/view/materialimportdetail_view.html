@@ -1,0 +1,148 @@
+<!-- Main content -->
+<section class="content">
+	<!-- Default box -->
+	<div class="box">
+		<div class="box-body">
+			<div ng-init="initList()">
+				<!-- panel-heading -->
+				<div class="panel-heading">
+					<div class="row">
+						<!-- First column -->
+						<div class="col-sm-7">
+							<!-- First column -->
+							<div class="col-sm-5">
+								<form ng-submit="listWithCriteriasByIdmaterialimportAndPage(idmaterialimport,1)">
+									<div class="input-group">
+										<md-input-container class="md-block" style="top: 20px">
+											<label class="control-label">{{'clientwh_home_search' | translate}}</label>
+											<input md-input ng-model="search.content">
+										</md-input-container>
+										<!-- Group button -->
+										<span class="input-group-btn">
+											<!-- Search button -->
+											<md-button class="md-icon-button md-raised md-primary" md-colors="{background: 'default-blue'}" title="{{'clientwh_home_search' | translate}}"
+											 type="submit" ng-click="listWithCriteriasByIdmaterialexportAndPage(idmaterialexport,1)">
+											 	<md-tooltip>{{'clientwh_home_search' | translate}}</md-tooltip>
+												<md-icon md-font-library="material-icons">search</md-icon>
+											</md-button>
+											<!-- Search button -->
+											<!-- Clear button -->
+											<md-button class="md-icon-button md-raised" title="{{'clientwh_home_filter_clear' | translate}}" ng-click="clearFilterSearch()">
+												<md-tooltip>{{'clientwh_home_filter_clear' | translate}}</md-tooltip>
+												<md-icon md-font-library="material-icons">clear</md-icon>
+											</md-button>
+											<!--/ Clear button -->
+										</span>
+										<!--/ Group button -->
+									</div>
+								</form>
+							</div>
+							<!--/ First column  -->
+							<!-- Second column -->
+							<div class="col-sm-5" style="top: 20px">
+								<div class="input-group">
+									<!-- Sort by  -->
+									<md-input-container style="width: 100%;">
+										<label>{{'clientwh_home_sort' | translate}}</label>
+										<md-select ng-model="sortByArr.name" ng-change="sortBy(sortByArr.name)">
+											<md-option ng-value="">
+												<em>{{'clientwh_home_none' | translate}}</em>
+											</md-option>
+											<md-option ng-repeat="s in sortByName" ng-value="s.value">{{s.display| translate}}</md-option>
+										</md-select>
+									</md-input-container>
+									<!--/ Sort by -->
+									<span class="input-group-btn">
+										<!-- Desc button -->
+										<md-button ng-if="sortByArr.name!=null&&!reverse" ng-click="sortBy(sortByArr.name)" class="md-icon-button md-primary md-raised"
+										 md-colors="{background: 'default-blue'}">
+											<md-tooltip>{{'clientwh_home_sort_desc' | translate}}</md-tooltip>
+											<md-icon md-font-library="material-icons">arrow_downward</md-icon>
+										</md-button>
+										<!--/ Desc button -->
+										<!-- Asc button -->
+										<md-button ng-if="sortByArr.name!=null&&reverse" ng-click="sortBy(sortByArr.name)" class="md-icon-button md-primary md-raised"
+										 md-colors="{background: 'default-blue'}">
+											<md-tooltip>{{'clientwh_home_sort_asc' | translate}}</md-tooltip>
+											<md-icon md-font-library="material-icons">arrow_upward</md-icon>
+										</md-button>
+										<!--/ Asc button -->
+										<!-- Clear button -->
+										<md-button aria-label="clear" class="md-icon-button md-raised" ng-click="clearSortBy()">
+											<md-tooltip>{{'clientwh_home_cancel' | translate}}</md-tooltip>
+											<md-icon md-font-library="material-icons">clear</md-icon>
+										</md-button>
+										<!--/ Clear button -->
+									</span>
+								</div>
+							</div>
+							<!-- Second column -->
+						</div>
+						<!-- First column -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.panel-heading -->
+
+				<div class="panel-body">
+					<div class="row">
+						<!-- First column -->
+						<div class="col-sm-3" dir-paginate="item in materialimportdetails | itemsPerPage:page.pageSize" current-page="page.currentPage"
+						 total-items="page.totalElements">
+							<md-card md-theme-watch>
+								<md-card-title ng-click="showDetail(item.id)">
+									<md-card-title-media>
+										<div class="md-media-sm card-media">
+											<img alt="" data-ng-src="{{item.materialthumbnail}}" />
+										</div>
+									</md-card-title-media>
+									<md-card-title-text>
+										<span class="md-sm-headline">{{item.materialname| limitTo : 60}}
+											<i ng-if="item.materialname.length >= 60">...</i>
+										</span>
+									</md-card-title-text>
+								</md-card-title>
+								<md-card-content>
+									<table>
+										<tr class="md-subhead">
+											<td>
+												<strong>{{'clientwh_materialimportdetail_quantity' | translate}}</strong>
+											</td>
+											<td>:&nbsp;</td>
+											<td>{{item.quantity | number:0 | limitTo:13}}
+												<i ng-if="item.quantity.toString().length > 13">...</i>
+											</td>
+										</tr>
+										<tr class="md-subhead">
+											<td>
+												<strong>{{'clientwh_materialimportdetail_amount' | translate}}</strong>
+											</td>
+											<td>:&nbsp;</td>
+											<td>{{item.amount | number:0 | limitTo:13}}
+												<i ng-if="item.amount.toString().length > 13">...</i>
+											</td>
+										</tr>
+									</table>
+								</md-card-content>
+							</md-card>
+						</div>
+						<!-- First column -->
+					</div>
+					<!-- Pagination -->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="pull-right">
+								<dir-pagination-controls max-size="8" direction-links="true" boundary-links="true" on-page-change="listWithCriteriasByIdmaterialimportAndPage(idmaterialimport, newPageNumber)">
+								</dir-pagination-controls>
+							</div>
+						</div>
+					</div>
+					<!--/ Pagination -->
+				</div>
+				<!-- /.panel-body -->
+			</div>
+		</div>
+		<!-- /.box-body -->
+	</div>
+	<!-- /.box -->
+</section>

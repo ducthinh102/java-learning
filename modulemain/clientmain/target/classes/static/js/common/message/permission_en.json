@@ -1,0 +1,16 @@
+{
+	"clientmain_permission_title": "Permission",
+	"clientmain_permission_target": "target",
+	"clientmain_permission_rules": "rules",
+	"clientmain_permission_status": "status",
+	"clientmain_permission_idowner": "idowner",
+	"clientmain_permission_idcreate": "idcreate",
+	"clientmain_permission_idupdate": "idupdate",
+	"clientmain_permission_iddelete": "iddelete",
+	"clientmain_permission_idlock": "idlock",
+	"clientmain_permission_createdate": "createdate",
+	"clientmain_permission_updatedate": "updatedate",
+	"clientmain_permission_deletedate": "deletedate",
+	"clientmain_permission_lockdate": "lockdate",
+	"clientmain_permission_version": "version"
+}

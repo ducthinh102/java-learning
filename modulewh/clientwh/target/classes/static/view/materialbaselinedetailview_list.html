@@ -1,0 +1,211 @@
+
+<div>
+
+	<form name="frmMaterialbaselinedetail" novalidate class="css-form">
+		<div class="panel panel-default">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+				
+					<div class="btn btn-link pull-left" ng-click="list()">{{'clientwh_materialbaselinedetail_title' | translate}}</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientwh_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientwh_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="materialbaselinedetail.id > -1" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div id="materialbaselinedetailAlertMessage" class="alert" style="display: none">
+				<strong>{{materialbaselinedetailAlertMessage}}</strong>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<div class="row">
+					
+					<!-- First column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+							<!-- idmaterialbaseline -->
+							<div class="form-group col-sm-12" ng-show="false">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialbaselinedetail.idmaterialbaseline.$touched) && (frmMaterialbaselinedetail.idmaterialbaseline.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_materialbaselinedetail_idmaterialbaseline' | translate}}</label>
+						        	<input disabled md-maxlength="10" md-input required md-no-asterisk name="idmaterialbaseline" ng-model="materialbaselinedetail.idmaterialbaseline" disabled>
+						        	<div ng-messages="(frmDirty || frmMaterialbaselinedetail.idmaterialbaseline.$touched) && (frmMaterialbaselinedetail.idmaterialbaseline.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The idmaterialbaseline must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /idmaterialbaseline -->
+							<!-- idmaterial -->
+								<div class="form-group col-sm-12">
+									<div class="input-group col-sm-12" md-is-error="(frmDirty || frmMaterialbaselinedetail.idmaterial.$touched) && (frmMaterialbaselinedetail.idmaterial.$invalid)" ng-click="resetInvalidMaterial()">
+							        	<md-autocomplete  ng-disabled="true" md-input-name="idmaterial" required="" ng-disabled="ctlentityfieldMaterial.isDisabled"
+		                                       md-no-cache="ctlentityfieldMaterial.noCache" md-selected-item="ctlentityfieldMaterial.selectedItem"
+		                                       md-search-text-change="ctlentityfieldMaterial.searchTextChange(ctlentityfieldMaterial.searchText)"
+		                                       md-search-text="ctlentityfieldMaterial.searchText" md-selected-item-change="ctlentityfieldMaterial.selectedItemChange(item)"
+		                                       md-items="item in ctlentityfieldMaterial.querySearch(ctlentityfieldMaterial.searchText)" md-item-text="item.display"
+		                                       md-min-length="0" md-require-match="" md-floating-label="{{'clientwh_materialbaselinedetail_idmaterial' | translate}}"
+		                                       md-clear-button="true"
+		                                       placeholder="Please select material">
+		                                       <md-item-template>
+		                                           <span md-highlight-text="ctlentityfieldMaterial.searchText" md-highlight-flags="^i">{{ item.display }}</span>
+		                                       </md-item-template>
+		                                       <md-not-found>
+		                                           No "{{ ctlentityfieldMaterial.searchText }}" were found.
+		                                           <a ng-click="ctlentityfieldMaterial.newState(ctlentityfieldMaterial.searchText)">Create a new one!</a>
+		                                       </md-not-found>
+		                                       <div ng-messages="(frmDirty || frmMaterialbaselinedetail.idmaterial.$touched) && (frmMaterialbaselinedetail.idmaterial.$error)">
+		                                           <div ng-message="required">{{ 'clientwh_home_required_field' | translate }}</div>
+		                                           <div ng-message="md-require-match">{{ 'clientwh_materialbaselinedetail_store_exist' | translate }}</div>
+		                                       </div>
+		                                   </md-autocomplete>
+							      	</div>
+								</div>
+							<!-- /idmaterial -->
+							<!-- idsupplier -->
+								<div class="form-group col-sm-12">
+									<div class="input-group col-sm-12" md-is-error="(frmDirty || frmMaterialbaselinedetail.idsupplier.$touched) && (frmMaterialbaselinedetail.idsupplier.$invalid)" ng-click="resetInvalidSupplier()">
+							        	<md-autocomplete ng-disabled="true" md-input-name="idsupplier" required="" ng-disabled="ctlentityfieldSupplier.isDisabled"
+			                                      md-no-cache="ctlentityfieldSupplier.noCache" md-selected-item="ctlentityfieldSupplier.selectedItem"
+			                                      md-search-text-change="ctlentityfieldSupplier.searchTextChange(ctlentityfieldSupplier.searchText)"
+			                                      md-search-text="ctlentityfieldSupplier.searchText" md-selected-item-change="ctlentityfieldSupplier.selectedItemChange(item)"
+			                                      md-items="item in ctlentityfieldSupplier.querySearch(ctlentityfieldSupplier.searchText)"
+			                                      md-item-text="item.display" md-min-length="0" md-require-match" md-floating-label="{{'clientwh_materialbaselinedetail_idsupplier' | translate}}"
+			                                      md-clear-button="true">
+			                                      <md-item-template>
+			                                          <span md-highlight-text="ctlentityfieldSupplier.searchText" md-highlight-flags="^i">{{ item.display }}</span>
+			                                      </md-item-template>
+			                                      <md-not-found>
+			                                          No "{{ ctlentityfieldSupplier.searchText }}" were found.
+			                                          <a ng-click="ctlentityfieldSupplier.newState(ctlentityfieldSupplier.searchText)">Create a new one!</a>
+			                                      </md-not-found>
+			                                      <div ng-messages="(frmDirty || frmMaterialbaselinedetail.idsupplier.$touched) && (frmMaterialbaselinedetail.idsupplier.$error)">
+			                                          <div ng-message="required">{{ 'clientwh_home_required_field' | translate }}</div>
+			                                          <div ng-message="md-require-match">{{ 'clientwh_materialbaselinedetail_supplier_exist' | translate }}</div>
+			                                      </div>
+			                              </md-autocomplete>
+						      		</div>
+								</div>
+							<!-- /idsupplier -->
+							<!-- idunit -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialbaselinedetail.idunit.$touched) && (frmMaterialbaselinedetail.idunit.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_materialbaselinedetail_idunit' | translate}}</label>
+						        	<input disabled md-input required md-no-asterisk name="idunit" ng-model="materialbaselinedetail.idunit">
+						        	<div ng-messages="(frmDirty || frmMaterialbaselinedetail.idunit.$touched) && (frmMaterialbaselinedetail.idunit.$error)">						          		
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /idunit -->
+							<!-- price -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialbaselinedetail.price.$touched) && (frmMaterialbaselinedetail.price.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_materialbaselinedetail_price' | translate}}</label>
+						        	<input disabled md-maxlength="10" md-input required md-no-asterisk name="price" ng-model="materialbaselinedetail.price" ng-change="ResetTotalAmt();CalculateSum(materialbaselinedetail)">
+						        	<div ng-messages="(frmDirty || frmMaterialbaselinedetail.price.$touched) && (frmMaterialbaselinedetail.price.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The price must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /price -->
+							<!-- note -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialbaselinedetail.note.$touched) && (frmMaterialbaselinedetail.note.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_materialbaselinedetail_note' | translate}}</label>
+						        	<input disabled md-maxlength="10" md-input required md-no-asterisk name="note" ng-model="materialbaselinedetail.note">
+						        	<div ng-messages="(frmDirty || frmMaterialbaselinedetail.note.$touched) && (frmMaterialbaselinedetail.note.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The note must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /note -->
+							<!-- quantity -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialbaselinedetail.quantity.$touched) && (frmMaterialbaselinedetail.quantity.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_materialbaselinedetail_quantity' | translate}}</label>
+						        	<input disabled md-maxlength="10" md-input required md-no-asterisk name="quantity" ng-model="materialbaselinedetail.quantity" ng-change="ResetTotalAmt();CalculateSum(materialbaselinedetail)">
+						        	<div ng-messages="(frmDirty || frmMaterialbaselinedetail.quantity.$touched) && (frmMaterialbaselinedetail.quantity.$error)">
+						          		<div ng-message="required">This is required.</div>
+						          		<div ng-message="md-maxlength">The quantity must be less than 3 characters long.</div>
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /quantity -->
+							<!-- amount -->
+							<div class="form-group col-sm-12" ng-init="ResetTotalAmt();CalculateSum(materialbaselinedetail)">
+								<md-input-container class="md-block" md-is-error="(frmDirty || frmMaterialbaselinedetail.amount.$touched) && (frmMaterialbaselinedetail.amount.$invalid)">
+						        	<label class="control-label col-sm-6" >{{'clientwh_materialbaselinedetail_amount' | translate}}</label>
+						        	<input disabled  md-input required md-no-asterisk name="amount" ng-model="materialbaselinedetail.amount">
+						        	<div ng-messages="(frmDirty || frmMaterialbaselinedetail.amount.$touched) && (frmMaterialbaselinedetail.amount.$error)">						          	
+						        	</div>
+						      	</md-input-container>
+							</div>
+							<!-- /amount -->
+							<!-- startdate, enddate-->
+							<div class="form-group col-sm-6">
+		                             <md-input-container>
+			            				<label class="control-label col-sm-6" >{{'clientwh_materialbaselinedetail_startdate' | translate}}</label>
+											 <md-datepicker disabled ng-click="resetInvalidRequestDate()" name="baselinedate" required ng-model="materialbaselinedetail.startdate" md-placeholder="{{'clientwh_materialbaselinedetail_startdate' | translate}}" md-open-on-focus name="datepicker"></md-datepicker>
+											 <div ng-messages="(frmDirty || frmMaterialbaselinedetail.startdate.$touched) && (frmMaterialbaselinedetail.startdate.$error)">
+										          		<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+										     </div>
+										</md-input-container>                                  
+							</div>
+							<div class="form-group col-sm-6">
+		                             <md-input-container>
+			            				<label class="control-label col-sm-6" >{{'clientwh_materialbaselinedetail_enddate' | translate}}</label>
+											 <md-datepicker disabled ng-click="resetInvalidRequestDate()" name="baselinedate" required ng-model="materialbaselinedetail.enddate" md-placeholder="{{'clientwh_materialbaselinedetail_enddate' | translate}}" md-open-on-focus name="datepicker"></md-datepicker>
+											 <div ng-messages="(frmDirty || frmMaterialbaselinedetail.enddate.$touched) && (frmMaterialbaselinedetail.enddate.$error)">
+										          		<div ng-message="required">{{'clientwh_home_required_field' | translate}}</div>
+										     </div>
+										</md-input-container>                                  
+							</div>
+							<!-- /startdate, enddate -->
+						</div>
+					</div>
+					<!-- /First column -->
+					
+					<!-- Second column -->
+					<div class="col-sm-6">
+						<div class="form-vertical">
+						
+						</div>
+					</div>
+					<!-- /Second column -->
+				</div>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<button class="btn btn-info" ng-click="save()" data-toggle="tooltip" title="{{'clientwh_home_save' | translate}}">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</button>
+						<button class="btn btn-info" ng-click="createOnForm()" data-toggle="tooltip" title="{{'clientwh_home_create' | translate}}">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+						<button class="btn btn-info" ng-click="deleteOnForm()" ng-show="materialbaselinedetail.id > -1" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+						<button class="btn btn-info" ng-click="closeDialog()" data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

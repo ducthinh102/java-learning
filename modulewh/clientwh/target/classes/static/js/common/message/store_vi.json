@@ -1,0 +1,14 @@
+{
+
+	"clientwh_store_title": "Kho",
+	"clientwh_store_idmanager": "Quản lý",
+	"clientwh_store_code": "Mã kho",
+	"clientwh_store_name": "Tên kho",
+	"clientwh_store_note": "Ghi chú",
+	"clientwh_store_detail": "Chi tiết",
+	"clientwh_store_material": "Vật tư",
+	"clientwh_store_quantity": "Số lượng",
+	"clientwh_store_total": "Tổng số lượng",
+	"clientwh_store_existmanager": "Chọn quản lý đã tồn tại"
+	
+}

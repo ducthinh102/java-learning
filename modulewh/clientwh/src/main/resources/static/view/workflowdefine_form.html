@@ -1,0 +1,201 @@
+<div>
+	<div class="panel panel-default">
+		<md-tabs md-dynamic-height>
+		<md-tab label="{{'clientwh_workflowdefine_title' | translate}}">
+			<!-- Top actions -->
+			<div class="panel-heading">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<!-- Save button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="save()" md-colors="{background: 'default-green'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">save</md-icon>
+						</md-button>
+						<!--/ Save button -->
+
+						<!-- Create button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="createOnForm()" md-colors="{background: 'default-blue'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">add</md-icon>
+						</md-button>
+						<!--/ Create button -->
+
+						<!-- Delete button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="workflowdefine.id > -1" ng-click="deleteOnForm()" md-colors="{background: 'default-red'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">delete</md-icon>
+						</md-button>
+						<!--/ Delete button -->
+
+						<!-- Close button -->
+						<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">close</md-icon>
+						</md-button>
+						<!--/ Close button -->
+					</div>
+				</div>
+			</div>
+			<!-- Alert Message -->
+			<div name="alertMessage" class="alert" style="display: none">
+				<strong>{{alertMessage}}</strong>
+			</div>
+			<!-- Context -->
+			<div class="panel-body">
+				<form name="frmWorkflowDefine" novalidate class="css-form">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-vertical">
+							<!-- workflow name -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="col-sm-6" ng-class="{ 'md-input-invalid': (frmWorkflowDefine.workflowname.$touched || frmWorkflowDefine.workflowname.$dirty || frmDirty) && frmWorkflowDefine.workflowname.$invalid }">
+									<label>{{'clientwh_workflowdefine_workflowname' | translate}}</label>
+									<md-select id="workflowname" name="workflowname" aria-label="select" ng-change="isStepExisted()" ng-model="selectedWorkflow" required>
+										<md-option ng-repeat="workflow in workflows" value={{workflow.id}}>{{workflow.name}}</option>
+									</md-select>
+								</md-input-container>
+							</div>
+							<!-- /workflow name -->
+							<!-- code -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="col-sm-6" ng-class="{ 'md-input-invalid': (frmWorkflowDefine.code.$touched || frmWorkflowDefine.code.$dirty || frmDirty) && frmWorkflowDefine.code.$invalid }">
+									<label>{{'clientwh_workflowdefine_code' | translate}}</label>
+									<input type="text" id="code" name="code" ng-model="workflowdefine.code" required maxlength="50"></input>
+								</md-input-container>
+							</div>
+							<!-- /code -->
+							<!-- name -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="col-sm-6" ng-class="{ 'md-input-invalid': (frmWorkflowDefine.name.$touched || frmWorkflowDefine.name.$dirty || frmDirty) && frmWorkflowDefine.name.$invalid }">
+									<label>{{'clientwh_workflowdefine_name' | translate}}</label>
+									<input type="text" id="name" name="name" ng-model="workflowdefine.name" required maxlength="50"></input>
+								</md-input-container>
+							</div>
+							<!-- /name -->
+							<!-- step -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="col-sm-6" ng-class="{ 'md-input-invalid': ( (frmWorkflowDefine.step.$touched || frmWorkflowDefine.step.$dirty || frmDirty) && frmWorkflowDefine.step.$invalid ) || frmWorkflowDefine.step.isInvalid }">
+									<label>{{'clientwh_workflowdefine_step' | translate}}</label>
+									<input type="number" min=1 maxlength="9" oninput="(value=parseInt(value.substring(0,maxLength)));" id="step" name="step" ng-change="isStepExisted()" ng-model="workflowdefine.step" required></input>
+									<div ng-if="frmWorkflowDefine.step.isInvalid" style="color:red">
+											{{'clientwh_workflowdefine_step_existed' | translate}}
+									</div>
+								</md-input-container>
+							</div>
+							<!-- /step -->
+							<!-- duration -->
+							<div class="form-group col-sm-12">
+								<md-input-container class="col-sm-6" ng-class="{ 'md-input-invalid': (frmWorkflowDefine.duration.$touched || frmWorkflowDefine.duration.$dirty || frmDirty) && frmWorkflowDefine.duration.$invalid }">
+									<div>
+									<label>{{'clientwh_workflowdefine_duration' | translate}}</label>
+									<input type="number" min=0 maxlength="9" oninput="(value=parseInt(value.substring(0,maxLength)));" id="duration" name="duration" ng-model="workflowdefine.duration" required></input>
+									</div>
+								</md-input-container>
+							</div>
+
+							<!-- /duration -->
+							<!-- transmit -->
+							<div class="form-group col-sm-12" ng-show="workflowdefine.id > -1">
+								<div class="col-sm-12">
+									<md-button class="md-icon-button test-tooltip md-raised md-primary pull-right" ng-click="addTransmit()" md-colors="{background: 'default-blue'}">
+										<md-tooltip>{{'clientwh_workflowdefine_add' | translate}}</md-tooltip>
+										<md-icon md-font-library="material-icons">add</md-icon>
+									</md-button>
+								</div>
+								<div class="col-sm-12 table-responsive">
+									<table class="table table-bordered table-striped">
+									    <thead>
+									      <tr>
+											<th>{{'clientwh_workflowdefine_edit' | translate}}</th>
+											<th>{{'clientwh_workflowdefine_delete' | translate}}</th>
+									        <th>{{'clientwh_workflowdefine_sender' | translate}}</th>
+									        <th>{{'clientwh_workflowdefine_receiver' | translate}}</th>
+									        <th>{{'clientwh_workflowdefine_approver' | translate}}</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+									      <tr ng-repeat="item in transmits">
+									      	<td>
+												<div ng-click="editTransmit($index)" data-toggle="tooltip" title="{{'clientwh_home_edit' | translate}}">
+													<span class="glyphicon glyphicon-pencil"></span>
+												</div>
+											</td>
+											<td>
+												<div ng-click="deleteTransmit($index)" data-toggle="tooltip" title="{{'clientwh_home_delete' | translate}}">
+													<span class="glyphicon glyphicon-trash"></span>
+												</div>
+											</td>
+											<td>
+												<span ng-repeat="senderID in item.sender">
+													{{getUserName(senderID)}},&nbsp;
+												</span>
+											</td>
+											<td>
+												<span ng-repeat="receiverID in item.receiver">
+													{{getUserName(receiverID)}},&nbsp;
+												</span>
+											</td>
+											<td>
+												<span ng-repeat="approverID in item.approver">
+													{{getUserName(approverID)}},&nbsp;
+												</span>
+											</td>
+									      </tr>
+									    </tbody>
+								  </table>
+							  </div>
+							</div>
+							<!-- /transmit -->
+						</div>
+					</div>
+				</div>
+				</form>
+			</div>
+			<!-- Alert Message -->
+			<div name="alertMessage" class="alert" style="display: none">
+				<strong>{{alertMessage}}</strong>
+			</div>
+			<!-- Bottom actions -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="btn-group pull-right">
+						<!-- Save button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="save()" md-colors="{background: 'default-green'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_save' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">save</md-icon>
+						</md-button>
+						<!--/ Save button -->
+
+						<!-- Create button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-click="createOnForm()" md-colors="{background: 'default-blue'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_create' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">add</md-icon>
+						</md-button>
+						<!--/ Create button -->
+
+						<!-- Delete button -->
+						<md-button class="md-icon-button test-tooltip md-primary md-raised" ng-show="workflowdefine.id > -1" ng-click="deleteOnForm()" md-colors="{background: 'default-red'}"
+							data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_delete' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">delete</md-icon>
+						</md-button>
+						<!--/ Delete button -->
+
+						<!-- Close button -->
+						<md-button class="md-icon-button test-tooltip md-raised" ng-click="closeDialog()" data-toggle="tooltip">
+							<md-tooltip md-direction="top">{{'clientwh_home_close' | translate}}</md-tooltip>
+							<md-icon md-font-library="material-icons">close</md-icon>
+						</md-button>
+						<!--/ Close button -->
+					</div>
+				</div>
+			</div>
+		</md-tab>
+		</md-tabs>
+	</div>
+</div>

@@ -1,0 +1,127 @@
+<div>
+	<md-card> <md-tabs md-dynamic-height md-border-bottom>
+	<md-tab label="{{'clientwh_materialform_title' | translate}}">
+	<form name="frmMaterialform" novalidate class="css-form">
+		<md-card-title> <md-card-title-text>
+		<span class="md-headline">{{'clientwh_materialform_title' |
+			translate}}</span> </md-card-title-text> </md-card-title>
+
+		<div class="row">
+			<!-- First column -->
+			<div class="col-sm-6">
+				<div class="form-vertical">
+					<!-- code - date -->
+					<div class="form-group col-sm-12">
+
+						<div class="col-sm-8">
+							<md-input-container class="md-block"
+								md-is-error="(frmDirty || frmMaterialform.code.$touched) && (frmMaterialform.code.$invalid||frmMaterialform.code.$error.duplicate)">
+							<label>{{'clientwh_materialform_code' | translate}}</label> <input
+								md-maxlength="20" md-input required md-no-asterisk name="code"
+								ng-model="materialform.code"
+								ng-change="resetValidateDuplicate()" id="code" maxlength="20" disabled>
+							</md-input-container>
+						</div>
+
+						<div class="col-sm-4">
+							<md-input-container class="md-block"> <label>{{'clientwh_materialform_formdate'
+								| translate}}</label> <md-datepicker disabled
+								name="formdate" required ng-model="materialform.formdate"
+								md-open-on-focus name="datepicker"></md-datepicker>
+							</md-input-container>
+						</div>
+
+					</div>
+					<!-- /code - date -->
+					<!-- totalamount -->
+					<div class="form-group col-sm-12" ng-init="Sumtotalamount()">
+						<md-input-container class="md-block"
+							md-is-error="(frmDirty || frmMaterialform.totalamount.$touched) && (frmMaterialform.totalamount.$invalid)">
+						<label class="control-label col-sm-6">{{'clientwh_materialform_totalamount'
+							| translate}}</label> <input numeric decimals="0" formatting="true"
+							min="0" max="999999999999999" md-input md-no-asterisk
+							name="totalamount" disabled ng-model="materialform.totalamount">
+						</md-input-container>
+					</div>
+					<!-- /totalamount -->
+				</div>
+			</div>
+			<!-- /First column -->
+
+			<!-- Second column -->
+			<div class="col-sm-6">
+				<div class="form-vertical">
+
+					<!-- name -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block"
+							md-is-error="(frmDirty || frmMaterialform.name.$touched) && (frmMaterialform.name.$invalid)">
+						<label class="control-label col-sm-6">{{'clientwh_materialform_name'
+							| translate}}</label> <input md-maxlength="100" md-input disabled
+							md-no-asterisk name="name" ng-model="materialform.name">
+						</md-input-container>
+					</div>
+					<!-- /name -->
+
+					<!-- note -->
+					<div class="form-group col-sm-12">
+						<md-input-container class="md-block"
+							md-is-error="(frmDirty || frmMaterialform.note.$touched) && (frmMaterialform.note.$invalid)">
+						<label class="control-label col-sm-6">{{'clientwh_materialform_note'
+							| translate}}</label> <input md-input name="note" disabled
+							ng-model="materialform.note"> </md-input-container>
+					</div>
+					<!-- /note -->
+
+				</div>
+			</div>
+			<!-- /Second column -->
+		</div>
+		<!-- Bottom actions -->
+		<div class="panel-footer">
+			<div class="row">
+				<!-- workflowexecute module -->
+				<div ng-include="constants.workflowexecuteView"></div>
+				<div class="btn-group pull-right">
+					<!-- Close button -->
+					<md-button class="md-icon-button test-tooltip md-raised"
+						ng-click="closeFormDialog()" data-toggle="tooltip"> <md-tooltip
+						md-direction="top">{{'clientwh_home_close' |
+					translate}}</md-tooltip> <md-icon md-font-library="material-icons">close</md-icon>
+					</md-button>
+					<!--/ Close button -->
+				</div>
+			</div>
+		</div>
+	</form>
+	</md-tab> <md-tab label="{{'clientwh_materialform_detail' | translate}}"
+		ng-if="materialform.id > -1">
+	<div ng-include="materialformdetailOnlyView"
+		ng-controller="clientwhmaterialformdetailController"></div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="btn-group pull-right">
+				<md-button class="md-icon-button test-tooltip md-raised"
+					data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+					ng-click="closeDialog()"> <md-icon
+					md-font-library="material-icons">close</md-icon> </md-button>
+			</div>
+		</div>
+	</div>
+	</md-tab> <md-tab label="{{'clientwh_home_comment' | translate}}"
+		ng-if="materialform.id > -1">
+	<div ng-include="commentScope.onlyview"
+		ng-controller="clientwhcommentController"></div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="btn-group pull-right">
+				<md-button class="md-icon-button test-tooltip md-raised"
+					data-toggle="tooltip" title="{{'clientwh_home_close' | translate}}"
+					ng-click="closeDialog()"> <md-icon
+					md-font-library="material-icons">close</md-icon> </md-button>
+			</div>
+		</div>
+	</div>
+	</md-tab> </md-tabs> </md-card>
+
+</div>

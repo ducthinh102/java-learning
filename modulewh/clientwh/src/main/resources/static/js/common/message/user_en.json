@@ -1,0 +1,11 @@
+{
+	"clientwh_user_title": "User",
+	"clientwh_user_username": "Username",
+	"clientwh_user_password": "Password",
+	"clientwh_user_displayname": "Display name",
+	"clientwh_user_email": "Email",
+	"clientwh_user_thumbnail": "Avatar",
+	"clientwh_user_enabled": "Enable",
+	"clientwh_user_firstname": "Firstname",
+	"clientwh_user_lastname": "Lastname"
+}
